@@ -2,7 +2,7 @@
   "name": "iscape-quiz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://viktorsmari.github.io/react-quiz",
+  "homepage": "https://fablabbcn.github.io/react-quiz",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
