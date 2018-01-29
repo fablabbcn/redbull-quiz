@@ -1,0 +1,22 @@
+{
+  "name": "iscape-quiz",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://viktorsmari.github.io/react-quiz",
+  "dependencies": {
+    "gh-pages": "^1.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
