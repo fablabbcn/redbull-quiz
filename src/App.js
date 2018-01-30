@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data/data';
+import en from './data/en';
+import es from './data/es';
 
 function Quiz() {
   return (
@@ -15,17 +16,17 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: "es",
-      total: data.length,
+      active: true,
+      language: es,
+      total: en.length,
       guesses: [],
-      correctAnswer: data.map((outer) => outer.correct - 1)
+      correctAnswer: en.map((outer) => outer.correct - 1)
       // -1 because the data.js starts counting on 1 but arrays start on 0
     };
-    console.log(data)
-    console.log(this.state.language)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.selectAnswer = this.selectAnswer.bind(this);
+    this.changeLanguage = this.changeLanguage.bind(this);
   }
   prevQuestion(e){
     console.log('prev');
@@ -33,8 +34,16 @@ class Question extends React.Component {
   }
 
   changeLanguage(e){
-    console.log('changeLang')
-    console.log(e.target.value)
+    switch (e.target.value) {
+      case 'en':
+        this.setState({ language: en })
+        break;
+      case 'es':
+        this.setState({ language: es })
+        break;
+      default:
+    }
+
   }
   nextQuestion(e){
     console.log('next');
@@ -69,7 +78,7 @@ class Question extends React.Component {
     //console.log(this.state.correctAnswer[questionIndex]);
 
     // When we click (not submit) the correct answer, if we want INSTANT valuation
-    console.log(data[questionIndex].correct[answerIndex]);
+    console.log(this.state.language[questionIndex].correct[answerIndex]);
 
     let newGuess = this.state.guesses.slice() // copy the array
     newGuess[questionIndex] = answerIndex;
@@ -80,7 +89,7 @@ class Question extends React.Component {
   render() {
 
     // This will print all questions on one page
-    var startQuiz = data.map((item, questionIndex) => {
+    var startQuiz = this.state.language.map((item, questionIndex) => {
       return (
         <div key={questionIndex}>
           <h3>{item.question} ({questionIndex + 1} / {this.state.total}) </h3>
