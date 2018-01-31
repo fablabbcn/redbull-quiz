@@ -3,16 +3,7 @@ import './App.css';
 import en from './data/en';
 import es from './data/es';
 
-function Quiz() {
-  return (
-    <div>
-      <h1>Questions:</h1>
-      <Question />
-    </div>
-  );
-}
-
-class Question extends React.Component {
+class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,18 +94,21 @@ class Question extends React.Component {
       return (
         <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show' : 'hidden'}>
           <h3>{item.question} ({questionIndex + 1} / {this.state.total}) </h3>
-            {
-              item.suggestions.map((answer, i) => {
-                return (
-                  <div key={i} className="">
-                    <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
-                      {answer}
-                    </div>
+          {
+            item.suggestions.map((answer, i) => {
+              return (
+                <div key={i} className="">
+                  <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
+                    {answer}
                   </div>
-                )
-              })
-            }
-            <h5>{item.results[this.state.guesses[questionIndex]]}</h5>
+                </div>
+              )
+            })
+          }
+          <h5>{item.results[this.state.guesses[questionIndex]]}</h5>
+          <button onClick={this.prevQuestion}>Previous</button>
+          <button onClick={this.nextQuestion}>Next</button> <br />
+          <input type="submit" value="Show scores / Calculate" /> <br />
         </div>
       )
     })
@@ -125,26 +119,20 @@ class Question extends React.Component {
         <button onClick={this.startQuiz}>Start Quiz </button>
       </div>
 
-    return (
-      <div>
+      return (
         <div>
-          Select Language:
-          <button value="es" onClick={this.changeLanguage}>Espanol </button>
-          <button value="en" onClick={this.changeLanguage}>English </button>
-          Curr: {this.state.currentQuestion}
+          <div>
+            Select Language:
+            <button value="es" onClick={this.changeLanguage}>Espanol </button>
+            <button value="en" onClick={this.changeLanguage}>English </button>
+            Curr: {this.state.currentQuestion}
+          </div>
+          <form onSubmit={this.handleSubmit}>
+            {this.state.started === true ? startQuiz : welcome}
+            <br />
+          </form>
         </div>
-        <form onSubmit={this.handleSubmit}>
-
-          {this.state.started === true ? startQuiz : welcome}
-
-          <br />
-          <button onClick={this.prevQuestion}>Previous</button>
-          <button onClick={this.nextQuestion}>Next</button> <br />
-          <input type="submit" value="Show scores / Calculate" /> <br />
-
-        </form>
-      </div>
-    )
+      )
   }
 }
 
@@ -152,7 +140,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Quiz />
+        <h1>Questions:</h1>
+        <Questions />
       </div>
     );
   }
