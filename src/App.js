@@ -20,7 +20,7 @@ class Questions extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
-    this.selectAnswer = this.selectAnswer.bind(this);
+    this.updateGuesses = this.updateGuesses.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
   }
 
@@ -40,7 +40,6 @@ class Questions extends Component {
     e.preventDefault();
     //console.log(this.state.currentQuestion);
     console.log('Guesses: ', this.state.guesses)
-    let xpLevel = 0;
 
     this.updateExposureLevel()
     // TODO
@@ -52,16 +51,15 @@ class Questions extends Component {
       e.target.className = 'selected'
     }
     */
-
   }
 
+
   nextQuestion(e){
-    console.log(this.total)
     e.preventDefault();
     if(this.state.currentQuestion < this.state.total - 1){
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
-    console.log('next', this.state.currentQuestion);
+    console.log('next nr', this.state.currentQuestion);
   }
 
   prevQuestion(e){
@@ -72,23 +70,15 @@ class Questions extends Component {
     console.log('prev', this.state.currentQuestion);
   }
 
-
-  selectAnswer(answerIndex, e, questionIndex) {
+  updateGuesses(answerIndex, e, questionIndex) {
     //console.log(answerIndex);
     //console.log(questionIndex);
     //console.log(e);
     //console.log(this);
 
-    //console.log(this.state.language[questionIndex].results[answerIndex]);
-
     let newGuess = this.state.guesses.slice() // .slice() clones the array
     newGuess[questionIndex] = answerIndex;
-    this.setState({ guesses: newGuess })
-
-    // TODO
-    // Calculate exposure level
-    // Each question has a DANGER value for each answer, such as a scale from 0-5
-    // this.updateExposureLevel(this.state.language[questionIndex].danger[answerIndex])
+    this.setState({ guesses: newGuess });
   }
 
   startQuiz(){
@@ -99,13 +89,15 @@ class Questions extends Component {
     let xpLevel = 0;
     this.state.language.map((x, y) => {
       xpLevel += (x.danger[this.state.guesses[y]] || 0)
-    })
+    });
 
     this.setState({ exposureLevel:  xpLevel })
   }
 
   render() {
     // This will return an array of each question
+    const firstQuestion = this.state.currentQuestion === 0;
+    const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
     var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
         <div key={questionIndex} className="row">
@@ -116,8 +108,8 @@ class Questions extends Component {
                   item.suggestions.map((suggestion, i) => {
                     return (
                       <div key={i} className="col-6 suggestion">
-                        <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
-                          <img src="http://via.placeholder.com/150x150" className="rounded-circle mx-auto d-block my-3" />
+                        <div onClick={(e) => this.updateGuesses(i, e, questionIndex)} >
+                          <img src="http://via.placeholder.com/150x150" alt="img" className="rounded-circle mx-auto d-block my-3" />
                           <p className="text-center">{suggestion}</p>
                           Danger level: {item.danger[i]}
                         </div>
@@ -128,9 +120,9 @@ class Questions extends Component {
               </div>
               <p className="pt-4">{item.results[this.state.guesses[questionIndex]]}</p>
               <div className="button mt-5 text-center">
-                <button className="btn btn-sm"  onClick={this.prevQuestion}>Previous</button>
-                <button className="btn btn-blue"  onClick={this.nextQuestion}>Next question</button> <br />
-                <input className="btn btn-blue mt-3" type="submit" value="Show scores / Calculate" />
+                <button className={firstQuestion ? 'hidden' : 'btn btn-sm' }  onClick={this.prevQuestion}>Previous</button>
+                <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
+                <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
               </div>
             </div>
         </div>
