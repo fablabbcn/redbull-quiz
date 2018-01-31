@@ -16,7 +16,7 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: true,
+      started: false,
       currentQuestion: 0,
       language: es,
       total: en.length,
@@ -30,6 +30,7 @@ class Question extends React.Component {
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
     this.selectAnswer = this.selectAnswer.bind(this);
+    this.startQuiz = this.startQuiz.bind(this);
   }
 
   changeLanguage(e){
@@ -92,6 +93,10 @@ class Question extends React.Component {
     this.setState({ guesses: newGuess })
   }
 
+  startQuiz(){
+    this.setState({started: true})
+  }
+
   render() {
     // This will print all questions on one page
     var startQuiz = this.state.language.map((item, questionIndex) => {
@@ -114,6 +119,12 @@ class Question extends React.Component {
       )
     })
 
+    var welcome =
+      <div>
+        <h2>Air pollution in [Guildford]</h2>
+        <button onClick={this.startQuiz}>Start Quiz </button>
+      </div>
+
     return (
       <div>
         <div>
@@ -124,7 +135,7 @@ class Question extends React.Component {
         </div>
         <form onSubmit={this.handleSubmit}>
 
-          {startQuiz}
+          {this.state.started === true ? startQuiz : welcome}
 
           <br />
           <button onClick={this.prevQuestion}>Previous</button>
