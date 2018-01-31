@@ -115,6 +115,7 @@ class Questions extends Component {
                         <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
                           <img src="http://via.placeholder.com/150x150" className="rounded-circle mx-auto d-block my-3" />
                           <p className="text-center">{suggestion}</p>
+                          Danger level: {item.danger[i]}
                         </div>
                       </div>
                     )

@@ -6,7 +6,7 @@ export default [
       'Pollution is typically higher near busy highways since traffic is a major source of air pollution. 50% of vehicle emissions can also travel a distance of up to 150 meters from their source.  Consider planting a hedge row or asking your landlord to do it. A hedge row could act as a green barrier between you and vehicle emissions, this will help to reduce your exposure to air pollution on a daily basis.',
       'Great! Pollution is typically lower away from busy roads since traffic is a major source of air pollution.'
     ],
-    danger: [1, 0]
+    danger: [4, 1]
   },
   {
     question: 'Which of this roads do you walk down more often?',
@@ -15,7 +15,7 @@ export default [
       'Unfortunately pollution exposure is typically higher on Stoke Road compared to Park Way. This is because it has fewer hedges along the road side. Hedges can help to reduce air pollution by up to to 60%.  If you want to try and reduce your exposure to air pollution whist travelling around Guildford, try to walk down roads with hedges and trees next time you are out and about.',
       'Well Done!  Walking down Park Way exposes you to a lot less pollution than walking down Stoke Road. This is because the hedges at the side of the road help to reduce air pollution exposure by up to to  60%.  '
     ],
-    danger: [2, 0]
+    danger: [2, 5]
   },
   {
     question: 'Where would you as a pedestrian stand while waiting to cross at the traffic lights?',
@@ -24,6 +24,6 @@ export default [
       'Pollution is typically higher at the road edge but 20% of  vehicle emissions reduce within 10 meters back from the curb.  If you want to try and reduce your exposure to air pollution stand as far away from the curb as possible.  ',
       'Great!  Pollution is typically higher at the road edge but 20% of  vehicle emissions reduce within 10 meters back from the curb.  By standing as far back as you can from the edge of the road you can reduce your exposure to air pollution.  '
     ],
-    danger: [3, 0]
+    danger: [3, 6]
   }
 ]
