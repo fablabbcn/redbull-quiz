@@ -4,20 +4,20 @@ import 'bootstrap/dist/css/bootstrap.css'
 import en from './data/en';
 import es from './data/es';
 
-class Questions extends React.Component {
+class Questions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      started: false,
       currentQuestion: 0,
-      language: en,
-      total: en.length,
+      exposureLevel: 0,
       guesses: [],
+      language: en,
+      started: true,
+      total: en.length,
       //correctAnswer: en.map((outer) => outer.correct)
       // -1 because the data.js starts counting on 1 but arrays start on 0
     };
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
@@ -35,10 +35,6 @@ class Questions extends React.Component {
         break;
       default:
     }
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
   }
 
   handleSubmit(e) {
@@ -88,6 +84,16 @@ class Questions extends React.Component {
     let newGuess = this.state.guesses.slice() // .slice() clones the array
     newGuess[questionIndex] = answerIndex;
     this.setState({ guesses: newGuess })
+
+    // TODO
+    // Calculate exposure level
+    if (answerIndex === 1) {
+      // Each question should have a DANGER value for each answer, such as a scale from 0-5
+      // We will update exposureLevel
+      console.log(this.state.guesses);
+      // NOTE: now this only increments if you select the later suggestion
+      //this.setState({ exposureLevel: this.state.exposureLevel + 1 })
+    }
   }
 
   startQuiz(){
@@ -145,12 +151,7 @@ class Questions extends React.Component {
             <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
               {this.state.started === true ? eachQuiz : welcome}
             </form>
-
-            <div className="col-12 col-md-4 sidebar">
-              <h4>Your exposure to air pollution</h4>
-              {this.state.currentQuestion}/
-              {this.state.total}
-            </div>
+            <Sidebar exposure={this.state.exposureLevel} />
           </div>
         </div>
       )
@@ -164,6 +165,17 @@ class App extends Component {
         <Questions />
       </div>
     );
+  }
+}
+
+class Sidebar extends Component {
+  render(){
+    return (
+      <div className="col-12 col-md-4 sidebar">
+        <h4>Your exposure to air pollution</h4>
+        <p className="text-danger">Exposure Level: {this.props.exposure}</p>
+      </div>
+    )
   }
 }
 
