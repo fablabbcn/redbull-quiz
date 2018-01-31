@@ -9,7 +9,7 @@ class Questions extends React.Component {
     this.state = {
       started: false,
       currentQuestion: 0,
-      language: es,
+      language: en,
       total: en.length,
       guesses: [],
       //correctAnswer: en.map((outer) => outer.correct)
@@ -94,48 +94,62 @@ class Questions extends React.Component {
   }
 
   render() {
-    // This will print all questions on one page
-    var startQuiz = this.state.language.map((item, questionIndex) => {
+    // This will return an array of each question
+    var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
-        <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show' : 'hidden'}>
-          <h3>{item.question} ({questionIndex + 1} / {this.state.total}) </h3>
-          {
-            item.suggestions.map((answer, i) => {
-              return (
-                <div key={i} className="">
-                  <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
-                    {answer}
-                  </div>
-                </div>
-              )
-            })
-          }
-          <h5>{item.results[this.state.guesses[questionIndex]]}</h5>
-          <button onClick={this.prevQuestion}>Previous</button>
-          <button onClick={this.nextQuestion}>Next</button> <br />
-          <input type="submit" value="Show scores / Calculate" /> <br />
+        <div class="row">
+            <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
+              <h3>{questionIndex + 1} / {this.state.total}. {item.question} </h3>
+              <div className="row">
+                {
+                  item.suggestions.map((sugg, i) => {
+                    return (
+                      <div key={i} className="col-6 suggestion">
+                        <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
+                          {sugg}
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <p>{item.results[this.state.guesses[questionIndex]]}</p>
+              <div className="button mt-5">
+                <button className="btn btn-blue"  onClick={this.prevQuestion}>Previous</button>
+                <button className="btn btn-blue"  onClick={this.nextQuestion}>Next</button> <br />
+                <input className="btn btn-blue mt-3" type="submit" value="Show scores / Calculate" />
+              </div>
+            </div>
         </div>
       )
-    })
+    });
 
-    var welcome =
+    var welcome = (
       <div>
         <h2>Air pollution in [Guildford]</h2>
-        <button onClick={this.startQuiz}>Start Quiz </button>
+        <button className="btn btn-blue" onClick={this.startQuiz}>Start Quiz </button>
       </div>
+    );
 
       return (
         <div>
-          <div>
+          <div className="row">
             Select Language:
-            <button value="es" onClick={this.changeLanguage}>Espanol </button>
-            <button value="en" onClick={this.changeLanguage}>English </button>
-            Curr: {this.state.currentQuestion}
+            <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
+            <button className="btn btn-sm btn-blue" value="en" onClick={this.changeLanguage}>English </button>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            {this.state.started === true ? startQuiz : welcome}
-            <br />
-          </form>
+
+          <div className="row">
+            <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+              {this.state.started === true ? eachQuiz : welcome}
+            </form>
+
+            <div className="col-4 sidebar">
+              <h3>Your exposure to air pollution</h3>
+              {this.state.currentQuestion}/
+              {this.state.total}
+            </div>
+          </div>
         </div>
       )
   }
@@ -144,8 +158,7 @@ class Questions extends React.Component {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Questions:</h1>
+      <div className="App container">
         <Questions />
       </div>
     );
