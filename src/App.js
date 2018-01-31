@@ -17,20 +17,19 @@ class Question extends React.Component {
     super(props);
     this.state = {
       active: true,
+      currentQuestion: 0,
       language: es,
       total: en.length,
       guesses: [],
-      correctAnswer: en.map((outer) => outer.correct - 1)
+      //correctAnswer: en.map((outer) => outer.correct)
       // -1 because the data.js starts counting on 1 but arrays start on 0
     };
+    this.changeLanguage = this.changeLanguage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
+    this.prevQuestion = this.prevQuestion.bind(this);
     this.selectAnswer = this.selectAnswer.bind(this);
-    this.changeLanguage = this.changeLanguage.bind(this);
-  }
-  prevQuestion(e){
-    console.log('prev');
-    e.preventDefault();
   }
 
   changeLanguage(e){
@@ -43,18 +42,14 @@ class Question extends React.Component {
         break;
       default:
     }
+  }
 
-  }
-  nextQuestion(e){
-    console.log('next');
-    e.preventDefault();
-  }
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
   handleSubmit(e) {
-    //console.log(this);
+    console.log(this.state.currentQuestion);
     e.preventDefault();
     console.log('Guesses: ', this.state.guesses)
 
@@ -67,8 +62,20 @@ class Question extends React.Component {
       e.target.className = 'selected'
     }
     */
-
   }
+
+  nextQuestion(e){
+    e.preventDefault();
+    this.setState({currentQuestion:  this.state.currentQuestion + 1})
+    console.log('next', this.state.currentQuestion);
+  }
+
+  prevQuestion(e){
+    e.preventDefault();
+    this.setState({currentQuestion: this.state.currentQuestion - 1})
+    console.log('prev', this.state.currentQuestion);
+  }
+
 
   selectAnswer(answerIndex, e, questionIndex) {
     //console.log(answerIndex);
@@ -83,15 +90,13 @@ class Question extends React.Component {
     let newGuess = this.state.guesses.slice() // copy the array
     newGuess[questionIndex] = answerIndex;
     this.setState({ guesses: newGuess })
-
   }
 
   render() {
-
     // This will print all questions on one page
     var startQuiz = this.state.language.map((item, questionIndex) => {
       return (
-        <div key={questionIndex}>
+        <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show' : 'hidden'}>
           <h3>{item.question} ({questionIndex + 1} / {this.state.total}) </h3>
             {
               item.answers.map((answer, i) => {
@@ -114,6 +119,7 @@ class Question extends React.Component {
           Select Language:
           <button value="es" onClick={this.changeLanguage}>Espanol </button>
           <button value="en" onClick={this.changeLanguage}>English </button>
+          Curr: {this.state.currentQuestion}
         </div>
         <form onSubmit={this.handleSubmit}>
 
@@ -124,6 +130,7 @@ class Question extends React.Component {
           <button onClick={this.nextQuestion}>Next</button> <br />
 
           <input type="submit" value="Show scores / Calculate" /> <br />
+          <p>Guesses: {this.state.guesses}</p>
 
         </form>
       </div>
