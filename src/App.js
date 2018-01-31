@@ -97,26 +97,27 @@ class Questions extends React.Component {
     // This will return an array of each question
     var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
-        <div class="row">
-            <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
-              <h3>{questionIndex + 1} / {this.state.total}. {item.question} </h3>
+        <div key={questionIndex} className="row">
+            <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
+              <h3>{questionIndex + 1}. {item.question} </h3>
               <div className="row">
                 {
-                  item.suggestions.map((sugg, i) => {
+                  item.suggestions.map((suggestion, i) => {
                     return (
                       <div key={i} className="col-6 suggestion">
                         <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
-                          {sugg}
+                          <img src="http://via.placeholder.com/150x150" className="rounded-circle mx-auto d-block my-3" />
+                          <p className="text-center">{suggestion}</p>
                         </div>
                       </div>
                     )
                   })
                 }
               </div>
-              <p>{item.results[this.state.guesses[questionIndex]]}</p>
-              <div className="button mt-5">
-                <button className="btn btn-blue"  onClick={this.prevQuestion}>Previous</button>
-                <button className="btn btn-blue"  onClick={this.nextQuestion}>Next</button> <br />
+              <p className="pt-4">{item.results[this.state.guesses[questionIndex]]}</p>
+              <div className="button mt-5 text-center">
+                <button className="btn btn-sm"  onClick={this.prevQuestion}>Previous</button>
+                <button className="btn btn-blue"  onClick={this.nextQuestion}>Next question</button> <br />
                 <input className="btn btn-blue mt-3" type="submit" value="Show scores / Calculate" />
               </div>
             </div>
@@ -144,8 +145,8 @@ class Questions extends React.Component {
               {this.state.started === true ? eachQuiz : welcome}
             </form>
 
-            <div className="col-4 sidebar">
-              <h3>Your exposure to air pollution</h3>
+            <div className="col-12 col-md-4 sidebar">
+              <h4>Your exposure to air pollution</h4>
               {this.state.currentQuestion}/
               {this.state.total}
             </div>
