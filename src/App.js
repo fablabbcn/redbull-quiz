@@ -85,9 +85,9 @@ class Question extends React.Component {
     //console.log(this.state.correctAnswer[questionIndex]);
 
     // When we click (not submit) the correct answer, if we want INSTANT valuation
-    console.log(this.state.language[questionIndex].correct[answerIndex]);
+    console.log(this.state.language[questionIndex].results[answerIndex]);
 
-    let newGuess = this.state.guesses.slice() // copy the array
+    let newGuess = this.state.guesses.slice() // .slice() clones the array
     newGuess[questionIndex] = answerIndex;
     this.setState({ guesses: newGuess })
   }
@@ -99,7 +99,7 @@ class Question extends React.Component {
         <div key={questionIndex} className={this.state.currentQuestion === questionIndex ? 'show' : 'hidden'}>
           <h3>{item.question} ({questionIndex + 1} / {this.state.total}) </h3>
             {
-              item.answers.map((answer, i) => {
+              item.suggestions.map((answer, i) => {
                 return (
                   <div key={i} className="">
                     <div onClick={(e) => this.selectAnswer(i, e, questionIndex)} >
@@ -109,6 +109,7 @@ class Question extends React.Component {
                 )
               })
             }
+            <h5>{item.results[this.state.guesses[questionIndex]]}</h5>
         </div>
       )
     })
@@ -128,9 +129,7 @@ class Question extends React.Component {
           <br />
           <button onClick={this.prevQuestion}>Previous</button>
           <button onClick={this.nextQuestion}>Next</button> <br />
-
           <input type="submit" value="Show scores / Calculate" /> <br />
-          <p>Guesses: {this.state.guesses}</p>
 
         </form>
       </div>
