@@ -12,11 +12,10 @@ class Questions extends Component {
       exposureLevel: 0,
       guesses: [],
       language: en,
-      started: true,
+      started: true, // default false
       total: en.length,
-      //correctAnswer: en.map((outer) => outer.correct)
-      // -1 because the data.js starts counting on 1 but arrays start on 0
     };
+
     this.changeLanguage = this.changeLanguage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -38,10 +37,12 @@ class Questions extends Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state.currentQuestion);
     e.preventDefault();
+    //console.log(this.state.currentQuestion);
     console.log('Guesses: ', this.state.guesses)
+    let xpLevel = 0;
 
+    this.updateExposureLevel()
     // TODO
     // Apply CSS class to correct / incorrect answers
     /*
@@ -51,6 +52,7 @@ class Questions extends Component {
       e.target.className = 'selected'
     }
     */
+
   }
 
   nextQuestion(e){
@@ -76,10 +78,8 @@ class Questions extends Component {
     //console.log(questionIndex);
     //console.log(e);
     //console.log(this);
-    //console.log(this.state.correctAnswer[questionIndex]);
 
-    // When we click (not submit) the correct answer, if we want INSTANT valuation
-    console.log(this.state.language[questionIndex].results[answerIndex]);
+    //console.log(this.state.language[questionIndex].results[answerIndex]);
 
     let newGuess = this.state.guesses.slice() // .slice() clones the array
     newGuess[questionIndex] = answerIndex;
@@ -87,17 +87,21 @@ class Questions extends Component {
 
     // TODO
     // Calculate exposure level
-    if (answerIndex === 1) {
-      // Each question should have a DANGER value for each answer, such as a scale from 0-5
-      // We will update exposureLevel
-      console.log(this.state.guesses);
-      // NOTE: now this only increments if you select the later suggestion
-      //this.setState({ exposureLevel: this.state.exposureLevel + 1 })
-    }
+    // Each question has a DANGER value for each answer, such as a scale from 0-5
+    // this.updateExposureLevel(this.state.language[questionIndex].danger[answerIndex])
   }
 
   startQuiz(){
     this.setState({started: true})
+  }
+
+  updateExposureLevel(){
+    let xpLevel = 0;
+    this.state.language.map((x, y) => {
+      xpLevel += (x.danger[this.state.guesses[y]] || 0)
+    })
+
+    this.setState({ exposureLevel:  xpLevel })
   }
 
   render() {
