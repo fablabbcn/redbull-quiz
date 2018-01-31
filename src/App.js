@@ -57,14 +57,19 @@ class Questions extends React.Component {
   }
 
   nextQuestion(e){
+    console.log(this.total)
     e.preventDefault();
-    this.setState({currentQuestion:  this.state.currentQuestion + 1})
+    if(this.state.currentQuestion < this.state.total - 1){
+      this.setState({currentQuestion:  this.state.currentQuestion + 1})
+    }
     console.log('next', this.state.currentQuestion);
   }
 
   prevQuestion(e){
     e.preventDefault();
-    this.setState({currentQuestion: this.state.currentQuestion - 1})
+    if(this.state.currentQuestion > 0){
+      this.setState({currentQuestion: this.state.currentQuestion - 1})
+    }
     console.log('prev', this.state.currentQuestion);
   }
 
