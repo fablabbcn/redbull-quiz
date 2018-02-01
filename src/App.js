@@ -109,7 +109,7 @@ class Questions extends Component {
                     return (
                       <div key={i} className="col-6 suggestion">
                         <div onClick={(e) => this.updateGuesses(i, e, questionIndex)} >
-                          <img src="http://via.placeholder.com/150x150" alt="img" className="rounded-circle mx-auto d-block my-3" />
+                          <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                           <p className="text-center">{suggestion}</p>
                           Danger level: {item.danger[i]}
                         </div>
