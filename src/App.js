@@ -21,7 +21,7 @@ class Questions extends Component {
       quizEnded: false,
     };
 
-    console.log(this)
+    //console.log(this)
 
     this.changeLanguage = this.changeLanguage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +32,7 @@ class Questions extends Component {
   }
 
   changeLanguage(e){
-    console.log(e.target.value);
+    //console.log(e.target.value);
     // TODO: why can we not simply use the following line?
     //this.setState({ language: e.target.value})
     // Which makes the rest unneccessary
@@ -50,7 +50,7 @@ class Questions extends Component {
   handleSubmit(e) {
     e.preventDefault();
     //console.log(this.state.currentQuestion);
-    console.log('Guesses: ', this.state.guesses)
+    //console.log('Guesses: ', this.state.guesses)
 
     this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
@@ -70,7 +70,7 @@ class Questions extends Component {
     if(this.state.currentQuestion > 0){
       this.setState({currentQuestion: this.state.currentQuestion - 1})
     }
-    console.log('prev', this.state.currentQuestion);
+    //console.log('prev', this.state.currentQuestion);
   }
 
   updateGuesses(answerIndex, e, questionIndex) {
