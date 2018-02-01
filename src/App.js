@@ -12,7 +12,7 @@ class Questions extends Component {
       exposureLevel: 0,
       guesses: [],
       language: en,
-      started: true, // default false
+      started: false, // default false
       total: en.length,
     };
 
@@ -130,8 +130,12 @@ class Questions extends Component {
     });
 
     var welcome = (
-      <div>
+      <div className="text-center">
         <h2>Air pollution in [Guildford]</h2>
+        <p>Learn about the air pollution in your city and what you can do to prevent it and protect yourself.</p>
+        <p>Take the quiz to see how much air pollution you are exposed to on the air pollution meter.</p>
+        <img src={require("./img/Start-quiz.png")} className="w-50 my-4"/>
+        <br />
         <button className="btn btn-blue" onClick={this.startQuiz}>Start Quiz </button>
       </div>
     );

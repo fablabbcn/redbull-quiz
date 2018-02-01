@@ -7,8 +7,8 @@ export default [
       'Great! Pollution is typically lower away from busy roads since traffic is a major source of air pollution.'
     ],
     images:[
-      'Airport.png',
-      'Car-window-closed.png'
+      'House-near-busy-highway.png',
+      'House-near-quiet-lane.png'
     ],
     danger: [4, 1]
   },
@@ -20,8 +20,8 @@ export default [
       'Well Done!  Walking down Park Way exposes you to a lot less pollution than walking down Stoke Road. This is because the hedges at the side of the road help to reduce air pollution exposure by up to to  60%.  '
     ],
     images:[
-      'Airport.png',
-      'Car-window-closed.png'
+      'Stoke-road-no-hedges.png',
+      'Stoke-road-no-hedges.png'
     ],
     danger: [2, 5]
   },
@@ -39,3 +39,33 @@ export default [
     danger: [3, 6]
   }
 ]
+/*
+  images:[
+    'Airport.png',
+    'Car-window-closed.png'
+'Car-window-open.png'
+'Cycling-at-rush-hour.png'
+  ],
+  images:[
+
+'Cycling-off-peak.png'
+'Exposure to air pollution.png'
+  ],
+  images:[
+'Idling-car.png'
+'Non-Idling-car.png'
+  ],
+  images:[
+'Park-road-with-hedges.png'
+'PM-smaller-than-hair.png'
+'PM-visible-in-smog.png'
+  ],
+  images:[
+'Start-quiz.png'
+'Traffic.png'
+  ],
+  images:[
+'Waiting-few-meters-from-curb.png'
+'Waiting-next-to-curb.png'
+  ],
+  */
