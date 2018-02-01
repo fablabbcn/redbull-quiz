@@ -1,9 +1,22 @@
 .App {
-  padding: 20px;
 }
 
+.btn-blue{
+  background: #4472C4;
+  color:white;
+}
+
+form{
+  outline:1px dotted #ccc;
+}
+.suggestion{
+  outline:1px dotted #6bc;
+}
+.sidebar{
+  outline:1px dotted #6bc;
+}
 .selected {
-  outline: 1px solid blue;
+  outline: 1px solid green;
   color: green;
 }
 

@@ -90,6 +90,7 @@ class Questions extends Component {
 
   updateExposureLevel(){
     let xpLevel = 0;
+    // eslint-disable-next-line
     this.state.language.map((x, y) => {
       xpLevel += (x.danger[this.state.guesses[y]] || 0)
     });
@@ -106,30 +107,29 @@ class Questions extends Component {
     var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
         <div key={questionIndex} className="row">
-            <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
-              <h3>{questionIndex + 1}. {item.question} </h3>
-              <div className="row suggestions">
-                {
-                  item.suggestions.map((suggestion, i) => {
-                    return (
-                      <div key={i} className="col-6 suggestion">
-                        <div onClick={(e) => this.updateGuesses(i, e, questionIndex)} >
-                          <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
-                          <p className="text-center">{suggestion}</p>
-                          Danger level: {item.danger[i]}
-                        </div>
+          <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
+            <h3>{questionIndex + 1}. {item.question} </h3>
+            <div className="row suggestions">
+              {
+                item.suggestions.map((suggestion, i) => {
+                  return (
+                    <div key={i} className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-6 "}>
+                      <div onClick={(e) => this.updateGuesses(i, e, questionIndex)} >
+                        <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
+                        <p className="text-center">{suggestion}</p>
                       </div>
-                    )
-                  })
-                }
-              </div>
-              <p className="pt-4">{item.results[this.state.guesses[questionIndex]]}</p>
-              <div className="button mt-5 text-center">
-                <button className={firstQuestion ? 'hidden' : 'btn btn-sm' }  onClick={this.prevQuestion}>Previous</button>
-                <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
-                <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
-              </div>
+                    </div>
+                  )
+                })
+              }
             </div>
+            <p className="pt-4">{item.results[this.state.guesses[questionIndex]]}</p>
+            <div className="button mt-5 text-center">
+              <button className={firstQuestion ? 'hidden' : 'btn btn-sm' }  onClick={this.prevQuestion}>Previous</button>
+              <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
+              <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
+            </div>
+          </div>
         </div>
       )
     });
@@ -145,29 +145,29 @@ class Questions extends Component {
       </div>
     );
 
-      return (
-        <div>
-          <div className="row">
-            Select Language:
-            <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
-            <button className="btn btn-sm btn-blue" value="en" onClick={this.changeLanguage}>English </button>
-          </div>
-
-          <div className="row">
-            <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
-              {this.state.started === true ? eachQuiz : welcome}
-            </form>
-            <Sidebar exposure={this.state.exposureLevel} />
-          </div>
+    return (
+      <div>
+        <div className="row">
+          Select Language:
+          <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
+          <button className="btn btn-sm btn-blue" value="en" onClick={this.changeLanguage}>English </button>
         </div>
-      )
+
+        <div className="row">
+          <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+            {this.state.started === true ? eachQuiz : welcome}
+          </form>
+          <Sidebar exposure={this.state.exposureLevel} />
+        </div>
+      </div>
+    )
   }
 }
 
 class App extends Component {
   render() {
     return (
-      <div className="App container">
+      <div className="App container mt-4">
         <Questions />
       </div>
     );
