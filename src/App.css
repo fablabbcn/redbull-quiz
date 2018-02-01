@@ -6,15 +6,17 @@
   color:white;
 }
 
+.btn-blue:hover{
+  color:white !important;
+}
+
 form{
-  outline:1px dotted #ccc;
 }
-.suggestion{
-  outline:1px dotted #6bc;
-}
+
 .sidebar{
-  outline:1px dotted #6bc;
+  background: #eee;
 }
+
 .selected {
   outline: 1px solid green;
   color: green;

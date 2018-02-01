@@ -12,8 +12,10 @@ class Questions extends Component {
       exposureLevel: 0,
       guesses: [],
       language: en,
-      started: false, // default false
       total: en.length,
+      quizRunning: false, // default false
+      welcome: true, // default true
+      quizEnded: false,
     };
 
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -41,6 +43,7 @@ class Questions extends Component {
     //console.log(this.state.currentQuestion);
     console.log('Guesses: ', this.state.guesses)
 
+    this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
     // TODO
     // Apply CSS class to correct / incorrect answers
@@ -85,7 +88,10 @@ class Questions extends Component {
   }
 
   startQuiz(){
-    this.setState({started: true})
+    this.setState({
+      welcome: false,
+      quizRunning: true,
+    })
   }
 
   updateExposureLevel(){
@@ -145,6 +151,17 @@ class Questions extends Component {
       </div>
     );
 
+    var final = (
+      <div className="text-center">
+        <h4>Thanks for taking the quiz!</h4>
+        <p>
+          Here are some tips for how you can reduce your exposure to air pollution. If you’ve done well, please keep up the good work and share them with your family and friends.
+        </p>
+        <br />
+        <a href="/" className="btn btn-blue" >Do the quiz again?</a>
+      </div>
+    );
+
     return (
       <div>
         <div className="row">
@@ -153,9 +170,11 @@ class Questions extends Component {
           <button className="btn btn-sm btn-blue" value="en" onClick={this.changeLanguage}>English </button>
         </div>
 
-        <div className="row">
+        <div className="row border border-right-0">
           <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
-            {this.state.started === true ? eachQuiz : welcome}
+            {this.state.quizRunning === true ? eachQuiz : null}
+            {this.state.welcome === true ? welcome : null}
+            {this.state.quizEnded ? final : null }
           </form>
           <Sidebar exposure={this.state.exposureLevel} />
         </div>
