@@ -34,7 +34,7 @@ export default [
   {
     question: 'Where would you as a pedestrian stand while waiting to cross at the traffic lights?',
     suggestions: [
-    'Next to the curb, so I can start crossing right when it’s green', 
+    'Next to the curb, so I can start crossing right when it’s green',
     'A few metres back from the curb'
     ],
     results: [

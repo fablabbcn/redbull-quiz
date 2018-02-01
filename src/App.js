@@ -12,7 +12,7 @@ class Questions extends Component {
       exposureLevel: 0,
       guesses: [],
       language: en,
-      total: en.length,
+      total: 0,
       quizRunning: false, // default false
       welcome: true, // default true
       quizEnded: false,
@@ -63,6 +63,7 @@ class Questions extends Component {
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
     console.log('next nr', this.state.currentQuestion);
+    console.log(this.state.total)
   }
 
   prevQuestion(e){
@@ -91,6 +92,7 @@ class Questions extends Component {
     this.setState({
       welcome: false,
       quizRunning: true,
+      total: this.state.language.length,
     })
   }
 
@@ -164,10 +166,11 @@ class Questions extends Component {
 
     return (
       <div>
-        <div className="row">
-          Select Language:
-          <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
-          <button className="btn btn-sm btn-blue" value="en" onClick={this.changeLanguage}>English </button>
+        <div className="row text-center">
+          <div className="col my-1">
+            <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
+            <button className="btn btn-sm btn-blue mx-1" value="en" onClick={this.changeLanguage}>English </button>
+          </div>
         </div>
 
         <div className="row border border-right-0">
