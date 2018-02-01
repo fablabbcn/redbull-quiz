@@ -41,7 +41,7 @@ class Questions extends Component {
     //console.log(this.state.currentQuestion);
     console.log('Guesses: ', this.state.guesses)
 
-    this.updateExposureLevel()
+    this.updateExposureLevel();
     // TODO
     // Apply CSS class to correct / incorrect answers
     /*
@@ -78,7 +78,10 @@ class Questions extends Component {
 
     let newGuess = this.state.guesses.slice() // .slice() clones the array
     newGuess[questionIndex] = answerIndex;
-    this.setState({ guesses: newGuess });
+    this.setState({ guesses: newGuess }, () => {
+      // Make sure we update exposure AFTER guesses have been updated!
+      this.updateExposureLevel();
+    });
   }
 
   startQuiz(){
@@ -91,19 +94,21 @@ class Questions extends Component {
       xpLevel += (x.danger[this.state.guesses[y]] || 0)
     });
 
-    this.setState({ exposureLevel:  xpLevel })
+    this.setState({ exposureLevel: xpLevel }, () => {
+      console.log('updated', this.state.exposureLevel)
+    });
   }
 
   render() {
-    // This will return an array of each question
     const firstQuestion = this.state.currentQuestion === 0;
     const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
+    // This will return an array of each question
     var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
         <div key={questionIndex} className="row">
             <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
               <h3>{questionIndex + 1}. {item.question} </h3>
-              <div className="row">
+              <div className="row suggestions">
                 {
                   item.suggestions.map((suggestion, i) => {
                     return (
@@ -134,7 +139,7 @@ class Questions extends Component {
         <h2>Air pollution in [Guildford]</h2>
         <p>Learn about the air pollution in your city and what you can do to prevent it and protect yourself.</p>
         <p>Take the quiz to see how much air pollution you are exposed to on the air pollution meter.</p>
-        <img src={require("./img/Start-quiz.png")} className="w-50 my-4"/>
+        <img src={require("./img/Start-quiz.png")} onClick={this.startQuiz} className="w-50 my-4" alt="Start quiz" />
         <br />
         <button className="btn btn-blue" onClick={this.startQuiz}>Start Quiz </button>
       </div>
@@ -172,8 +177,9 @@ class App extends Component {
 class Sidebar extends Component {
   render(){
     return (
-      <div className="col-12 col-md-4 sidebar">
-        <h4>Your exposure to air pollution</h4>
+      <div className="col-12 col-md-4 sidebar text-center">
+        <h4 className="mt-3">Your exposure to air pollution</h4>
+        <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
         <p className="text-danger">Exposure Level: {this.props.exposure}</p>
       </div>
     )
