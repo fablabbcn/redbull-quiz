@@ -21,12 +21,14 @@ class Questions extends Component {
       quizEnded: false,
     };
 
+    console.log(this)
+
     this.changeLanguage = this.changeLanguage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
-    this.updateGuesses = this.updateGuesses.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
+    this.updateGuesses = this.updateGuesses.bind(this);
   }
 
   changeLanguage(e){
@@ -52,15 +54,6 @@ class Questions extends Component {
 
     this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
-    // TODO
-    // Apply CSS class to correct / incorrect answers
-    /*
-    if (e.target.className === 'selected') {
-      e.target.className = ''
-    }else{
-      e.target.className = 'selected'
-    }
-    */
   }
 
 
@@ -69,8 +62,7 @@ class Questions extends Component {
     if(this.state.currentQuestion < this.state.total - 1){
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
-    console.log('next nr', this.state.currentQuestion);
-    console.log(this.state.total)
+    //console.log('next nr', this.state.currentQuestion);
   }
 
   prevQuestion(e){
@@ -111,7 +103,7 @@ class Questions extends Component {
     });
 
     this.setState({ exposureLevel: xpLevel }, () => {
-      console.log('updated', this.state.exposureLevel)
+      //console.log('updated', this.state.exposureLevel)
     });
   }
 
@@ -129,17 +121,17 @@ class Questions extends Component {
               {
                 item.suggestions.map((suggestion, i) => {
                   return (
-                    <div key={i} className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-6 "}>
-                      <div onClick={(e) => this.updateGuesses(i, e, questionIndex)} >
-                        <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
-                        <p className="text-center">{suggestion}</p>
-                      </div>
+                    <div key={i}
+                      className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-6 "}
+                      onClick={(e) => this.updateGuesses(i, e, questionIndex)}>
+                      <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
+                      <p className="text-center">{suggestion}</p>
                     </div>
                   )
                 })
               }
             </div>
-            <p className="pt-4">{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className="pt-4 text-primary">{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-sm' }  onClick={this.prevQuestion}>Previous</button>
               <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
@@ -151,16 +143,10 @@ class Questions extends Component {
     });
 
     return (
-      <div>
-        <div className={this.state.welcome ? "row text-center" : 'hidden'}>
-          <div className="col my-1">
-            <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
-            <button className="btn btn-sm btn-blue mx-1" value="en" onClick={this.changeLanguage}>English </button>
-          </div>
-        </div>
-
-        <div className="row border border-right-0">
-          <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+      <div className="App container mt-4">
+        <Languages welcome={this.state.welcome} myClick={this.changeLanguage} />
+        <div className="row">
+          <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning === true ? eachQuiz : null}
             {this.state.welcome === true ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
             {this.state.quizEnded ? <Final language={this.state.langNr} /> : null }
@@ -170,6 +156,17 @@ class Questions extends Component {
       </div>
     )
   }
+}
+
+function Languages(props){
+  return(
+    <div className={props.welcome ? "row text-center" : 'hidden'}>
+      <div className="col my-1">
+        <button className="btn btn-sm btn-blue" value="es" onClick={props.myClick}>Espanol </button>
+        <button className="btn btn-sm btn-blue mx-1" value="en" onClick={props.myClick}>English </button>
+      </div>
+    </div>
+  )
 }
 
 function Final(props) {
@@ -201,23 +198,19 @@ function Welcome(props) {
 class App extends Component {
   render() {
     return (
-      <div className="App container mt-4">
-        <Questions />
-      </div>
+      <Questions />
     );
   }
 }
 
-class Sidebar extends Component {
-  render(){
-    return (
-      <div className="col-12 col-md-4 sidebar text-center">
-        <h4 className="mt-3">Your exposure to air pollution</h4>
-        <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
-        <p className="text-danger">Exposure Level: {this.props.exposure}</p>
-      </div>
-    )
-  }
+function Sidebar(props){
+  return (
+    <div className="col-12 col-md-4 sidebar text-center">
+      <h4 className="mt-3">Your exposure to air pollution</h4>
+      <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
+      <p className="text-danger">Exposure Level: {props.exposure}</p>
+    </div>
+  )
 }
 
 export default App;

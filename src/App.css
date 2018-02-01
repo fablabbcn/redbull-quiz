@@ -19,7 +19,6 @@ form{
 
 .selected {
   outline: 1px solid green;
-  color: green;
 }
 
 ul li {
