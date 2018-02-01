@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import en from './data/en';
+import helper from './data/helper';
 import es from './data/es';
 
 class Questions extends Component {
@@ -11,7 +12,9 @@ class Questions extends Component {
       currentQuestion: 0,
       exposureLevel: 0,
       guesses: [],
+      // TODO: Unable to use language as a 'key' from a JSON file
       language: en,
+      langNr: 0,
       total: 0,
       quizRunning: false, // default false
       welcome: true, // default true
@@ -27,12 +30,16 @@ class Questions extends Component {
   }
 
   changeLanguage(e){
+    console.log(e.target.value);
+    // TODO: why can we not simply use the following line?
+    //this.setState({ language: e.target.value})
+    // Which makes the rest unneccessary
     switch (e.target.value) {
       case 'en':
-        this.setState({ language: en })
+        this.setState({ language: en, langNr: 0 })
         break;
       case 'es':
-        this.setState({ language: es })
+        this.setState({ language: es, langNr: 1 })
         break;
       default:
     }
@@ -111,6 +118,7 @@ class Questions extends Component {
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
     const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
+
     // This will return an array of each question
     var eachQuiz = this.state.language.map((item, questionIndex) => {
       return (
@@ -142,31 +150,9 @@ class Questions extends Component {
       )
     });
 
-    var welcome = (
-      <div className="text-center">
-        <h2>Air pollution in [Guildford]</h2>
-        <p>Learn about the air pollution in your city and what you can do to prevent it and protect yourself.</p>
-        <p>Take the quiz to see how much air pollution you are exposed to on the air pollution meter.</p>
-        <img src={require("./img/Start-quiz.png")} onClick={this.startQuiz} className="w-50 my-4" alt="Start quiz" />
-        <br />
-        <button className="btn btn-blue" onClick={this.startQuiz}>Start Quiz </button>
-      </div>
-    );
-
-    var final = (
-      <div className="text-center">
-        <h4>Thanks for taking the quiz!</h4>
-        <p>
-          Here are some tips for how you can reduce your exposure to air pollution. If you’ve done well, please keep up the good work and share them with your family and friends.
-        </p>
-        <br />
-        <a href="/" className="btn btn-blue" >Do the quiz again?</a>
-      </div>
-    );
-
     return (
       <div>
-        <div className="row text-center">
+        <div className={this.state.welcome ? "row text-center" : 'hidden'}>
           <div className="col my-1">
             <button className="btn btn-sm btn-blue" value="es" onClick={this.changeLanguage}>Espanol </button>
             <button className="btn btn-sm btn-blue mx-1" value="en" onClick={this.changeLanguage}>English </button>
@@ -176,14 +162,40 @@ class Questions extends Component {
         <div className="row border border-right-0">
           <form className="col-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning === true ? eachQuiz : null}
-            {this.state.welcome === true ? welcome : null}
-            {this.state.quizEnded ? final : null }
+            {this.state.welcome === true ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
+            {this.state.quizEnded ? <Final language={this.state.langNr} /> : null }
           </form>
           <Sidebar exposure={this.state.exposureLevel} />
         </div>
       </div>
     )
   }
+}
+
+function Final(props) {
+  let lang = props.language;
+  return(
+    <div className="text-center">
+      <h4>{helper[lang].thanks}</h4>
+      <p>{helper[lang].finaltips}</p>
+      <br />
+      <a href="/" className="btn btn-blue">{helper[lang].quizagain}</a>
+    </div>
+  )
+}
+
+function Welcome(props) {
+  let lang = props.language;
+  return (
+    <div className="text-center">
+      <h2>{helper[lang].title}</h2>
+      <p>{helper[lang].p1}</p>
+      <p>{helper[lang].p2}</p>
+      <img src={require("./img/Start-quiz.png")} onClick={props.myClick} className="w-50 my-4" alt="Start quiz" />
+      <br />
+      <button className="btn btn-blue" onClick={props.myClick}>{helper[0].startquiz}</button>
+    </div>
+  )
 }
 
 class App extends Component {
