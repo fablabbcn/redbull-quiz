@@ -17,3 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 3. Deploy to Github Pages with:
   `yarn deploy`
+
+4. If the repository is changed, check `package.json` if the following url matches "homepage:"
+
+  "homepage": "https://fablabbcn.github.io/iscape-air-pollution-quiz",
