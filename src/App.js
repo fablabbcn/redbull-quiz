@@ -32,6 +32,29 @@ class Questions extends Component {
     this.prevQuestion = this.prevQuestion.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
     this.updateGuesses = this.updateGuesses.bind(this);
+    this.handleKeyboard = this.handleKeyboard.bind(this);
+
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleKeyboard, false);
+  }
+
+  handleKeyboard(event){
+    switch (event.key) {
+      case '1':
+        this.updateGuesses(0, this.state.currentQuestion)
+        break;
+      case '2':
+        this.updateGuesses(1, this.state.currentQuestion)
+        break;
+      case 'n':
+        console.log('Go to next');
+        this.nextQuestion();
+        break;
+      default:
+        //console.log('Key not mapped..');
+    }
   }
 
   changeLanguage(e){
@@ -64,9 +87,10 @@ class Questions extends Component {
     });
   }
 
-
   nextQuestion(e){
-    e.preventDefault();
+    if (e){
+      e.preventDefault();
+    }
     if(this.state.currentQuestion < this.state.total - 1){
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
@@ -81,10 +105,9 @@ class Questions extends Component {
     //console.log('prev', this.state.currentQuestion);
   }
 
-  updateGuesses(answerIndex, e, questionIndex) {
+  updateGuesses(answerIndex, questionIndex) {
     //console.log(answerIndex);
     //console.log(questionIndex);
-    //console.log(e);
     //console.log(this);
 
     let newGuess = this.state.guesses.slice() // .slice() clones the array
@@ -131,12 +154,13 @@ class Questions extends Component {
             <h3>{questionIndex + 1}. {item.question} </h3>
             <div className="row suggestions justify-content-around">
               {
-                item.suggestions.map((suggestion, i) => {
+                item.suggestions.map((suggestion, answerIndex) => {
                   return (
-                    <div key={i}
-                      className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-4 unselected"}
-                      onClick={(e) => this.updateGuesses(i, e, questionIndex)}>
-                      <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
+                    <div key={answerIndex}
+                      ref={this.clickDiv}
+                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-4 unselected"}
+                      onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
+                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                       <p className="text-center">{suggestion}</p>
                     </div>
                   )
