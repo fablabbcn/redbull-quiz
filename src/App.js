@@ -92,7 +92,7 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'Finished quiz',
-      label: 'Submit final',
+      label: 'Submit final exposure: ' + this.state.exposureLevel,
       dimension1: this.state.exposureLevel,
       dimension2: this.state.guesses
     });
