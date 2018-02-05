@@ -108,7 +108,10 @@ class Questions extends Component {
     //console.log('next nr', this.state.currentQuestion);
   }
 
-  prevQuestion(){
+  prevQuestion(e){
+    if (e){
+      e.preventDefault();
+    }
     if(this.state.currentQuestion > 0){
       this.setState({currentQuestion: this.state.currentQuestion - 1})
     }
