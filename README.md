@@ -10,6 +10,7 @@ https://www.iscapeproject.eu/about/
 ## TODO:
 - [x] Google analytics
 - [ ] Instruction on the page, mention keyboard shortcuts
+- [ ] Favicon
 
 ## Features
 Keyboard shortucts:
