@@ -93,10 +93,6 @@ class Questions extends Component {
       category: 'User',
       action: 'Finished quiz',
       label: 'Submit final',
-      //are these working?
-      exposureLevel: this.state.exposureLevel,
-      guesses: this.state.guesses,
-      metric: 23,
       dimension1: this.state.exposureLevel,
       dimension2: this.state.guesses
     });
