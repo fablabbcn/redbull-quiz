@@ -137,6 +137,7 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'guessed',
+      label: 'Quiz end',
       question: questionIndex,
       answer: answerIndex,
     });
