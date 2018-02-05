@@ -95,7 +95,10 @@ class Questions extends Component {
       label: 'Submit final',
       //are these working?
       exposureLevel: this.state.exposureLevel,
-      guesses: this.state.guesses
+      guesses: this.state.guesses,
+      metric: 23,
+      dimension1: this.state.exposureLevel,
+      dimension2: this.state.guesses
     });
   }
 
@@ -141,9 +144,7 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'guessed',
-      label: 'Guess',
-      question: questionIndex,
-      answer: answerIndex,
+      label: 'Guess'
     });
   }
 
