@@ -117,12 +117,12 @@ class Questions extends Component {
         <div key={questionIndex} className="row">
           <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
             <h3>{questionIndex + 1}. {item.question} </h3>
-            <div className="row suggestions">
+            <div className="row suggestions justify-content-around">
               {
                 item.suggestions.map((suggestion, i) => {
                   return (
                     <div key={i}
-                      className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-6 "}
+                      className={i === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-4 unselected"}
                       onClick={(e) => this.updateGuesses(i, e, questionIndex)}>
                       <img src={require("./img/" + item.images[i])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                       <p className="text-center">{suggestion}</p>
