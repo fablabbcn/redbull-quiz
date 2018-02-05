@@ -108,6 +108,7 @@ class Questions extends Component {
 
     ReactGA.event({
       category: 'User',
+      label: 'Next question',
       action: 'Next question'
     });
     //console.log('next nr', this.state.currentQuestion);
@@ -122,6 +123,7 @@ class Questions extends Component {
     }
     ReactGA.event({
       category: 'User',
+      label: 'Previous question',
       action: 'Previous question'
     });
   }
