@@ -5,7 +5,9 @@ import en from './data/en';
 import helper from './data/helper';
 import es from './data/es';
 import ReactGA from 'react-ga'
-ReactGA.initialize('UA-85322801-3');
+ReactGA.initialize('UA-85322801-3',{
+  debug: true,
+});
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 class Questions extends Component {
