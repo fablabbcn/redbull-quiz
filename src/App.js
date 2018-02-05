@@ -90,6 +90,8 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'Finished quiz',
+      label: 'Submit final',
+      //are these working?
       exposureLevel: this.state.exposureLevel,
       guesses: this.state.guesses
     });
@@ -137,7 +139,7 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'guessed',
-      label: 'Quiz end',
+      label: 'Guess',
       question: questionIndex,
       answer: answerIndex,
     });
@@ -151,6 +153,7 @@ class Questions extends Component {
     });
     ReactGA.event({
       category: 'User',
+      label: 'Start Quiz',
       action: 'Started the quiz'
     });
   }
