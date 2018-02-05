@@ -212,7 +212,7 @@ function Final(props) {
       <h4>{helper[lang].thanks}</h4>
       <p>{helper[lang].finaltips}</p>
       <br />
-      <a href="" onClick="window.location.reload()" className="btn btn-blue">{helper[lang].quizagain}</a>
+      <a href="" className="btn btn-blue">{helper[lang].quizagain}</a>
     </div>
   )
 }
