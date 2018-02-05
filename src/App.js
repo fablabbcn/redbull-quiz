@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import en from './data/en';
 import helper from './data/helper';
 import es from './data/es';
+import ReactGA from 'react-ga'
+ReactGA.initialize('UA-85322801-3');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class Questions extends Component {
   constructor(props) {
@@ -54,6 +57,11 @@ class Questions extends Component {
 
     this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
+
+    ReactGA.event({
+      category: 'User',
+      action: 'Finished quiz'
+    });
   }
 
 
@@ -92,7 +100,11 @@ class Questions extends Component {
       welcome: false,
       quizRunning: true,
       total: this.state.language.length,
-    })
+    });
+    ReactGA.event({
+      category: 'User',
+      action: 'Started the quiz'
+    });
   }
 
   updateExposureLevel(){
