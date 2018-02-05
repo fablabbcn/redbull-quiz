@@ -100,6 +100,11 @@ class Questions extends Component {
     if(this.state.currentQuestion < this.state.total - 1){
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
+
+    ReactGA.event({
+      category: 'User',
+      action: 'Next question'
+    });
     //console.log('next nr', this.state.currentQuestion);
   }
 
@@ -107,7 +112,10 @@ class Questions extends Component {
     if(this.state.currentQuestion > 0){
       this.setState({currentQuestion: this.state.currentQuestion - 1})
     }
-    //console.log('prev', this.state.currentQuestion);
+    ReactGA.event({
+      category: 'User',
+      action: 'Previous question'
+    });
   }
 
   updateGuesses(answerIndex, questionIndex) {
@@ -120,6 +128,12 @@ class Questions extends Component {
     this.setState({ guesses: newGuess }, () => {
       // Make sure we update exposure AFTER guesses have been updated!
       this.updateExposureLevel();
+    });
+    ReactGA.event({
+      category: 'User',
+      action: 'guessed',
+      question: questionIndex,
+      answer: answerIndex,
     });
   }
 
