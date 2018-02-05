@@ -1,18 +1,23 @@
 # Air pollution Quiz for the iSCAPE project.
 
+More about iScape:
+
 https://www.iscapeproject.eu/
 
 https://www.iscapeproject.eu/about/
 
+
 ## TODO:
-- [ ] Google analytics
+- [x] Google analytics
 - [ ] Instruction on the page, mention keyboard shortcuts
 
 ## Features
 Keyboard shortucts:
-'n' for **n**ext,
-'p' for **p**rev,
-'s' for **s*tart
+* 's' for **S**tart quiz
+* '1' for guessing answer nr 1
+* '2' for guessing answer nr 2
+* 'n' for **N**ext
+* 'p' for **P**rev
 
 
 ### Development
