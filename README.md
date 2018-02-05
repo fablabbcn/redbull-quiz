@@ -4,6 +4,16 @@ https://www.iscapeproject.eu/
 
 https://www.iscapeproject.eu/about/
 
+## TODO:
+- [ ] Google analytics
+- [ ] Instruction on the page, mention keyboard shortcuts
+
+## Features
+Keyboard shortucts:
+'n' for **n**ext,
+'p' for **p**rev,
+'s' for **s*tart
+
 
 ### Development
 

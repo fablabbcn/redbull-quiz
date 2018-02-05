@@ -49,8 +49,14 @@ class Questions extends Component {
         this.updateGuesses(1, this.state.currentQuestion)
         break;
       case 'n':
-        console.log('Go to next');
         this.nextQuestion();
+        break;
+      case 'p':
+        this.prevQuestion();
+        break;
+      case 's':
+        console.log('Start');
+        this.startQuiz();
         break;
       default:
         //console.log('Key not mapped..');
@@ -97,8 +103,7 @@ class Questions extends Component {
     //console.log('next nr', this.state.currentQuestion);
   }
 
-  prevQuestion(e){
-    e.preventDefault();
+  prevQuestion(){
     if(this.state.currentQuestion > 0){
       this.setState({currentQuestion: this.state.currentQuestion - 1})
     }
