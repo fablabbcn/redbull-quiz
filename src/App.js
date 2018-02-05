@@ -89,7 +89,9 @@ class Questions extends Component {
 
     ReactGA.event({
       category: 'User',
-      action: 'Finished quiz'
+      action: 'Finished quiz',
+      exposureLevel: this.state.exposureLevel,
+      guesses: this.state.guesses
     });
   }
 
