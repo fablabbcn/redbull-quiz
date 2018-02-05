@@ -145,7 +145,7 @@ class Questions extends Component {
             </div>
             <p className="pt-4 text-primary">{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-sm' }  onClick={this.prevQuestion}>Previous</button>
+              <button className={firstQuestion ? 'hidden' : 'btn' }  onClick={this.prevQuestion}>Previous</button>
               <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
               <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
             </div>
@@ -188,7 +188,7 @@ function Final(props) {
       <h4>{helper[lang].thanks}</h4>
       <p>{helper[lang].finaltips}</p>
       <br />
-      <a href="/" className="btn btn-blue">{helper[lang].quizagain}</a>
+      <a href="" onClick="window.location.reload()" className="btn btn-blue">{helper[lang].quizagain}</a>
     </div>
   )
 }
