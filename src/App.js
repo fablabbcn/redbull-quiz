@@ -234,8 +234,8 @@ function Languages(props){
   return(
     <div className={props.welcome ? "row text-center" : 'hidden'}>
       <div className="col my-1">
-        <button className="btn btn-sm btn-blue" value="es" onClick={props.myClick}>Espanol </button>
-        <button className="btn btn-sm btn-blue mx-1" value="en" onClick={props.myClick}>English </button>
+        <button className="btn btn-sm btn-blue" value="es" onClick={props.myClick}>Test-1 </button>
+        <button className="btn btn-sm btn-blue mx-1" value="en" onClick={props.myClick}>Test-2 </button>
       </div>
     </div>
   )

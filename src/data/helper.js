@@ -1,6 +1,6 @@
 export default [
   {
-    lang: 'English',
+    lang: 'Test-1',
     title: 'Air pollution in [Guildford]',
     p1: 'Learn about the air pollution in your city and what you can do to prevent it and protect yourself.',
     p2: 'Take the quiz to see how much air pollution you are exposed to on the air pollution meter.',
@@ -11,7 +11,7 @@ export default [
 
   },
   {
-    lang: 'Espanol',
+    lang: 'Test-2',
     title: 'Airo ',
     p1: 'Paragraph1',
     p2: 'Paragraph2',
