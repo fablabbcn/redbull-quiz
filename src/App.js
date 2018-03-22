@@ -60,6 +60,11 @@ class Questions extends Component {
         console.log('Start');
         this.startQuiz();
         break;
+      case 'c':
+        console.log('Calculate');
+        //this.startQuiz();
+        this.handleSubmit();
+        break;
       default:
         //console.log('Key not mapped..');
     }
@@ -82,7 +87,9 @@ class Questions extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if(e){
+      e.preventDefault();
+    }
     //console.log(this.state.currentQuestion);
     //console.log('Guesses: ', this.state.guesses)
 

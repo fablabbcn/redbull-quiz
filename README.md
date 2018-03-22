@@ -19,6 +19,7 @@ Keyboard shortucts:
 * '2' for guessing answer nr 2
 * 'n' for **N**ext
 * 'p' for **P**rev
+* 'c' for **C**alculate (Submit)
 
 
 ### Development
