@@ -16,14 +16,14 @@ export default [
     danger: [4, 1]
   },
   {
-    question: 'Which of this roads do you walk down more often?',
+    question: 'What kind of road do you walk down most often?',
     suggestions: [
-      'Stoke Road',
-      'Park Way'
+      'On pavements close to traffic, e.g. Woodbridge Road',
+      'On pavements behind hedges e.g. Shalford Road'
     ],
     results: [
-      'Unfortunately pollution exposure is typically higher on Stoke Road compared to Park Way. This is because it has fewer hedges along the road side. Hedges can help to reduce air pollution by up to to 60%.  If you want to try and reduce your exposure to air pollution whist travelling around Guildford, try to walk down roads with hedges and trees next time you are out and about.',
-      'Well Done!  Walking down Park Way exposes you to a lot less pollution than walking down Stoke Road. This is because the hedges at the side of the road help to reduce air pollution exposure by up to to  60%.  '
+      'Unfortunately pollution exposure is typically higher on these roads compared to roads with hedges. This is because it has fewer hedges along the roadside. Hedges can help to reduce air pollution by up to 60%. If you want to try and reduce your exposure to air pollution whilst travelling around Guildford, try to walk down roads with hedges and trees next time you are out and about. ',
+      'Great!  Walking down a road behind hedges exposes you to a lot less pollution than walking down a road where the pavement is close to traffic. This is because the hedges at the side of the road can help to reduce air pollution exposure by up to to 60%. '
     ],
     images:[
       'Stoke-road-no-hedges.png',
