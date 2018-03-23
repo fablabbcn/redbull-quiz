@@ -60,8 +60,8 @@ class Questions extends Component {
         console.log('Start');
         this.startQuiz();
         break;
-      case 'c':
-        console.log('Calculate');
+      case 'f':
+        console.log('Finish');
         //this.startQuiz();
         this.handleSubmit();
         break;
@@ -208,7 +208,7 @@ class Questions extends Component {
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn' }  onClick={this.prevQuestion}>Previous</button>
               <button className={isAnswered && !lastQuestion? 'btn btn-blue': 'hidden' }  onClick={this.nextQuestion}>Next question</button> <br />
-              <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
+              <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show me my exposure level" />
             </div>
           </div>
         </div>

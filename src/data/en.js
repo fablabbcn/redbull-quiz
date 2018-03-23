@@ -102,8 +102,8 @@ export default [
       'Traffic'
     ],
     results: [
-      'Right?',
-      'Wrong?'
+      'That’s not quite right - even though Guildford is in relatively close proximity to both Heathrow and Gatwick airport, the main cause of pollution is the amount of traffic in and around the city centre.',
+      'Correct! Even though Guildford is in relatively close proximity to both Heathrow and Gatwick airport, the main cause of pollution is the amount of traffic in and around the city centre.'
     ],
     images:[
       'Airport.png',
@@ -118,12 +118,12 @@ export default [
       'Some types of PM are smaller than a human hair and are invisible to the naked eye.'
     ],
     results: [
-      'Well done! Some types of Particulate Matter are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream… ',
-      'Unfortunately that’s not correct. Although, particulate matter includes those particles found in visible air pollution such as smog, some types of PM are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream…'
+      'Unfortunately that’s not correct. Although, particulate matter includes those particles found in visible air pollution such as smog, some types of PM are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream…',
+      'Well done! Some types of Particulate Matter are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream… '
     ],
     images:[
-      'PM-smaller-than-hair.png',
-      'PM-visible-in-smog.png'
+      'PM-visible-in-smog.png',
+      'PM-smaller-than-hair.png'
     ],
     danger: [1, 1]
   }
