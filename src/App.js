@@ -15,12 +15,13 @@ class Questions extends Component {
     super(props);
     this.state = {
       currentQuestion: 0,
-      exposureLevel: 0,
+      currentQuestionExposureLevel: 0,
       guesses: [],
       // TODO: Unable to use language as a 'key' from a JSON file
       language: en,
       langNr: 0,
-      total: 0,
+      totalQuestions: 0,
+      totalExposureLevel: 0,
       quizRunning: false, // default false
       welcome: true, // default true
       quizEnded: false,
@@ -99,8 +100,8 @@ class Questions extends Component {
     ReactGA.event({
       category: 'User',
       action: 'Finished quiz',
-      label: 'Submit final exposure: ' + this.state.exposureLevel,
-      dimension1: this.state.exposureLevel,
+      label: 'Submit final exposure: ' + this.state.totalExposureLevel,
+      dimension1: this.state.totalExposureLevel,
       dimension2: this.state.guesses
     });
   }
@@ -109,7 +110,7 @@ class Questions extends Component {
     if (e){
       e.preventDefault();
     }
-    if(this.state.currentQuestion < this.state.total - 1){
+    if(this.state.currentQuestion < this.state.totalQuestions - 1){
       this.setState({currentQuestion:  this.state.currentQuestion + 1})
     }
 
@@ -157,7 +158,7 @@ class Questions extends Component {
     this.setState({
       welcome: false,
       quizRunning: true,
-      total: this.state.language.length,
+      totalQuestions: this.state.language.length,
     });
     ReactGA.event({
       category: 'User',
@@ -167,21 +168,29 @@ class Questions extends Component {
   }
 
   updateExposureLevel(){
-    let xpLevel = 0;
+    let xpTotal = 0;
+    let xpCurrent = 0;
+
     // eslint-disable-next-line
     this.state.language.map((x, y) => {
-      xpLevel += (x.danger[this.state.guesses[y]] || 0)
+      xpTotal += (x.danger[this.state.guesses[y]] || 0)
+      if (y === this.state.currentQuestion){
+        xpCurrent = (x.danger[this.state.guesses[this.state.currentQuestion]] || 0)
+      }
     });
 
-    this.setState({ exposureLevel: xpLevel }, () => {
-      //console.log('updated', this.state.exposureLevel)
+    this.setState({
+      currentQuestionExposureLevel: xpCurrent,
+      totalExposureLevel: xpTotal
+      }, () => {
+      //console.log('updated', this.state.totalExposureLevel)
     });
   }
 
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
     const isAnswered = typeof this.state.guesses[this.state.currentQuestion]  === 'number' ? true : false;
-    const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
+    const lastQuestion = this.state.currentQuestion + 1 === this.state.totalQuestions;
 
     // This will return an array of each question
     var eachQuiz = this.state.language.map((item, questionIndex) => {
@@ -222,9 +231,9 @@ class Questions extends Component {
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning === true ? eachQuiz : null}
             {this.state.welcome === true ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
-            {this.state.quizEnded ? <Final exposure={this.state.exposureLevel} language={this.state.langNr} /> : null }
+            {this.state.quizEnded ? <Final exposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
           </form>
-          <Sidebar exposure={this.state.exposureLevel} />
+          <Sidebar thisExposure={this.state.currentQuestionExposureLevel} totalExposure={this.state.totalExposureLevel} />
         </div>
       </div>
     )
@@ -288,7 +297,10 @@ function Sidebar(props){
     <div className="col-12 col-md-4 sidebar text-center">
       <h4 className="mt-3">Your exposure to air pollution</h4>
       <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
-      <p className="text-danger">Exposure Level: {props.exposure}</p>
+      <p className="text-danger">Exposure Level: {props.totalExposure}</p>
+      <div>
+        <meter max='30' min='0' optimum='2' high='5' low='0' value={props.totalExposure} ></meter>
+      </div>
     </div>
   )
 }
