@@ -217,7 +217,7 @@ class Questions extends Component {
 
     return (
       <div className="App container mt-4">
-        <Languages welcome={this.state.welcome} myClick={this.changeLanguage} />
+        <Languages welcome={this.state.welcome} lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />
         <div className="row">
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning === true ? eachQuiz : null}
@@ -232,11 +232,18 @@ class Questions extends Component {
 }
 
 function Languages(props){
+  let selectedLang = 'btn-primary'
   return(
-    <div className={props.welcome ? "row text-center" : 'hidden'}>
-      <div className="col my-1">
-        <button className="btn btn-sm btn-blue" value="es" onClick={props.myClick}>Test-1 </button>
-        <button className="btn btn-sm btn-blue mx-1" value="en" onClick={props.myClick}>Test-2 </button>
+    <div className="row">
+      <div className="col-12" style={{height: '40px'}}>
+        <div className={props.welcome ? "text-right" : 'hidden'}>
+          <label>
+            <select className="form-control" onChange={props.mySelectLanguage}>
+              <option value="en">Location1</option>
+              <option value="es">Location2</option>
+            </select>
+          </label>
+        </div>
       </div>
     </div>
   )
