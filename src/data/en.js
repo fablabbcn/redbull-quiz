@@ -51,7 +51,7 @@ export default [
     question: 'When are you most likely to go cycling?',
     suggestions: [
       'Rush hour (roughly between 6-10am and 4-8pm',
-      'Off-peak (roughly between 6-10am and 4-8pm'
+      'Off-peak'
     ],
     results: [
       'Unfortunately you are likely to be exposed to higher levels of air pollution at this time of day. Air pollution is highest during the morning rush hours between 7-10am and evening rush hours between 4-7pm. If you can manage to travel during off-peak hours instead (10 am - 4 pm) it will not only reduce you exposure to pollution but your journey time too!',

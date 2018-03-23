@@ -180,7 +180,7 @@ class Questions extends Component {
 
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
-    const isAnswered = typeof this.state.guesses[this.state.currentQuestion]  == 'number' ? true : false;
+    const isAnswered = typeof this.state.guesses[this.state.currentQuestion]  === 'number' ? true : false;
     const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
 
     // This will return an array of each question
@@ -222,7 +222,7 @@ class Questions extends Component {
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning === true ? eachQuiz : null}
             {this.state.welcome === true ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
-            {this.state.quizEnded ? <Final language={this.state.langNr} /> : null }
+            {this.state.quizEnded ? <Final exposure={this.state.exposureLevel} language={this.state.langNr} /> : null }
           </form>
           <Sidebar exposure={this.state.exposureLevel} />
         </div>
@@ -232,7 +232,6 @@ class Questions extends Component {
 }
 
 function Languages(props){
-  let selectedLang = 'btn-primary'
   return(
     <div className="row">
       <div className="col-12" style={{height: '40px'}}>
@@ -255,6 +254,7 @@ function Final(props) {
     <div className="text-center">
       <h4>{helper[lang].thanks}</h4>
       <p>{helper[lang].finaltips}</p>
+      <p className="text-danger">Your exposure level is {props.exposure} </p>
       <br />
       <a href="" className="btn btn-blue">{helper[lang].quizagain}</a>
     </div>

@@ -1,7 +1,7 @@
 export default [
   {
     lang: 'Test-1',
-    title: 'Air pollution in [Guildford]',
+    title: 'Air pollution in Guildford',
     p1: 'Learn about the air pollution in your city and what you can do to prevent it and protect yourself.',
     p2: 'Take the quiz to see how much air pollution you are exposed to on the air pollution meter.',
     startquiz: 'Start Quiz',
