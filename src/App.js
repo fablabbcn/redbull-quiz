@@ -180,6 +180,7 @@ class Questions extends Component {
 
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
+    const isAnswered = typeof this.state.guesses[this.state.currentQuestion]  == 'number' ? true : false;
     const lastQuestion = this.state.currentQuestion + 1 === this.state.total;
 
     // This will return an array of each question
@@ -194,7 +195,7 @@ class Questions extends Component {
                   return (
                     <div key={answerIndex}
                       ref={this.clickDiv}
-                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-6 selected' : "col-4 unselected"}
+                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 selected' : "col-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
                       <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                       <p className="text-center">{suggestion}</p>
@@ -206,7 +207,7 @@ class Questions extends Component {
             <p className="pt-4 text-primary">{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn' }  onClick={this.prevQuestion}>Previous</button>
-              <button className={lastQuestion ? 'hidden' : 'btn btn-blue'}  onClick={this.nextQuestion}>Next question</button> <br />
+              <button className={isAnswered && !lastQuestion? 'btn btn-blue': 'hidden' }  onClick={this.nextQuestion}>Next question</button> <br />
               <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show scores / Calculate" />
             </div>
           </div>
@@ -262,7 +263,7 @@ function Welcome(props) {
       <p>{helper[lang].p2}</p>
       <img src={require("./img/Start-quiz.png")} onClick={props.myClick} className="w-50 my-4" alt="Start quiz" />
       <br />
-      <button className="btn btn-blue" onClick={props.myClick}>{helper[0].startquiz}</button>
+      <button className="btn btn-success" onClick={props.myClick}>{helper[0].startquiz}</button>
     </div>
   )
 }
