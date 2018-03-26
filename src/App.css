@@ -20,6 +20,12 @@ form{
 .selected {
   outline: 1px solid gray;
 }
+
+.unselected:hover{
+  outline: 1px dotted grey;
+  opacity:0.8;
+}
+
 .unselected {
   opacity:0.6;
 }

@@ -15,7 +15,7 @@ class Questions extends Component {
     super(props);
     this.state = {
       currentQuestion: 0,
-      currentQuestionExposureLevel: 0,
+      currentQuestionExposureLevel: 0, // Not used. But here if needed
       guesses: [],
       // TODO: Unable to use language as a 'key' from a JSON file
       language: en,
@@ -229,11 +229,11 @@ class Questions extends Component {
         <Languages welcome={this.state.welcome} lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />
         <div className="row">
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
-            {this.state.quizRunning === true ? eachQuiz : null}
-            {this.state.welcome === true ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
-            {this.state.quizEnded ? <Final exposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
+            {this.state.quizRunning ? eachQuiz : null}
+            {this.state.welcome     ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
+            {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
           </form>
-          <Sidebar thisExposure={this.state.currentQuestionExposureLevel} totalExposure={this.state.totalExposureLevel} />
+          { this.state.quizRunning && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
         </div>
       </div>
     )
@@ -243,7 +243,7 @@ class Questions extends Component {
 function Languages(props){
   return(
     <div className="row">
-      <div className="col-12" style={{height: '40px'}}>
+      <div className="col-12" style={{height: '50px'}}>
         <div className={props.welcome ? "text-right" : 'hidden'}>
           <label>
             <select className="form-control" onChange={props.mySelectLanguage}>
@@ -263,7 +263,8 @@ function Final(props) {
     <div className="text-center">
       <h4>{helper[lang].thanks}</h4>
       <p>{helper[lang].finaltips}</p>
-      <p className="text-danger">Your exposure level is {props.exposure} </p>
+      <p className="text-danger">Your exposure level is {props.totalExposure} </p>
+      <Meter meterExposureLevel={props.totalExposure} />
       <br />
       <a href="" className="btn btn-blue">{helper[lang].quizagain}</a>
     </div>
@@ -298,9 +299,15 @@ function Sidebar(props){
       <h4 className="mt-3">Your exposure to air pollution</h4>
       <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
       <p className="text-danger">Exposure Level: {props.totalExposure}</p>
-      <div>
-        <meter max='30' min='0' optimum='2' high='5' low='0' value={props.totalExposure} ></meter>
-      </div>
+      <Meter meterExposureLevel={props.totalExposure} />
+    </div>
+  )
+}
+
+function Meter(props){
+  return (
+    <div>
+      <meter max='30' min='0' optimum='2' high='5' low='0' value={props.meterExposureLevel} ></meter>
     </div>
   )
 }
