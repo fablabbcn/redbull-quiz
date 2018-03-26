@@ -190,8 +190,8 @@ class Questions extends Component {
 
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
-    const isAnswered = typeof this.state.guesses[this.state.currentQuestion]  === 'number' ? true : false;
-    const lastQuestion = this.state.currentQuestion + 1 === this.state.totalQuestions;
+    const isAnswered    = typeof this.state.guesses[this.state.currentQuestion]  === 'number';
+    const lastQuestion  = this.state.currentQuestion + 1 === this.state.totalQuestions;
 
     // This will return an array of each question
     var eachQuiz = this.state.language.map((item, questionIndex) => {
@@ -204,7 +204,6 @@ class Questions extends Component {
                 item.suggestions.map((suggestion, answerIndex) => {
                   return (
                     <div key={answerIndex}
-                      ref={this.clickDiv}
                       className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 selected' : "col-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
                       <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
@@ -265,7 +264,7 @@ function Final(props) {
       <p className="text-danger">Your exposure level is {props.totalExposure} </p>
       <Meter meterExposureLevel={props.totalExposure} />
       <br />
-      <a href="" className="btn btn-blue">{helper[lang].quizagain}</a>
+      <a href="." className="btn btn-blue">{helper[lang].quizagain}</a>
     </div>
   )
 }

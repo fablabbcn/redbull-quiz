@@ -32,7 +32,7 @@ export default [
     danger: [3, 1]
   },
   {
-    question: 'Where would you as a pedestrian stand while waiting to cross at the traffic lights?',
+    question: 'Where are you most likely to stand while waiting to cross at the traffic lights?',
     suggestions: [
     'Next to the curb, so I can start crossing right when it’s green',
     'A few metres back from the curb'
@@ -64,14 +64,14 @@ export default [
     danger: [5, 2]
   },
   {
-    question: 'When stopped in heavy traffic on a hot day, do you prefer to have your car windows open or closed?',
+    question: 'When stopped in heavy traffic, do you prefer to have your car windows open or closed?',
     suggestions: [
       'Open',
       'Closed'
     ],
     results: [
       'Unfortunately this is not such a great idea. Leaving your car window open lets in a lot of harmful pollutants that can cause respiratory problems.',
-      'Leaving your windows closed reduces your exposure to air pollution. Turning your air conditioning off is even better!'
+      'Closing your windows reduces your exposure to air pollution. You should also change the air conditioning settings to reduce external intake and instead recirculate the air inside the car. '
     ],
     images:[
       'Car-window-open.png',
@@ -80,10 +80,10 @@ export default [
     danger: [5, 1]
   },
   {
-    question: 'Imagine you stop to pick someone up in your car, for example, at the school gates or a train station or that you are stuck in a traffic jam. What would you do?  ',
+    question: 'When stopping briefly in your car, for example, when picking someone up at the school gates or stopped in traffic, what do you do?',
     suggestions: [
-      'I would you leave the car running as I’m only stopping for a short time',
-      'I would switch the motor off even if it’s only briefly'
+      'I tend to leave the car running as I’m only stopping for a short time',
+      'I always switch the motor off when stationary, even if it’s only briefly'
     ],
     results: [
       'An idling engine can produce up to twice as many exhaust emissions as an engine in motion.  If you want to try and reduce your emissions, switch of the motor while you wait.  ',
