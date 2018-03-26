@@ -6,7 +6,7 @@ import helper from './data/helper';
 import es from './data/es';
 import ReactGA from 'react-ga'
 ReactGA.initialize('UA-85322801-3',{
-  debug: true,
+  debug: false,
 });
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -58,13 +58,14 @@ class Questions extends Component {
         this.prevQuestion();
         break;
       case 's':
-        console.log('Start');
         this.startQuiz();
         break;
       case 'f':
-        console.log('Finish');
-        //this.startQuiz();
         this.handleSubmit();
+        break;
+      case 'r':
+        console.log('restart quiz?');
+        //this.startQuiz();
         break;
       default:
         //console.log('Key not mapped..');
@@ -226,7 +227,7 @@ class Questions extends Component {
 
     return (
       <div className="App container mt-4">
-        <Languages welcome={this.state.welcome} lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />
+        { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
         <div className="row">
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
@@ -242,16 +243,14 @@ class Questions extends Component {
 
 function Languages(props){
   return(
-    <div className="row">
+    <div className="row text-right">
       <div className="col-12" style={{height: '50px'}}>
-        <div className={props.welcome ? "text-right" : 'hidden'}>
-          <label>
-            <select className="form-control" onChange={props.mySelectLanguage}>
-              <option value="en">Location1</option>
-              <option value="es">Location2</option>
-            </select>
-          </label>
-        </div>
+        <label>
+          <select className="form-control" onChange={props.mySelectLanguage}>
+            <option value="en">Location1</option>
+            <option value="es">Location2</option>
+          </select>
+        </label>
       </div>
     </div>
   )
@@ -279,6 +278,7 @@ function Welcome(props) {
       <p>{helper[lang].p1}</p>
       <p>{helper[lang].p2}</p>
       <img src={require("./img/Start-quiz.png")} onClick={props.myClick} className="w-50 my-4" alt="Start quiz" />
+      <p>{helper[lang].click_image}</p>
       <br />
       <button className="btn btn-success" onClick={props.myClick}>{helper[0].startquiz}</button>
     </div>

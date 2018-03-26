@@ -109,7 +109,7 @@ export default [
       'Airport.png',
       'Traffic.png'
     ],
-    danger: [1, 1]
+    danger: [1, 3]
   },
   {
     question: 'A common pollutant is Particulate Matter (PM). How visible do you think this is in the air we breathe?',
@@ -125,7 +125,7 @@ export default [
       'PM-visible-in-smog.png',
       'PM-smaller-than-hair.png'
     ],
-    danger: [1, 1]
+    danger: [3, 1]
   }
 
 ]
