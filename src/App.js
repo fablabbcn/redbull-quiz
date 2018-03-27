@@ -230,7 +230,7 @@ class Questions extends Component {
         <div className="row">
           <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
-            {this.state.welcome     ? <Welcome language={this.state.langNr} myClick={this.startQuiz} /> : null}
+            {this.state.welcome     ? <Welcome language={this.state.langNr} startQuiz={this.startQuiz} /> : null}
             {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
           </form>
           { this.state.quizRunning && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
@@ -276,10 +276,10 @@ function Welcome(props) {
       <h2>{helper[lang].title}</h2>
       <p>{helper[lang].p1}</p>
       <p>{helper[lang].p2}</p>
-      <img src={require("./img/Start-quiz.png")} onClick={props.myClick} className="w-50 my-4" alt="Start quiz" />
+      <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-50 my-4" alt="Start quiz" />
       <p>{helper[lang].click_image}</p>
       <br />
-      <button className="btn btn-success" onClick={props.myClick}>{helper[0].startquiz}</button>
+      <button className="btn btn-success" onClick={props.startQuiz}>{helper[lang].startquiz}</button>
     </div>
   )
 }
@@ -311,4 +311,7 @@ function Meter(props){
   )
 }
 
-export default App;
+export {App};
+export {Meter};
+export {Questions};
+export {Welcome};
