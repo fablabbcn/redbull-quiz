@@ -7,6 +7,8 @@
 }
 
 .btn-lg{
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
   border-radius: 30px !important;
 }
 
@@ -22,11 +24,6 @@
 
 .btn-white{
   background: none;
-}
-
-.border-answer{
-  border-radius: 30px;
-  border: 2px solid #45C400;
 }
 
 /*
@@ -49,6 +46,9 @@ RED
 .text-blue{
  color: #00B3F4;
 }
+.text-grey{
+  color: #666;
+}
 
 form{
   background: #FFF;
@@ -62,15 +62,20 @@ form{
 }
 
 .selected {
-  outline: 1px solid gray;
+  outline: 1px solid red;
+}
+
+.selected-answer{
+  border-radius: 30px;
+  border: 2px solid #45C400;
 }
 
 .unselected:hover{
-  outline: 1px dotted grey;
-  opacity:0.8;
+  opacity:1;
 }
 
 .unselected {
+  border: 2px solid transparent;
   opacity:0.6;
 }
 

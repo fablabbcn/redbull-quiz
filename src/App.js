@@ -204,7 +204,7 @@ class Questions extends Component {
                 item.suggestions.map((suggestion, answerIndex) => {
                   return (
                     <div key={answerIndex}
-                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 border-answer' : "col-5 unselected"}
+                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 selected-answer' : "col-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
                       <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                       <p className="text-center">{suggestion}</p>
@@ -215,9 +215,9 @@ class Questions extends Component {
             </div>
             <p className="pt-4 " style={{minHeight: '100px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-uppercase mx-1' }  onClick={this.prevQuestion}>Previous</button>
-              <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green text-uppercase px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
-              <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show me my exposure level" />
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' }  onClick={this.prevQuestion}>Previous</button>
+              <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green  px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
+              <input className={lastQuestion ? 'btn btn-lg btn-blue mt-3': 'hidden'} type="submit" value="Show me my exposure level" />
             </div>
           </div>
         </div>
@@ -274,7 +274,7 @@ function Final(props) {
       </div>
 
 
-      <button className="btn btn-lg btn-blue px-4 text-uppercase font-weight-bold">
+      <button className="btn btn-lg btn-blue px-4 ">
         <img className="pr-2" src={require("./img/facebook.svg")} style={{height: '35px'}} alt='fb' />
         Share on facebook
       </button>
@@ -288,12 +288,12 @@ function Welcome(props) {
   return (
     <div className="text-center">
       <h2 className="text-blue">{helper[lang].title}</h2>
-      <p>{helper[lang].p1}</p>
+      <p className="mt-4">{helper[lang].p1}</p>
       <p>{helper[lang].p2}</p>
       <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-50 my-4" alt="Start quiz" />
       <p>{helper[lang].click_image}</p>
       <br />
-      <button className="btn btn-lg btn-green px-5 text-uppercase " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
+      <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
     </div>
   )
 }
