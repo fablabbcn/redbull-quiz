@@ -217,7 +217,7 @@ class Questions extends Component {
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' }  onClick={this.prevQuestion}>Previous</button>
               <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green  px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
-              <input className={lastQuestion ? 'btn btn-lg btn-blue mt-3': 'hidden'} type="submit" value="Show me my exposure level" />
+              <input className={lastQuestion ? 'btn btn-lg btn-blue mt-3 px-3': 'hidden'} type="submit" value="Show me my exposure level" />
             </div>
           </div>
         </div>
@@ -228,7 +228,7 @@ class Questions extends Component {
       <div className="App container">
         <div className="row">
           <div className="col-12 my-3 text-center">
-            iScape logo
+            <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
           </div>
           <form className="col-12 col-md-10 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
