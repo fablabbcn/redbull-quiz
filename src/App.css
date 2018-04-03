@@ -1,5 +1,9 @@
-.App {
+#root,html{
+  background: #EFEDEE;
   font-family: 'Open Sans', sans-serif;
+}
+
+.App {
 }
 
 .btn-lg{
@@ -26,14 +30,8 @@
 }
 
 /*
-Blue
-#00B3F2
-
 Yellow
 #FFDB00
-
-Grey
-#666
 
 RED
 #FF4D58
@@ -48,11 +46,19 @@ RED
   color:white !important;
 }
 
+.text-blue{
+ color: #00B3F4;
+}
+
 form{
+  background: #FFF;
+  border-radius: 10px;
 }
 
 .sidebar{
-  background: #eee;
+  border-radius: 12px;
+  background: #666;
+  color: white;
 }
 
 .selected {
@@ -76,4 +82,18 @@ ul li {
 
 .hidden{
   display: none;
+}
+
+.meter{
+   /*
+  -webkit-appearance: none;
+    Reset appearance */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+meter::-webkit-meter-bar {
+  background: none; /* Required to get rid of the default background property */
+  background-color: whiteSmoke;
+  border-radius: 10px;
 }

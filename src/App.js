@@ -198,7 +198,7 @@ class Questions extends Component {
       return (
         <div key={questionIndex} className="row">
           <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
-            <h3>{questionIndex + 1}. {item.question} </h3>
+            <h3 className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
             <div className="row suggestions justify-content-around">
               {
                 item.suggestions.map((suggestion, answerIndex) => {
@@ -225,16 +225,18 @@ class Questions extends Component {
     });
 
     return (
-      <div className="App container mt-4">
-        iScape logo
-        { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
+      <div className="App container">
         <div className="row">
-          <form className="border-answer col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+          <div className="col-12 my-3 text-center">
+            iScape logo
+          </div>
+          <form className="col-12 col-md-10 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
             {this.state.welcome     ? <Welcome language={this.state.langNr} startQuiz={this.startQuiz} /> : null}
             {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
           </form>
           { this.state.quizRunning && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
+          { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
         </div>
       </div>
     )
@@ -243,16 +245,14 @@ class Questions extends Component {
 
 function Languages(props){
   return(
-    <div className="row text-right">
-      <div className="col-12" style={{height: '50px'}}>
-        <label>
-          <select className="form-control" onChange={props.mySelectLanguage}>
-            <option value="en">Location1</option>
-            <option value="es">Location2</option>
-          </select>
-        </label>
-        <img src={require("./img/place.svg")} style={{height: '30px'}} alt='place' />
-      </div>
+    <div className="col-12 col-md-8 mx-auto mt-3 text-right" style={{height: '50px'}}>
+      <label>
+        <select className="form-control" onChange={props.mySelectLanguage}>
+          <option value="en">Location1</option>
+          <option value="es">Location2</option>
+        </select>
+      </label>
+      <img src={require("./img/place.svg")} style={{height: '30px'}} alt='place' />
     </div>
   )
 }
@@ -283,7 +283,7 @@ function Welcome(props) {
   let lang = props.language;
   return (
     <div className="text-center">
-      <h2>{helper[lang].title}</h2>
+      <h2 className="text-blue">{helper[lang].title}</h2>
       <p>{helper[lang].p1}</p>
       <p>{helper[lang].p2}</p>
       <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-50 my-4" alt="Start quiz" />
@@ -304,11 +304,18 @@ class App extends Component {
 
 function Sidebar(props){
   return (
-    <div className="col-12 col-md-4 sidebar text-center">
-      <h4 className="mt-3">Your exposure to air pollution</h4>
-      <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/>
-      <p className="text-danger">Exposure Level: {props.totalExposure}</p>
-      <Meter meterExposureLevel={props.totalExposure} />
+    <div className="col-12 col-md-8 mx-auto mt-3 sidebar text-center">
+      <div className="row p-3">
+        <div className="col-5 p-2">
+          <h5 className="font-weight-bold">Your exposure to air pollution:</h5>
+        </div>
+        {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
+
+        <div className="col-7 mt-1">
+          <Meter meterExposureLevel={props.totalExposure} />
+          <p className="">Exposure Level: {props.totalExposure}</p>
+        </div>
+      </div>
     </div>
   )
 }
@@ -316,7 +323,10 @@ function Sidebar(props){
 function Meter(props){
   return (
     <div>
-      <meter max='30' min='0' optimum='2' high='5' low='0' value={props.meterExposureLevel} ></meter>
+      <meter className="meter w-75" max='30' min='0'
+        optimum='5' high='15' low='0'
+        style={{height: '20px'}}
+        value={props.meterExposureLevel}></meter>
     </div>
   )
 }
