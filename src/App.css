@@ -1,5 +1,43 @@
 .App {
+  font-family: 'Open Sans', sans-serif;
 }
+
+.btn-lg{
+  border-radius: 30px !important;
+}
+
+.btn-green{
+  background: #45C400;
+  color:white;
+}
+
+.btn-blue{
+  background: #00B3F2;
+  color:white;
+}
+
+.btn-white{
+  background: none;
+}
+
+.border-answer{
+  border-radius: 30px;
+  border: 2px solid #45C400;
+}
+
+/*
+Blue
+#00B3F2
+
+Yellow
+#FFDB00
+
+Grey
+#666
+
+RED
+#FF4D58
+*/
 
 .btn-blue{
   background: #4472C4;

@@ -204,7 +204,7 @@ class Questions extends Component {
                 item.suggestions.map((suggestion, answerIndex) => {
                   return (
                     <div key={answerIndex}
-                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 selected' : "col-5 unselected"}
+                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 border-answer' : "col-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
                       <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
                       <p className="text-center">{suggestion}</p>
@@ -215,8 +215,8 @@ class Questions extends Component {
             </div>
             <p className="pt-4 text-primary">{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn' }  onClick={this.prevQuestion}>Previous</button>
-              <button className={isAnswered && !lastQuestion? 'btn btn-blue': 'hidden' }  onClick={this.nextQuestion}>Next question</button> <br />
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-uppercase mx-1' }  onClick={this.prevQuestion}>Previous</button>
+              <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green text-uppercase px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
               <input className={lastQuestion ? 'btn btn-blue mt-3': 'hidden'} type="submit" value="Show me my exposure level" />
             </div>
           </div>
@@ -226,9 +226,10 @@ class Questions extends Component {
 
     return (
       <div className="App container mt-4">
+        iScape logo
         { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
         <div className="row">
-          <form className="border col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+          <form className="border-answer col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
             {this.state.welcome     ? <Welcome language={this.state.langNr} startQuiz={this.startQuiz} /> : null}
             {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
@@ -250,6 +251,7 @@ function Languages(props){
             <option value="es">Location2</option>
           </select>
         </label>
+        <img src={require("./img/place.svg")} style={{height: '30px'}} alt='place' />
       </div>
     </div>
   )
@@ -265,6 +267,14 @@ function Final(props) {
       <Meter meterExposureLevel={props.totalExposure} />
       <br />
       <a href="." className="btn btn-blue">{helper[lang].quizagain}</a>
+
+      <img src={require("./img/check.svg")} style={{height: '30px'}} alt='check' />
+
+      <button className="btn btn-lg btn-blue text-uppercase">
+        <img src={require("./img/facebook.svg")} style={{height: '30px'}} alt='fb' />
+        Share on facebook
+      </button>
+
     </div>
   )
 }
@@ -279,7 +289,7 @@ function Welcome(props) {
       <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-50 my-4" alt="Start quiz" />
       <p>{helper[lang].click_image}</p>
       <br />
-      <button className="btn btn-success" onClick={props.startQuiz}>{helper[lang].startquiz}</button>
+      <button className="btn btn-lg btn-green px-5 text-uppercase " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
     </div>
   )
 }
