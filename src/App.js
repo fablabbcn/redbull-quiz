@@ -213,7 +213,7 @@ class Questions extends Component {
                 })
               }
             </div>
-            <p className="pt-4 text-primary">{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className="pt-4 " style={{minHeight: '100px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-uppercase mx-1' }  onClick={this.prevQuestion}>Previous</button>
               <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green text-uppercase px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
@@ -261,17 +261,21 @@ function Final(props) {
   let lang = props.language;
   return(
     <div className="text-center">
-      <h4>{helper[lang].thanks}</h4>
-      <p>{helper[lang].finaltips}</p>
-      <p className="text-danger">Your exposure level is {props.totalExposure} </p>
+      <h4 className="text-blue font-weight-bold mb-5">{helper[lang].thanks}</h4>
+      <p className="font-weight-bold">Your exposure level is: {props.totalExposure} </p>
       <Meter meterExposureLevel={props.totalExposure} />
       <br />
-      <a href="." className="btn btn-blue">{helper[lang].quizagain}</a>
+      <p class="text-justify">{helper[lang].finaltips}</p>
+      {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
+      <br />
 
-      <img src={require("./img/check.svg")} style={{height: '30px'}} alt='check' />
+      <div className="final-tips">
+        <img src={require("./img/check.svg")} style={{height: '30px'}} alt='check' />
+      </div>
 
-      <button className="btn btn-lg btn-blue text-uppercase">
-        <img src={require("./img/facebook.svg")} style={{height: '30px'}} alt='fb' />
+
+      <button className="btn btn-lg btn-blue px-4 text-uppercase font-weight-bold">
+        <img className="pr-2" src={require("./img/facebook.svg")} style={{height: '35px'}} alt='fb' />
         Share on facebook
       </button>
 
