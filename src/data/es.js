@@ -8,6 +8,10 @@ export default [
       'Lo siento',
       'Muy bien!'
     ],
+    tips: [
+      'tip1',
+      'tip2'
+    ],
     images:[
       'House-near-busy-highway.png',
       'House-near-quiet-lane.png'
@@ -24,6 +28,10 @@ export default [
       'Lo siento',
       'Muy bien!'
     ],
+    tips: [
+      '',
+      ''
+    ],
     images:[
       'House-near-busy-highway.png',
       'House-near-quiet-lane.png'
@@ -39,6 +47,10 @@ export default [
     results: [
       'Lo siento',
       'Muy bien!'
+    ],
+    tips: [
+      '',
+      ''
     ],
     images:[
       'House-near-busy-highway.png',

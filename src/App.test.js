@@ -74,7 +74,7 @@ it('Shows the meter with a fixed Exposure level', () => {
   //console.log(result.props.children)
   expect(result.type).toBe('div');
   expect(result.props.children).toEqual(
-    <meter max='30' min='0' optimum='2' high='5' low='0' value={42} ></meter>
+      <meter  className="meter w-75" max='30' min='0' optimum='5' high='15' low='0' style={{"height": "20px"}} value={42} ></meter>
   )
 });
 

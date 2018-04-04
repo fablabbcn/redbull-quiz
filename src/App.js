@@ -17,6 +17,7 @@ class Questions extends Component {
       currentQuestion: 0,
       currentQuestionExposureLevel: 0, // Not used. But here if needed
       guesses: [],
+      myTips: [],
       // TODO: Unable to use language as a 'key' from a JSON file
       language: en,
       langNr: 0,
@@ -97,6 +98,7 @@ class Questions extends Component {
 
     this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
+    this.updateTips();
 
     ReactGA.event({
       category: 'User',
@@ -188,6 +190,18 @@ class Questions extends Component {
     });
   }
 
+  updateTips(){
+    let tmpTips = [];
+    // eslint-disable-next-line
+    this.state.language.map((x, y) => {
+      tmpTips.push(x.tips[this.state.guesses[y]])
+    });
+
+    this.setState({
+      myTips: tmpTips
+    })
+  }
+
   render() {
     const firstQuestion = this.state.currentQuestion === 0;
     const isAnswered    = typeof this.state.guesses[this.state.currentQuestion]  === 'number';
@@ -213,7 +227,8 @@ class Questions extends Component {
                 })
               }
             </div>
-            <p className="pt-4 " style={{minHeight: '100px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className=" font-weight-bold" style={{minHeight: '100px'}}>{item.tips[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' }  onClick={this.prevQuestion}>Previous</button>
               <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green  px-5': 'hidden' }  onClick={this.nextQuestion}>Next</button> <br />
@@ -233,7 +248,7 @@ class Questions extends Component {
           <form className="col-12 col-md-10 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning ? eachQuiz : null}
             {this.state.welcome     ? <Welcome language={this.state.langNr} startQuiz={this.startQuiz} /> : null}
-            {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} language={this.state.langNr} /> : null }
+            {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} /> : null }
           </form>
           { this.state.quizRunning && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
           { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
@@ -259,18 +274,34 @@ function Languages(props){
 
 function Final(props) {
   let lang = props.language;
+  var showTips = props.allTips.map((tip, x) => {
+    if (tip !== undefined && tip.length > 1) {
+      return(
+        <div className="row my-2" key={x}>
+          <div className="col-2 text-right">
+            <img src={require("./img/check.svg")} style={{height: '30px'}} alt='check' />
+          </div>
+          <div className="col-10 text-left">
+            <span className="font-weight-bold">{tip}</span>
+          </div>
+        </div>
+      )
+    }else{
+      return '';
+    }
+  });
   return(
     <div className="text-center">
       <h4 className="text-blue font-weight-bold mb-5">{helper[lang].thanks}</h4>
       <p className="font-weight-bold">Your exposure level is: {props.totalExposure} </p>
       <Meter meterExposureLevel={props.totalExposure} />
       <br />
-      <p class="text-justify">{helper[lang].finaltips}</p>
+      <p className="text-justify">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
       <br />
 
-      <div className="final-tips">
-        <img src={require("./img/check.svg")} style={{height: '30px'}} alt='check' />
+      <div className="final-tips mb-3">
+        {showTips}
       </div>
 
 
