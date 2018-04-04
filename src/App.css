@@ -91,6 +91,8 @@ RED
 
 .meter{
    /* Reset appearance DOES NOT WORK ON CHROME */
+  background: #EEE;
+  border-radius: 15px;
 }
 
 meter::-webkit-meter-bar {
@@ -114,3 +116,22 @@ meter::-webkit-meter-even-less-good-value {
     border-radius: 15px;
 }
 
+
+/* Firefox */
+meter::-moz-meter-bar {
+    border-radius: 3px;
+}
+meter:-moz-meter-optimum::-moz-meter-bar {
+    background: #86CC00; /* Green */
+    border-radius: 15px;
+}
+
+meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: #FFDB00; /* Yellow */
+    border-radius: 15px;
+}
+
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: #FF4D58; /* Red */
+    border-radius: 15px;
+}
