@@ -135,3 +135,9 @@ meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
     background: #FF4D58; /* Red */
     border-radius: 15px;
 }
+
+@media (min-width: 768px) {
+  .meter{
+    transform: rotate(-90deg);
+  }
+}

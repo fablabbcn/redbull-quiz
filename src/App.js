@@ -230,9 +230,16 @@ class Questions extends Component {
             <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <p className=" font-weight-bold" style={{minHeight: '100px'}}>{item.tips[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-5 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' }  onClick={this.prevQuestion}>Previous</button>
-              <button className={isAnswered && !lastQuestion? 'btn btn-lg btn-green  px-5': 'btn btn-lg px-5' } disabled={!isAnswered} onClick={this.nextQuestion}>Next</button> <br />
-              <input className={lastQuestion ? 'btn btn-lg btn-blue mt-3 px-3': 'hidden'} type="submit" value="Show me my exposure level" />
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' } onClick={this.prevQuestion}>
+                Previous
+              </button>
+
+              {lastQuestion? (
+                <input className={'btn btn-lg btn-blue mt-3 px-3'} type="submit" value="Show me my exposure level" />
+              ):(
+                <button className={'btn btn-lg btn-green px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
+              )}
+
             </div>
           </div>
         </div>
@@ -245,13 +252,13 @@ class Questions extends Component {
           <div className="col-12 my-3 text-center">
             <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
           </div>
-          <form className="col-12 col-md-10 p-5 mx-auto" onSubmit={this.handleSubmit}>
-            {this.state.quizRunning ? eachQuiz : null}
-            {this.state.welcome     ? <Welcome language={this.state.langNr} startQuiz={this.startQuiz} /> : null}
-            {this.state.quizEnded   ? <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} /> : null }
+          <form className="col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+            {this.state.quizRunning && eachQuiz}
+            {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
+            {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
           </form>
-          { this.state.quizRunning && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
-          { this.state.welcome && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
+          {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
+          {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
         </div>
       </div>
     )
@@ -339,16 +346,16 @@ class App extends Component {
 
 function Sidebar(props){
   return (
-    <div className="col-12 col-md-8 mx-auto mt-3 sidebar text-center">
+    <div className="col-12 col-md-4 mx-auto sidebar text-center">
       <div className="row p-3">
-        <div className="col-5 p-2">
+        <div className="col-5 col-md-12 p-1 my-md-3">
           <h5 className="font-weight-bold">Your exposure to air pollution:</h5>
         </div>
         {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
 
-        <div className="col-7 mt-1">
+        <div className="col-7 col-md-12 mt-1 my-md-5">
           <Meter meterExposureLevel={props.totalExposure} />
-          <p className="">Exposure Level: {props.totalExposure}</p>
+          <p className="my-md-5 py-md-5">Exposure Level: {props.totalExposure}</p>
         </div>
       </div>
     </div>
