@@ -25,15 +25,6 @@
 .btn-white{
   background: none;
 }
-
-/*
-Yellow
-#FFDB00
-
-RED
-#FF4D58
-*/
-
 .btn-blue{
   background: #4472C4;
   color:white;
@@ -89,16 +80,37 @@ ul li {
   display: none;
 }
 
+/*
+Yellow
+#FFDB00
+
+RED
+#FF4D58
+*/
+
+
 .meter{
-   /*
-  -webkit-appearance: none;
-    Reset appearance */
-  border: 1px solid #ccc;
-  border-radius: 10px;
+   /* Reset appearance DOES NOT WORK ON CHROME */
 }
 
 meter::-webkit-meter-bar {
-  background: none; /* Required to get rid of the default background property */
-  background-color: whiteSmoke;
-  border-radius: 10px;
+    background: #EEE;
+    border: 3px solid #EEE;
+    border-radius: 15px;
 }
+
+meter::-webkit-meter-optimum-value {
+    background: #86CC00; /* Green */
+    border-radius: 15px;
+}
+
+meter::-webkit-meter-suboptimum-value {
+    background: #FFDB00; /* Yellow */
+    border-radius: 15px;
+}
+
+meter::-webkit-meter-even-less-good-value {
+    background: #FF4D58; /* Red */
+    border-radius: 15px;
+}
+

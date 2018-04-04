@@ -358,9 +358,13 @@ function Sidebar(props){
 function Meter(props){
   return (
     <div>
-      <meter className="meter w-75" max='30' min='0'
-        optimum='5' high='15' low='0'
-        style={{height: '20px'}}
+      <meter className="meter w-75"
+        min='0'
+        max='50'
+        optimum='0'
+        low='13'
+        high='20'
+        style={{height: '25px'}}
         value={props.meterExposureLevel}></meter>
     </div>
   )
