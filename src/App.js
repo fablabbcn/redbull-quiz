@@ -249,16 +249,20 @@ class Questions extends Component {
     return (
       <div className="App container">
         <div className="row">
-          <div className="col-12 my-3 text-center">
-            <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
+          <div className="col-12 col-md-8 mx-auto empty-sidebar" style={{minHeight: '80px'}}>
+            {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
           </div>
           <form className="col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning && eachQuiz}
             {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
           </form>
-          {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
           {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
+          <div className="col-12 my-3 text-center">
+            <a href="https://www.iscapeproject.eu">
+              <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
+            </a>
+          </div>
         </div>
       </div>
     )
@@ -299,7 +303,6 @@ function Final(props) {
   });
   return(
     <div className="text-center">
-      <h4 className="text-blue font-weight-bold mb-5">{helper[lang].thanks}</h4>
       <p className="font-weight-bold">Your exposure level is: {props.totalExposure} </p>
       <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
@@ -346,16 +349,17 @@ class App extends Component {
 
 function Sidebar(props){
   return (
-    <div className="col-12 col-md-4 mx-auto sidebar text-center">
-      <div className="row p-3 p-md-0">
-        <div className="col-5 col-md-12 p-1 my-md-5 pb-lg-5">
-          <h5 className="font-weight-bold">Your exposure to air pollution:</h5>
+    <div className="sidebar text-center">
+      <div className="row mt-4">
+        <div className="col-5 text-left">
+          <p className="">Your exposure to air pollution:</p>
         </div>
         {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
-
-        <div className="col-7 col-md-12 mt-1 my-md-5">
-          <Meter rotate={true} meterExposureLevel={props.totalExposure} />
-          <p className="my-md-5 py-md-5">Exposure Level: {props.totalExposure}</p>
+        <div className="col-4">
+          <Meter rotate={false} meterExposureLevel={props.totalExposure} />
+        </div>
+        <div className="col-3 text-right">
+          <p className="">Exposure Level: {props.totalExposure}</p>
         </div>
       </div>
     </div>
@@ -364,7 +368,7 @@ function Sidebar(props){
 
 function Meter(props){
   return (
-    <div className="py-md-5">
+    <div className="text-center w-75">
       <meter className={props.rotate? "meter rotate w-75" : "meter w-75"}
         min='0'
         max='45'
