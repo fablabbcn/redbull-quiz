@@ -301,7 +301,7 @@ function Final(props) {
     <div className="text-center">
       <h4 className="text-blue font-weight-bold mb-5">{helper[lang].thanks}</h4>
       <p className="font-weight-bold">Your exposure level is: {props.totalExposure} </p>
-      <Meter meterExposureLevel={props.totalExposure} />
+      <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
       <p className="text-justify">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
@@ -347,14 +347,14 @@ class App extends Component {
 function Sidebar(props){
   return (
     <div className="col-12 col-md-4 mx-auto sidebar text-center">
-      <div className="row p-3">
-        <div className="col-5 col-md-12 p-1 my-md-3">
+      <div className="row p-3 p-md-0">
+        <div className="col-5 col-md-12 p-1 my-md-5 pb-lg-5">
           <h5 className="font-weight-bold">Your exposure to air pollution:</h5>
         </div>
         {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
 
         <div className="col-7 col-md-12 mt-1 my-md-5">
-          <Meter meterExposureLevel={props.totalExposure} />
+          <Meter rotate={true} meterExposureLevel={props.totalExposure} />
           <p className="my-md-5 py-md-5">Exposure Level: {props.totalExposure}</p>
         </div>
       </div>
@@ -364,10 +364,10 @@ function Sidebar(props){
 
 function Meter(props){
   return (
-    <div>
-      <meter className="meter w-75"
+    <div className="py-md-5">
+      <meter className={props.rotate? "meter rotate w-75" : "meter w-75"}
         min='0'
-        max='50'
+        max='45'
         optimum='0'
         low='13'
         high='20'

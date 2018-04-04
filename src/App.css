@@ -137,7 +137,7 @@ meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
 }
 
 @media (min-width: 768px) {
-  .meter{
+  .meter.rotate{
     transform: rotate(-90deg);
   }
 }
