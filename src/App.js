@@ -227,15 +227,14 @@ class Questions extends Component {
                 })
               }
             </div>
-            <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
-            <p className=" font-weight-bold" style={{minHeight: '100px'}}>{item.tips[this.state.guesses[questionIndex]]}</p>
-            <div className="button mt-5 text-center">
+            <p className="pt-4 " style={{minHeight: '150px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
+            <div className="button mt-0 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' } onClick={this.prevQuestion}>
                 Previous
               </button>
 
               {lastQuestion? (
-                <input className={'btn btn-lg btn-blue mt-3 px-3'} type="submit" value="Show me my exposure level" />
+                <input className={'btn btn-lg btn-blue px-3'} type="submit" value="Show me my exposure level" />
               ):(
                 <button className={'btn btn-lg btn-green px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
               )}
