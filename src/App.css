@@ -139,4 +139,7 @@ meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
   .meter.rotate{
     transform: rotate(-90deg);
   }
+  .answer-image{
+    max-width: 75%;
+  }
 }

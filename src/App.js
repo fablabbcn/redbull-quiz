@@ -212,22 +212,22 @@ class Questions extends Component {
       return (
         <div key={questionIndex} className="row">
           <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
-            <h3 className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
+            <h3 style={{minHeight: '99px'}} className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
             <div className="row suggestions justify-content-around">
               {
                 item.suggestions.map((suggestion, answerIndex) => {
                   return (
                     <div key={answerIndex}
-                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-5 selected-answer' : "col-5 unselected"}
+                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-6 col-md-5 selected-answer' : "col-6 col-md-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
-                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="rounded-circle mx-auto d-block w-100 my-3" />
-                      <p className="text-center">{suggestion}</p>
+                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-100 my-3" />
+                      <p style={{minHeight: '50px'}} className="text-center">{suggestion}</p>
                     </div>
                   )
                 })
               }
             </div>
-            <p className="pt-4 " style={{minHeight: '150px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-0 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' } onClick={this.prevQuestion}>
                 Previous
@@ -251,7 +251,7 @@ class Questions extends Component {
           <div className="col-12 col-md-8 mx-auto empty-sidebar" style={{minHeight: '80px'}}>
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
           </div>
-          <form className="col-12 col-md-8 p-5 mx-auto" onSubmit={this.handleSubmit}>
+          <form className="col-12 col-md-10 py-4 p-md-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning && eachQuiz}
             {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
@@ -302,7 +302,7 @@ function Final(props) {
   });
   return(
     <div className="text-center">
-      <p className="font-weight-bold">Your exposure level is: {props.totalExposure} </p>
+      <h3 className="font-weight-bold mb-3">Your exposure level is: {props.totalExposure} </h3>
       <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
       <p className="text-justify">{helper[lang].finaltips}</p>
