@@ -10,7 +10,7 @@ https://www.iscapeproject.eu/about/
 ## TODO:
 - [x] Google analytics
 - [ ] Instruction on the page, mention keyboard shortcuts
-- [ ] Favicon
+- [x] Favicon
 
 ## Features
 Keyboard shortucts:
@@ -37,4 +37,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 4. If the repository is changed, check `package.json` if the following url matches "homepage:"
 
-  "homepage": "https://fablabbcn.github.io/iscape-air-pollution-quiz",
+  "homepage": "http://quiz.iscape.smartcitizen.me/",
