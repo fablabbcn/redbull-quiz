@@ -46,6 +46,13 @@ form{
   border-radius: 10px;
 }
 
+.cookie{
+  color: red;
+}
+
+img:hover{
+  cursor: pointer;
+}
 .sidebar{
   border-radius: 12px;
   color: #666;

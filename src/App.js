@@ -334,7 +334,14 @@ function Welcome(props) {
       <p>{helper[lang].click_image}</p>
       <br />
       <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
+      <Cookie />
     </div>
+  )
+}
+
+function Cookie(){
+  return (
+    <p className="cookie pt-3">By clicking the button above, you accept this site will use cookies to collect data about your behavior while you play the quiz.</p>
   )
 }
 
