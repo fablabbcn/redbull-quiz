@@ -56,7 +56,6 @@ class Questions extends Component {
       window.cancelRequestAnimationFrame;
 
     window.addEventListener("gamepadconnected", function(e) {
-      console.log(e)
       //var gp = navigator.getGamepads()[0];
       gameLoop();
     });
@@ -121,7 +120,6 @@ class Questions extends Component {
 
       // Restart with 2 buttons pressed at the same time
       if ( buttonPressed(gp.buttons[0]) && buttonPressed(gp.buttons[1]) ) {
-        console.log('restart quiz?');
         window.location.reload();
       }
 
@@ -160,7 +158,6 @@ class Questions extends Component {
         this.handleSubmit();
         break;
       case 'r':
-        console.log('restart quiz?');
         //this.startQuiz();
         break;
       default:
@@ -217,13 +214,11 @@ class Questions extends Component {
 
     // Don't allow us to go forward, if a guess has not been made
     if (this.state.guesses[this.state.currentQuestion] === undefined) {
-      console.log('no guess made yet');
       return;
     }
 
     // If final question, show the exposure level
     if (this.state.currentQuestion === this.state.totalQuestions - 1){
-      console.log('final')
       this.handleSubmit();
     }
 
@@ -237,7 +232,6 @@ class Questions extends Component {
       label: 'Next question: ' + (this.state.currentQuestion + 2),
       action: 'Next question'
     });
-    //console.log('next nr', this.state.currentQuestion);
   }
 
   prevQuestion(e){
