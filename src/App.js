@@ -5,9 +5,11 @@ import en from './data/en';
 import helper from './data/helper';
 import es from './data/es';
 import ReactGA from 'react-ga'
+
 ReactGA.initialize('UA-85322801-3',{
   debug: false,
 });
+
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 class Questions extends Component {
@@ -42,7 +44,100 @@ class Questions extends Component {
 
   componentDidMount(){
     document.addEventListener("keydown", this.handleKeyboard, false);
+
+    var that = this;
+
+    var start;
+    var rAF = window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.requestAnimationFrame;
+    var rAFStop = window.mozCancelRequestAnimationFrame ||
+      window.webkitCancelRequestAnimationFrame ||
+      window.cancelRequestAnimationFrame;
+
+    window.addEventListener("gamepadconnected", function(e) {
+      console.log(e)
+      //var gp = navigator.getGamepads()[0];
+      gameLoop();
+    });
+
+    window.addEventListener("gamepaddisconnected", function() {
+      rAFStop(start);
+    });
+
+    if(!('GamepadEvent' in window)) {
+      // No gamepad events available, poll instead.
+      var interval = setInterval(pollGamepads, 500);
+    }
+
+    function pollGamepads() {
+      var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+      for (var i = 0; i < gamepads.length; i++) {
+        var gp = gamepads[i];
+        if(gp) {
+          gameLoop();
+          clearInterval(interval);
+        }
+      }
+    }
+
+    function buttonPressed(b) {
+      if (typeof(b) === "object") {
+        return b.pressed;
+      }
+      return b === 1.0;
+    }
+
+    var pressed_prev = false;
+    var pressed_next = false;
+
+    function gameLoop() {
+      var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+      if (!gamepads)
+        return;
+      var gp = gamepads[0];
+
+      if (buttonPressed(gp.buttons[0]) ){
+        if (!pressed_prev){
+          setTimeout(function(){
+            that.prevQuestion();
+          }, 100);
+        }
+        pressed_prev = true;
+      } else {
+        pressed_prev = false;
+      }
+
+      if(buttonPressed(gp.buttons[1]) ){
+        if (!pressed_next) {
+          setTimeout(function(){
+            that.nextQuestion();
+          }, 100);
+        }
+        pressed_next = true;
+      } else {
+        pressed_next = false;
+      }
+
+      // Restart with 2 buttons pressed at the same time
+      if ( buttonPressed(gp.buttons[0]) && buttonPressed(gp.buttons[1]) ) {
+        console.log('restart quiz?');
+        window.location.reload();
+      }
+
+      if(buttonPressed(gp.axes[2])) {
+        //right
+        that.updateGuesses(1, that.state.currentQuestion)
+      } else if(gp.axes[2] === -1) {
+        //left
+        that.updateGuesses(0, that.state.currentQuestion)
+      }
+
+      var start = rAF(gameLoop);
+    };
   }
+
+
 
   handleKeyboard(event){
     switch (event.key) {
@@ -113,8 +208,28 @@ class Questions extends Component {
     if (e){
       e.preventDefault();
     }
+
+    // Call startQuiz, in case we are using the joystick or keyboard 'n'
+    if(this.state.totalQuestions === 0){
+      this.startQuiz();
+      return;
+    }
+
+    // Don't allow us to go forward, if a guess has not been made
+    if (this.state.guesses[this.state.currentQuestion] === undefined) {
+      console.log('no guess made yet');
+      return;
+    }
+
+    // If final question, show the exposure level
+    if (this.state.currentQuestion === this.state.totalQuestions - 1){
+      console.log('final')
+      this.handleSubmit();
+    }
+
+    // Increment
     if(this.state.currentQuestion < this.state.totalQuestions - 1){
-      this.setState({currentQuestion:  this.state.currentQuestion + 1})
+      this.setState({currentQuestion: this.state.currentQuestion + 1})
     }
 
     ReactGA.event({
@@ -185,7 +300,7 @@ class Questions extends Component {
     this.setState({
       currentQuestionExposureLevel: xpCurrent,
       totalExposureLevel: xpTotal
-      }, () => {
+    }, () => {
       //console.log('updated', this.state.totalExposureLevel)
     });
   }
@@ -229,12 +344,12 @@ class Questions extends Component {
             </div>
             <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-0 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-white text-grey mx-1' } onClick={this.prevQuestion}>
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-blue mx-1' } onClick={this.prevQuestion}>
                 Previous
               </button>
 
               {lastQuestion? (
-                <input className={'btn btn-lg btn-blue px-3'} type="submit" value="Show me my exposure level" />
+                <input className={'btn btn-lg btn-green px-3'} disabled={!isAnswered} type="submit" value="Show me my exposure level" />
               ):(
                 <button className={'btn btn-lg btn-green px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
               )}
@@ -313,11 +428,12 @@ function Final(props) {
         {showTips}
       </div>
 
-
+      {/*
       <button className="btn btn-lg btn-blue px-4 ">
         <img className="pr-2" src={require("./img/facebook.svg")} style={{height: '35px'}} alt='fb' />
         Share on facebook
       </button>
+      */}
 
     </div>
   )
