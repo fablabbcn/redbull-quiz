@@ -21,6 +21,16 @@ Keyboard shortucts:
 * 'p' for **P**rev
 * 'f' for **F**inish (Submit)
 
+## Joystick
+You can use a joystick to select between answers (left - right)
+
+Blue button: PREVIOUS
+Green button: NEXT
+
+Both buttons: RESTART QUIZ
+
+![Joystick setup](https://github.com/fablabbcn/iscape-air-pollution-quiz/blob/master/IMG_20180418_164213.jpg "Joystick setup")
+
 
 ### Development
 
