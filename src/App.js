@@ -54,12 +54,12 @@ class Questions extends Component {
     var controllers = {};
 
     function connecthandler(e) {
+      document.getElementById('gamepad-controller').innerHTML = 'Gamepad Connected'
       addgamepad(e.gamepad);
     }
 
     function addgamepad(gamepad) {
       controllers[gamepad.index] = gamepad;
-      document.getElementById('gamepad-controller').innerHTML = 'Gamepad Connected'
 
       var d = document.createElement("div");
       d.setAttribute("id", "controller" + gamepad.index);
@@ -106,11 +106,12 @@ class Questions extends Component {
     }
 
     function disconnecthandler(e) {
+      console.log('disconnect')
+      document.getElementById('gamepad-controller').innerHTML = 'Gamepad disonnected'
       removegamepad(e.gamepad);
     }
 
     function removegamepad(gamepad) {
-      document.getElementById('gamepad-controller').innerHTML = 'Gamepad disonnected'
       var d = document.getElementById("controller" + gamepad.index);
       document.body.removeChild(d);
       delete controllers[gamepad.index];
@@ -176,7 +177,7 @@ class Questions extends Component {
               next_quest();
             }
 
-            //restart
+            // restart with both buttons
             if (controller.buttons[0].value === 1 && controller.buttons[1].value === 1){
               window.location.reload();
             }
@@ -197,6 +198,8 @@ class Questions extends Component {
             that.updateGuesses(0, that.state.currentQuestion)
             console.log('down')
           }
+
+          // Only on Chrome (Linux)
           if (controller.axes[2] === 1){
             that.updateGuesses(1, that.state.currentQuestion)
             console.log('right')
@@ -211,12 +214,12 @@ class Questions extends Component {
 
             if (controller.axes[3] === -1) {
               //left
-              console.log('left ff')
+              console.log('left Firefox')
               that.updateGuesses(0, that.state.currentQuestion)
             }
             if (controller.axes[3] === 1) {
               that.updateGuesses(1, that.state.currentQuestion)
-              console.log('right ff')
+              console.log('right Firefox')
             }
           }
         }
