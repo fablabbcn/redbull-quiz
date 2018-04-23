@@ -59,6 +59,7 @@ class Questions extends Component {
 
     function addgamepad(gamepad) {
       controllers[gamepad.index] = gamepad;
+      document.getElementById('gamepad-controller').innerHTML = 'Gamepad Connected'
 
       var d = document.createElement("div");
       d.setAttribute("id", "controller" + gamepad.index);
@@ -109,6 +110,7 @@ class Questions extends Component {
     }
 
     function removegamepad(gamepad) {
+      document.getElementById('gamepad-controller').innerHTML = 'Gamepad disonnected'
       var d = document.getElementById("controller" + gamepad.index);
       document.body.removeChild(d);
       delete controllers[gamepad.index];
@@ -132,13 +134,13 @@ class Questions extends Component {
     var prev_quest = debounce(function(){
       console.log('blue prev')
       that.prevQuestion();
-    },100)
+    }, 50)
 
     var next_quest = debounce(function(){
       console.log('green next')
 
       that.nextQuestion();
-    },100)
+    }, 50)
 
     function updateStatus() {
       if (!haveEvents) {
@@ -166,7 +168,6 @@ class Questions extends Component {
           b.style.backgroundSize = pct + " " + pct;
 
           if (pressed) {
-            console.log(controller.axes)
             if (i === 0) {
               prev_quest();
             }
@@ -203,6 +204,20 @@ class Questions extends Component {
           if (controller.axes[2] === -1) {
             that.updateGuesses(0, that.state.currentQuestion)
             console.log('left')
+          }
+
+          // Firefox uses a different object for the Axes
+          if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+
+            if (controller.axes[3] === -1) {
+              //left
+              console.log('left ff')
+              that.updateGuesses(0, that.state.currentQuestion)
+            }
+            if (controller.axes[3] === 1) {
+              that.updateGuesses(1, that.state.currentQuestion)
+              console.log('right ff')
+            }
           }
         }
       }
