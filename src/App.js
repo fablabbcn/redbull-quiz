@@ -47,9 +47,7 @@ class Questions extends Component {
 
     var that = this;
 
-    var gamepadInfo = document.getElementById("gamepad-info");
-
-    //
+    // Load gamepad controller
     var haveEvents = 'ongamepadconnected' in window;
     var controllers = {};
 
@@ -248,9 +246,8 @@ class Questions extends Component {
     if (!haveEvents) {
       setInterval(scangamepads, 500);
     }
-    //
-  }
 
+  }
 
 
   handleKeyboard(event){
@@ -562,7 +559,6 @@ function Welcome(props) {
       <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
       <Cookie />
       <p id="gamepad-controller" style={{color: 'purple'}}></p>
-      <div id="gamepad-info"></div>
     </div>
   )
 }
