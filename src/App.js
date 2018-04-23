@@ -598,7 +598,7 @@ function Sidebar(props){
 
 function Meter(props){
   return (
-    <div className="text-center w-75">
+    <div className="mx-auto w-75">
       <meter className={props.rotate? "meter rotate w-75" : "meter w-75"}
         min='0'
         max='45'
