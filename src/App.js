@@ -47,92 +47,190 @@ class Questions extends Component {
 
     var that = this;
 
-    var start;
-    var rAF = window.mozRequestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.requestAnimationFrame;
-    var rAFStop = window.mozCancelRequestAnimationFrame ||
-      window.webkitCancelRequestAnimationFrame ||
-      window.cancelRequestAnimationFrame;
+    var gamepadInfo = document.getElementById("gamepad-info");
 
-    window.addEventListener("gamepadconnected", function(e) {
-      //var gp = navigator.getGamepads()[0];
-      gameLoop();
-    });
+    //
+    var haveEvents = 'ongamepadconnected' in window;
+    var controllers = {};
 
-    window.addEventListener("gamepaddisconnected", function() {
-      rAFStop(start);
-    });
-
-    if(!('GamepadEvent' in window)) {
-      // No gamepad events available, poll instead.
-      var interval = setInterval(pollGamepads, 500);
+    function connecthandler(e) {
+      addgamepad(e.gamepad);
     }
 
-    function pollGamepads() {
-      var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-      for (var i = 0; i < gamepads.length; i++) {
-        var gp = gamepads[i];
-        if(gp) {
-          gameLoop();
-          clearInterval(interval);
-        }
+    function addgamepad(gamepad) {
+      controllers[gamepad.index] = gamepad;
+
+      var d = document.createElement("div");
+      d.setAttribute("id", "controller" + gamepad.index);
+
+      var t = document.createElement("p");
+      t.appendChild(document.createTextNode("gamepad: " + gamepad.id));
+      d.appendChild(t);
+
+      var b = document.createElement("div");
+      b.className = "buttons";
+      for (var i = 0; i < gamepad.buttons.length; i++) {
+        var e = document.createElement("span");
+        e.className = "button";
+        //e.id = "b" + i;
+        e.innerHTML = i;
+        b.appendChild(e);
       }
+
+      d.appendChild(b);
+
+      var a = document.createElement("div");
+      a.className = "axes";
+
+      for (var i = 0; i < gamepad.axes.length; i++) {
+        var p = document.createElement("progress");
+        p.className = "axis";
+        //p.id = "a" + i;
+        p.setAttribute("max", "2");
+        p.setAttribute("value", "1");
+        p.innerHTML = i;
+        a.appendChild(p);
+      }
+
+      d.appendChild(a);
+
+      // See https://github.com/luser/gamepadtest/blob/master/index.html
+      var start = document.getElementById("start");
+      if (start) {
+        start.style.display = "none";
+      }
+
+      document.body.appendChild(d);
+      requestAnimationFrame(updateStatus);
     }
 
-    function buttonPressed(b) {
-      if (typeof(b) === "object") {
-        return b.pressed;
-      }
-      return b === 1.0;
+    function disconnecthandler(e) {
+      removegamepad(e.gamepad);
     }
 
-    var pressed_prev = false;
-    var pressed_next = false;
+    function removegamepad(gamepad) {
+      var d = document.getElementById("controller" + gamepad.index);
+      document.body.removeChild(d);
+      delete controllers[gamepad.index];
+    }
 
-    function gameLoop() {
-      var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-      if (!gamepads)
-        return;
-      var gp = gamepads[0];
-
-      if (buttonPressed(gp.buttons[0]) ){
-        if (!pressed_prev){
-          setTimeout(function(){
-            that.prevQuestion();
-          }, 100);
-        }
-        pressed_prev = true;
-      } else {
-        pressed_prev = false;
-      }
-
-      if(buttonPressed(gp.buttons[1]) ){
-        if (!pressed_next) {
-          setTimeout(function(){
-            that.nextQuestion();
-          }, 100);
-        }
-        pressed_next = true;
-      } else {
-        pressed_next = false;
-      }
-
-      // Restart with 2 buttons pressed at the same time
-      if ( buttonPressed(gp.buttons[0]) && buttonPressed(gp.buttons[1]) ) {
-        window.location.reload();
-      }
-
-      if(buttonPressed(gp.axes[2])) {
-        //right
-        that.updateGuesses(1, that.state.currentQuestion)
-      } else if(gp.axes[2] === -1) {
-        //left
-        that.updateGuesses(0, that.state.currentQuestion)
-      }
-
-      var start = rAF(gameLoop);
+    function debounce(func, wait, immediate) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
     };
+
+    var prev_quest = debounce(function(){
+      console.log('blue prev')
+      that.prevQuestion();
+    },100)
+
+    var next_quest = debounce(function(){
+      console.log('green next')
+
+      that.nextQuestion();
+    },100)
+
+    function updateStatus() {
+      if (!haveEvents) {
+        scangamepads();
+      }
+
+      var i = 0;
+      var j;
+
+      for (j in controllers) {
+        var controller = controllers[j];
+        var d = document.getElementById("controller" + j);
+        var buttons = d.getElementsByClassName("button");
+
+        for (i = 0; i < controller.buttons.length; i++) {
+          var b = buttons[i];
+          var val = controller.buttons[i];
+          var pressed = val === 1.0;
+          if (typeof(val) === "object") {
+            pressed = val.pressed;
+            val = val.value;
+          }
+
+          var pct = Math.round(val * 100) + "%";
+          b.style.backgroundSize = pct + " " + pct;
+
+          if (pressed) {
+            console.log(controller.axes)
+            if (i === 0) {
+              prev_quest();
+            }
+
+            if (i === 1) {
+              next_quest();
+            }
+
+            //restart
+            if (controller.buttons[0].value === 1 && controller.buttons[1].value === 1){
+              window.location.reload();
+            }
+          }
+        }
+
+        var axes = d.getElementsByClassName("axis");
+        for (i = 0; i < controller.axes.length; i++) {
+          var a = axes[i];
+          a.innerHTML = i + ": " + controller.axes[i].toFixed(4);
+          a.setAttribute("value", controller.axes[i] + 1);
+
+          if (controller.axes[0] === 1){
+            that.updateGuesses(1, that.state.currentQuestion)
+            console.log('up')
+          }
+          if (controller.axes[0] === -1){
+            that.updateGuesses(0, that.state.currentQuestion)
+            console.log('down')
+          }
+          if (controller.axes[2] === 1){
+            that.updateGuesses(1, that.state.currentQuestion)
+            console.log('right')
+          }
+          if (controller.axes[2] === -1) {
+            that.updateGuesses(0, that.state.currentQuestion)
+            console.log('left')
+          }
+        }
+      }
+
+      requestAnimationFrame(updateStatus);
+    }
+
+    function scangamepads() {
+      var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : []);
+      for (var i = 0; i < gamepads.length; i++) {
+        if (gamepads[i]) {
+          if (gamepads[i].index in controllers) {
+            controllers[gamepads[i].index] = gamepads[i];
+          } else {
+            addgamepad(gamepads[i]);
+          }
+        }
+      }
+    }
+
+
+    window.addEventListener("gamepadconnected", connecthandler);
+    window.addEventListener("gamepaddisconnected", disconnecthandler);
+
+    if (!haveEvents) {
+      setInterval(scangamepads, 500);
+    }
+    //
   }
 
 
@@ -445,6 +543,8 @@ function Welcome(props) {
       <br />
       <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
       <Cookie />
+      <p id="gamepad-controller" style={{color: 'purple'}}></p>
+      <div id="gamepad-info"></div>
     </div>
   )
 }
