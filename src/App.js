@@ -330,7 +330,7 @@ class Questions extends Component {
       return;
     }
 
-    // If final question, show the exposure level
+    // If final question, show the Final exposure level
     if (this.state.currentQuestion === this.state.totalQuestions - 1){
       this.handleSubmit();
     }
@@ -506,6 +506,17 @@ function Languages(props){
 
 function Final(props) {
   let lang = props.language;
+  let finalExposureText = 'Medium exposure';
+  let finalExposureColor = 'orange';
+
+  if (props.totalExposure < 3) {
+    finalExposureText = 'Low exposure'
+    finalExposureColor = 'green';
+  }
+  if (props.totalExposure > 3) {
+    finalExposureText = 'High exposure'
+    finalExposureColor = 'red';
+  }
   var showTips = props.allTips.map((tip, x) => {
     if (tip !== undefined && tip.length > 1) {
       return(
@@ -527,7 +538,8 @@ function Final(props) {
       <h3 className="font-weight-bold mb-3">Your exposure level is: {props.totalExposure} </h3>
       <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
-      <p className="text-justify">{helper[lang].finaltips}</p>
+      <h4 style={{color: finalExposureColor}}>{ finalExposureText }</h4>
+      <p className="text-justify mt-4">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
       <br />
 
