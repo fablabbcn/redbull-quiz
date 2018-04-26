@@ -17,7 +17,7 @@ export default [
       'House-near-busy-highway.png',
       'House-near-quiet-lane.png'
     ],
-    danger: [4, 1]
+    danger: [1, 0]
   },
   {
     question: 'What kind of road do you walk down most often?',
@@ -37,7 +37,7 @@ export default [
       'Stoke-road-no-hedges.png',
       'Park-road-with-hedges.png'
     ],
-    danger: [3, 1]
+    danger: [1, 0]
   },
   {
     question: 'Where are you most likely to stand while waiting to cross at the traffic lights?',
@@ -57,7 +57,7 @@ export default [
       'Waiting-next-to-curb.png',
       'Waiting-few-meters-from-curb.png'
     ],
-    danger: [5, 3]
+    danger: [1, 0]
   },
   {
     question: 'When are you most likely to go cycling?',
@@ -77,7 +77,7 @@ export default [
       'Cycling-at-rush-hour.png',
       'Cycling-off-peak.png'
     ],
-    danger: [5, 2]
+    danger: [1, 0]
   },
   {
     question: 'When stopped in heavy traffic, do you prefer to have your car windows open or closed?',
@@ -97,7 +97,7 @@ export default [
       'Car-window-open.png',
       'Car-window-closed.png'
     ],
-    danger: [5, 1]
+    danger: [1, 0]
   },
   {
     question: 'When stopping briefly in your car, for example, when picking someone up at the school gates or stopped in traffic, what do you do?',
@@ -117,7 +117,7 @@ export default [
       'Idling-car.png',
       'Non-Idling-car.png'
     ],
-    danger: [5, 1]
+    danger: [1, 0]
   },
   {
     question: 'Which of the following is a bigger cause of air pollution in Guildford?',
@@ -137,7 +137,7 @@ export default [
       'Airport.png',
       'Traffic.png'
     ],
-    danger: [1, 3]
+    danger: [0, 0]
   },
   {
     question: 'A common pollutant is Particulate Matter (PM). How visible do you think this is in the air we breathe?',
@@ -157,7 +157,7 @@ export default [
       'PM-visible-in-smog.png',
       'PM-smaller-than-hair.png'
     ],
-    danger: [3, 1]
+    danger: [0, 0]
   }
 
 ]
