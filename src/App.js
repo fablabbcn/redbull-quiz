@@ -509,11 +509,11 @@ function Final(props) {
   let finalExposureText = 'Medium exposure';
   let finalExposureColor = 'orange';
 
-  if (props.totalExposure < 3) {
+  if (props.totalExposure < 4) {
     finalExposureText = 'Low exposure'
     finalExposureColor = 'green';
   }
-  if (props.totalExposure > 3) {
+  if (props.totalExposure > 4) {
     finalExposureText = 'High exposure'
     finalExposureColor = 'red';
   }
@@ -612,8 +612,8 @@ function Meter(props){
         min='0'
         max='6'
         optimum='0'
-        low='2'
-        high='4'
+        low='3'
+        high='5'
         style={{height: '25px'}}
         value={props.meterExposureLevel}></meter>
     </div>
