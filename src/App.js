@@ -593,15 +593,12 @@ function Sidebar(props){
   return (
     <div className="sidebar text-center">
       <div className="row mt-4">
-        <div className="col-5 text-left">
+        <div className="col-6 text-left">
           <p className="">Your exposure to air pollution:</p>
         </div>
         {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
-        <div className="col-4">
+        <div className="col-6">
           <Meter rotate={false} meterExposureLevel={props.totalExposure} />
-        </div>
-        <div className="col-3 text-right">
-          <p className="">Exposure Level: {props.totalExposure}</p>
         </div>
       </div>
     </div>
@@ -613,10 +610,10 @@ function Meter(props){
     <div className="mx-auto w-75">
       <meter className={props.rotate? "meter rotate w-75" : "meter w-75"}
         min='0'
-        max='45'
+        max='6'
         optimum='0'
-        low='13'
-        high='20'
+        low='2'
+        high='4'
         style={{height: '25px'}}
         value={props.meterExposureLevel}></meter>
     </div>
