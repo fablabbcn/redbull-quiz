@@ -614,7 +614,7 @@ function Meter(props){
         max='6'
         optimum='0'
         low='2'
-        high='5'
+        high='4'
         style={{height: '25px'}}
         value={props.meterExposureLevel}></meter>
     </div>
