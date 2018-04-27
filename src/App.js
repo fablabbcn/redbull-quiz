@@ -506,15 +506,15 @@ function Languages(props){
 
 function Final(props) {
   let lang = props.language;
-  let finalExposureText = 'Medium exposure';
+  let finalExposureText = 'medium';
   let finalExposureColor = 'orange';
 
-  if (props.totalExposure < 4) {
-    finalExposureText = 'Low exposure'
+  if (props.totalExposure < 3) {
+    finalExposureText = 'low'
     finalExposureColor = 'green';
   }
   if (props.totalExposure > 4) {
-    finalExposureText = 'High exposure'
+    finalExposureText = 'high'
     finalExposureColor = 'red';
   }
   var showTips = props.allTips.map((tip, x) => {
@@ -535,10 +535,11 @@ function Final(props) {
   });
   return(
     <div className="text-center">
-      <h3 className="font-weight-bold mb-3">Your exposure level is: {props.totalExposure} </h3>
+      <h3 className="font-weight-bold mb-3">Your exposure level is:
+        <span style={{color: finalExposureColor}}> { finalExposureText }</span>
+      </h3>
       <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
-      <h4 style={{color: finalExposureColor}}>{ finalExposureText }</h4>
       <p className="text-justify mt-4">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
       <br />
@@ -612,7 +613,7 @@ function Meter(props){
         min='0'
         max='6'
         optimum='0'
-        low='3'
+        low='2'
         high='5'
         style={{height: '25px'}}
         value={props.meterExposureLevel}></meter>
