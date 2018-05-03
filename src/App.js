@@ -167,16 +167,16 @@ class Questions extends Component {
           b.style.backgroundSize = pct + " " + pct;
 
           if (pressed) {
-            if (i === 0) {
+            if (i === 11) {
               prev_quest();
             }
 
-            if (i === 1) {
+            if (i === 10) {
               next_quest();
             }
 
             // restart with both buttons
-            if (controller.buttons[0].value === 1 && controller.buttons[1].value === 1){
+            if (controller.buttons[10].value === 1 && controller.buttons[11].value === 1){
               window.location.reload();
             }
           }
@@ -189,22 +189,22 @@ class Questions extends Component {
           a.setAttribute("value", controller.axes[i] + 1);
 
           if (controller.axes[0] === 1){
-            that.updateGuesses(1, that.state.currentQuestion)
-            console.log('up')
-          }
-          if (controller.axes[0] === -1){
             that.updateGuesses(0, that.state.currentQuestion)
             console.log('down')
+          }
+          if (controller.axes[0] === -1){
+            that.updateGuesses(1, that.state.currentQuestion)
+            console.log('up')
           }
 
           // Only on Chrome (Linux)
           if (controller.axes[2] === 1){
-            that.updateGuesses(1, that.state.currentQuestion)
-            console.log('right')
-          }
-          if (controller.axes[2] === -1) {
             that.updateGuesses(0, that.state.currentQuestion)
             console.log('left')
+          }
+          if (controller.axes[2] === -1) {
+            that.updateGuesses(1, that.state.currentQuestion)
+            console.log('right')
           }
 
           // Firefox uses a different object for the Axes
