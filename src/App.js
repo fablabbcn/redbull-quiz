@@ -188,6 +188,15 @@ class Questions extends Component {
           a.innerHTML = i + ": " + controller.axes[i].toFixed(4);
           a.setAttribute("value", controller.axes[i] + 1);
 
+          if (controller.axes[1] === 1){
+            that.updateGuesses(0, that.state.currentQuestion)
+            console.log('left windows')
+          }
+          if (controller.axes[1] === -1){
+            that.updateGuesses(1, that.state.currentQuestion)
+            console.log('right windows')
+          }
+
           if (controller.axes[0] === 1){
             that.updateGuesses(0, that.state.currentQuestion)
             console.log('down')
