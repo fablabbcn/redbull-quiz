@@ -345,8 +345,9 @@ class Questions extends Component {
     }
 
     // Increment
-    if(this.state.currentQuestion < this.state.totalQuestions - 1){
+    if(this.state.currentQuestion < this.state.totalQuestions){
       this.setState({currentQuestion: this.state.currentQuestion + 1})
+      this.playSound('coin');
     }
 
     ReactGA.event({
@@ -356,12 +357,24 @@ class Questions extends Component {
     });
   }
 
+  playSound(filename){
+    console.log('I should play soundfile:', filename, '.wav');
+    var audio = new Audio(require("./audio/" + filename + ".wav"));
+    audio.play();
+  }
+
   prevQuestion(e){
     if (e){
       e.preventDefault();
     }
+    // Don't allow us to go back if we are at the endpage
+    if (this.state.currentQuestion === this.state.totalQuestions) {
+      return;
+    }
+
     if(this.state.currentQuestion > 0){
       this.setState({currentQuestion: this.state.currentQuestion - 1})
+      this.playSound('pop');
     }
     ReactGA.event({
       category: 'User',
@@ -381,6 +394,9 @@ class Questions extends Component {
       // Make sure we update exposure AFTER guesses have been updated!
       this.updateExposureLevel();
     });
+
+    this.playSound('button');
+
     ReactGA.event({
       category: 'User',
       action: 'guessed',
