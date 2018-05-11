@@ -340,6 +340,20 @@ class Questions extends Component {
     });
   }
 
+  logger(text){
+    console.log(text);
+    fetch('http://localhost:8000/logs', {
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        msg: text,
+      })
+    })
+  }
+
   nextQuestion(e){
     if (e){
       e.preventDefault();
