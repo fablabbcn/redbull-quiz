@@ -141,6 +141,16 @@ class Questions extends Component {
       that.nextQuestion();
     }, 50)
 
+    var debounce_guess0 = debounce(function(){
+      console.log('should debounce guess0')
+      that.updateGuesses(0, that.state.currentQuestion)
+    }, 50)
+
+    var debounce_guess1 = debounce(function(){
+      console.log('should debounce guess1')
+      that.updateGuesses(0, that.state.currentQuestion)
+    }, 50)
+
     function updateStatus() {
       if (!haveEvents) {
         scangamepads();
@@ -189,44 +199,51 @@ class Questions extends Component {
           a.setAttribute("value", controller.axes[i] + 1);
 
           if (controller.axes[1] === 1){
-            that.updateGuesses(0, that.state.currentQuestion)
-            console.log('left windows')
+            console.log('left windows');
+            that.updateGuesses(0, that.state.currentQuestion);
+            //debounce_guess0();
           }
           if (controller.axes[1] === -1){
-            that.updateGuesses(1, that.state.currentQuestion)
-            console.log('right windows')
+            console.log('right windows');
+            that.updateGuesses(1, that.state.currentQuestion);
+            //debounce_guess1();
           }
 
           if (controller.axes[0] === 1){
-            that.updateGuesses(0, that.state.currentQuestion)
-            console.log('down')
+            console.log('down');
+            that.updateGuesses(0, that.state.currentQuestion);
+            //debounce_guess0();
           }
           if (controller.axes[0] === -1){
-            that.updateGuesses(1, that.state.currentQuestion)
-            console.log('up')
+            console.log('up');
+            that.updateGuesses(1, that.state.currentQuestion);
+            //debounce_guess1();
           }
 
           // Only on Chrome (Linux)
           if (controller.axes[2] === 1){
-            that.updateGuesses(0, that.state.currentQuestion)
-            console.log('left')
+            console.log('left');
+            that.updateGuesses(0, that.state.currentQuestion);
+            //debounce_guess0();
           }
           if (controller.axes[2] === -1) {
-            that.updateGuesses(1, that.state.currentQuestion)
-            console.log('right')
+            console.log('right');
+            that.updateGuesses(1, that.state.currentQuestion);
+            //debounce_guess1();
           }
 
           // Firefox uses a different object for the Axes
           if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
 
             if (controller.axes[3] === -1) {
-              //left
               console.log('left Firefox')
               that.updateGuesses(0, that.state.currentQuestion)
+              //debounce_guess0();
             }
             if (controller.axes[3] === 1) {
-              that.updateGuesses(1, that.state.currentQuestion)
               console.log('right Firefox')
+              that.updateGuesses(1, that.state.currentQuestion)
+              //debounce_guess1();
             }
           }
         }
