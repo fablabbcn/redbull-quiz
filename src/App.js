@@ -364,7 +364,7 @@ class Questions extends Component {
     // Increment
     if(this.state.currentQuestion < this.state.totalQuestions){
       this.setState({currentQuestion: this.state.currentQuestion + 1})
-      this.playSound('coin');
+      this.playSound('button');
     }
 
     ReactGA.event({
@@ -412,7 +412,7 @@ class Questions extends Component {
       this.updateExposureLevel();
     });
 
-    this.playSound('button');
+    this.playSound('coin');
 
     ReactGA.event({
       category: 'User',
