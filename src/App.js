@@ -331,6 +331,9 @@ class Questions extends Component {
     this.updateExposureLevel();
     this.updateTips();
 
+    this.logger('Score: ' + this.state.totalExposureLevel);
+    this.logger('Guesses: ' + this.state.guesses);
+    this.logger('Quiz Ended at: ' + new Date());
     ReactGA.event({
       category: 'User',
       action: 'Finished quiz',
@@ -441,6 +444,7 @@ class Questions extends Component {
       quizRunning: true,
       totalQuestions: this.state.language.length,
     });
+    this.logger('Quiz Start at: ' + new Date());
     ReactGA.event({
       category: 'User',
       label: 'Start Quiz',
