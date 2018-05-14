@@ -48,3 +48,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 4. If the repository is changed, check `package.json` if the following url matches "homepage:"
 
   "homepage": "http://quiz.iscape.smartcitizen.me/",
+
+## Offline
+To run offline, and to run with a logger do
+
+`npm run logger`
