@@ -1,0 +1,20 @@
+{
+  "logs": [
+    {
+      "msg": "Quiz Start at: Mon May 14 2018 16:55:41 GMT+0200 (CEST)",
+      "id": 1
+    },
+    {
+      "msg": "Score: 3",
+      "id": 2
+    },
+    {
+      "msg": "Guesses: 0,1,0,1,0,1,0,1",
+      "id": 3
+    },
+    {
+      "msg": "Quiz Ended at: Mon May 14 2018 16:55:44 GMT+0200 (CEST)",
+      "id": 4
+    }
+  ]
+}
