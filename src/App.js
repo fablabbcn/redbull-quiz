@@ -131,23 +131,22 @@ class Questions extends Component {
     };
 
     var prev_quest = debounce(function(){
-      console.log('blue prev')
+      //console.log('blue prev')
       that.prevQuestion();
     }, 50)
 
     var next_quest = debounce(function(){
-      console.log('green next')
-
+      //console.log('green next')
       that.nextQuestion();
     }, 50)
 
     var debounce_guess0 = debounce(function(){
-      console.log('should debounce guess0')
+      //console.log('should debounce guess0')
       that.updateGuesses(0, that.state.currentQuestion)
     }, 50)
 
     var debounce_guess1 = debounce(function(){
-      console.log('should debounce guess1')
+      //console.log('should debounce guess1')
       that.updateGuesses(1, that.state.currentQuestion)
     }, 50)
 
@@ -199,30 +198,30 @@ class Questions extends Component {
           a.setAttribute("value", controller.axes[i] + 1);
 
           if (controller.axes[1] === 1){
-            console.log('left windows');
+            //console.log('left windows');
             debounce_guess0();
           }
           if (controller.axes[1] === -1){
-            console.log('right windows');
+            //console.log('right windows');
             debounce_guess1();
           }
 
           if (controller.axes[0] === 1){
-            console.log('down');
+            //console.log('down');
             debounce_guess0();
           }
           if (controller.axes[0] === -1){
-            console.log('up');
+            //console.log('up');
             debounce_guess1();
           }
 
           // Only on Chrome (Linux)
           if (controller.axes[2] === 1){
-            console.log('left');
+            //console.log('left');
             debounce_guess0();
           }
           if (controller.axes[2] === -1) {
-            console.log('right');
+            //console.log('right');
             debounce_guess1();
           }
 
@@ -230,11 +229,11 @@ class Questions extends Component {
           if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
 
             if (controller.axes[3] === -1) {
-              console.log('left Firefox')
+              //console.log('left Firefox')
               debounce_guess0();
             }
             if (controller.axes[3] === 1) {
-              console.log('right Firefox')
+              //console.log('right Firefox')
               debounce_guess1();
             }
           }
@@ -336,8 +335,7 @@ class Questions extends Component {
   }
 
   logger(text){
-    if (window.location.host === 'localhost') {
-      console.log(text);
+    if (window.location.hostname === 'localhost') {
       fetch('http://localhost:8000/logs', {
         method: 'POST',
         headers:{
@@ -386,7 +384,7 @@ class Questions extends Component {
   }
 
   playSound(filename){
-    console.log('I should play soundfile:', filename, '.wav');
+    //console.log('I should play soundfile:', filename, '.wav');
     var audio = new Audio(require("./audio/" + filename + ".wav"));
     audio.play();
   }
