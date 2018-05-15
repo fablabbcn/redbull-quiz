@@ -148,7 +148,7 @@ class Questions extends Component {
 
     var debounce_guess1 = debounce(function(){
       console.log('should debounce guess1')
-      that.updateGuesses(0, that.state.currentQuestion)
+      that.updateGuesses(1, that.state.currentQuestion)
     }, 50)
 
     function updateStatus() {
@@ -200,36 +200,30 @@ class Questions extends Component {
 
           if (controller.axes[1] === 1){
             console.log('left windows');
-            that.updateGuesses(0, that.state.currentQuestion);
-            //debounce_guess0();
+            debounce_guess0();
           }
           if (controller.axes[1] === -1){
             console.log('right windows');
-            that.updateGuesses(1, that.state.currentQuestion);
-            //debounce_guess1();
+            debounce_guess1();
           }
 
           if (controller.axes[0] === 1){
             console.log('down');
-            that.updateGuesses(0, that.state.currentQuestion);
-            //debounce_guess0();
+            debounce_guess0();
           }
           if (controller.axes[0] === -1){
             console.log('up');
-            that.updateGuesses(1, that.state.currentQuestion);
-            //debounce_guess1();
+            debounce_guess1();
           }
 
           // Only on Chrome (Linux)
           if (controller.axes[2] === 1){
             console.log('left');
-            that.updateGuesses(0, that.state.currentQuestion);
-            //debounce_guess0();
+            debounce_guess0();
           }
           if (controller.axes[2] === -1) {
             console.log('right');
-            that.updateGuesses(1, that.state.currentQuestion);
-            //debounce_guess1();
+            debounce_guess1();
           }
 
           // Firefox uses a different object for the Axes
@@ -237,13 +231,11 @@ class Questions extends Component {
 
             if (controller.axes[3] === -1) {
               console.log('left Firefox')
-              that.updateGuesses(0, that.state.currentQuestion)
-              //debounce_guess0();
+              debounce_guess0();
             }
             if (controller.axes[3] === 1) {
               console.log('right Firefox')
-              that.updateGuesses(1, that.state.currentQuestion)
-              //debounce_guess1();
+              debounce_guess1();
             }
           }
         }
