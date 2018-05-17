@@ -81,6 +81,7 @@ class Questions extends Component {
       var a = document.createElement("div");
       a.className = "axes";
 
+      // eslint-disable-next-line
       for (var i = 0; i < gamepad.axes.length; i++) {
         var p = document.createElement("progress");
         p.className = "axis";
