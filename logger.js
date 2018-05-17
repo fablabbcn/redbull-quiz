@@ -14,7 +14,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 
 app.post('/logs', function(req, res){
-  console.log(req.body.msg);
+  //console.log(req.body.msg);
   res.send('ok');
 
   fs.appendFile("../log.txt", req.body.msg + "\n", function(err){
