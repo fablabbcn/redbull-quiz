@@ -23,6 +23,7 @@ class Questions extends Component {
       // TODO: Unable to use language as a 'key' from a JSON file
       language: en,
       langNr: 0,
+      startDate: 0,
       totalQuestions: 0,
       totalExposureLevel: 0,
       quizRunning: false, // default false
@@ -323,9 +324,9 @@ class Questions extends Component {
     this.updateExposureLevel();
     this.updateTips();
 
-    this.logger('Score: ' + this.state.totalExposureLevel);
-    this.logger('Guesses: ' + this.state.guesses);
-    this.logger('Quiz Ended at: ' + new Date());
+    // Logger sends 4 items, startTime, endTime, score, and guesses
+    this.logger(this.state.startDate, new Date().getTime(), this.state.totalExposureLevel, this.state.guesses);
+
     ReactGA.event({
       category: 'User',
       action: 'Finished quiz',
@@ -335,7 +336,7 @@ class Questions extends Component {
     });
   }
 
-  logger(text){
+  logger(startTime, endTime, totalExp, guesses){
     if (window.location.hostname === 'localhost') {
       fetch('http://localhost:8000/logs', {
         method: 'POST',
@@ -344,7 +345,10 @@ class Questions extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          msg: text,
+          startTime: startTime,
+          endTime: endTime,
+          totalExp: totalExp,
+          guesses: guesses
         })
       })
     }
@@ -436,8 +440,8 @@ class Questions extends Component {
       welcome: false,
       quizRunning: true,
       totalQuestions: this.state.language.length,
+      startDate: new Date().getTime(),
     });
-    this.logger('Quiz Start at: ' + new Date());
     ReactGA.event({
       category: 'User',
       label: 'Start Quiz',

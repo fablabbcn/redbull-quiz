@@ -6,7 +6,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "bootstrap": "4",
-    "csv": "^3.0.2",
     "express": "^4.16.3",
     "gh-pages": "^1.1.0",
     "json-server": "^0.12.2",

@@ -3,7 +3,6 @@ const app = express()
 
 var bodyParser = require('body-parser')
 var cors = require('cors')
-var csv = require('csv')
 var fs = require ('fs')
 
 app.use( express.json() )
@@ -14,10 +13,14 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 
 app.post('/logs', function(req, res){
-  //console.log(req.body.msg);
-  res.send('ok');
+  res.send('received log');
+  finalline =
+    req.body.startTime + "," +
+    req.body.endTime   + "," +
+    req.body.totalExp  + "," +
+    req.body.guesses   + "\n"
 
-  fs.appendFile("../log.txt", req.body.msg + "\n", function(err){
+  fs.appendFile("../log.txt", finalline, function(err){
     if (err) {
       return console.log(err);
     }
