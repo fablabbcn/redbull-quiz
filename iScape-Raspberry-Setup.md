@@ -51,6 +51,12 @@ Edit <code>.config/lxsession/LXDE-pi/autostart</code> and make sure it has the f
 <p>Reboot the kit</p>
 </li>
 </ol>
+<h4 id="using-an-rtc-clock-for-offline-mode">Using an RTC clock for offline mode</h4>
+<p><a href="https://learn.adafruit.com/adding-a-real-time-clock-to-raspberry-pi/set-rtc-time">https://learn.adafruit.com/adding-a-real-time-clock-to-raspberry-pi/set-rtc-time</a></p>
+<ul>
+<li>Enable i2c on the Pi</li>
+<li>Add <code>dtoverlay=i2c-rtc,pcf8523</code> to <code>/boot/config.txt</code></li>
+</ul>
 <h2 id="retrieve-log-files">Retrieve log files</h2>
 <p>The log files should be at <code>~/log.txt</code></p>
 <p>They are in the format:</p>
