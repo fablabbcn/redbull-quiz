@@ -2,11 +2,11 @@ export default [
   {
     question: 'Where do you live?',
     suggestions: [
-      'I live in a house near a busy highway',
-      'I live in a house near a quiet lane'
+      'I live next to a busy road',
+      'I live on a quiet street with little traffic'
     ],
     results: [
-      'Pollution is typically higher near busy highways since traffic is a major source of air pollution. 50% of vehicle emissions can also travel a distance of up to 150 meters from their source. Consider planting a hedge row or asking your landlord to do it. A hedge row could act as a green barrier between you and vehicle emissions, this will help to reduce your exposure to air pollution on a daily basis.',
+      'Pollution is typically higher near busy roads since traffic is a major source of air pollution. 50% of vehicle emissions can also travel a distance of up to 150 meters from their source. Consider planting a hedge row or asking your landlord to do it. A hedge row could act as a green barrier between you and vehicle emissions, this will help to reduce your exposure to air pollution on a daily basis.',
       'Great! Pollution is typically lower away from busy roads since traffic is a major source of air pollution.'
     ],
     tips:[
@@ -22,11 +22,11 @@ export default [
   {
     question: 'What kind of road do you walk down most often?',
     suggestions: [
-      'On pavements close to traffic, e.g. Woodbridge Road',
-      'On pavements behind hedges e.g. Shalford Road'
+      'On pavements close to traffic, e.g. ??',
+      'On pavements behind hedges e.g. ??'
     ],
     results: [
-      'Unfortunately pollution exposure is typically higher on these roads compared to roads with hedges. This is because it has fewer hedges along the roadside. Hedges can help to reduce air pollution by up to 60%. If you want to try and reduce your exposure to air pollution whilst travelling around Guildford, try to walk down roads with hedges and trees next time you are out and about. ',
+      'Unfortunately exposure to air pollution is typically higher on these roads compared to roads with hedges. Roadside hedges can help to reduce air pollution by up to 60%. If you want to reduce your exposure to air pollution whilst walking around London choose roads with hedges and trees next time you are out and about. ',
       'Great!  Walking down a road behind hedges exposes you to a lot less pollution than walking down a road where the pavement is close to traffic. This is because the hedges at the side of the road can help to reduce air pollution exposure by up to to 60%. '
     ],
     tips:[
@@ -62,7 +62,7 @@ export default [
   {
     question: 'When are you most likely to go cycling?',
     suggestions: [
-      'Rush hour (roughly between 6-10am and 4-8pm',
+      'Rush hour (roughly between 7-10am and 4-7pm',
       'Off-peak'
     ],
     results: [
@@ -120,14 +120,14 @@ export default [
     danger: [1, 0]
   },
   {
-    question: 'Which of the following is a bigger cause of air pollution in Guildford?',
+    question: 'Which of the following is a bigger cause of air pollution in London?',
     suggestions: [
       'Airport',
       'Traffic'
     ],
     results: [
-      'That’s not quite right - even though Guildford is in relatively close proximity to both Heathrow and Gatwick airport, the main cause of pollution is the amount of traffic in and around the city centre.',
-      'Correct! Even though Guildford is in relatively close proximity to both Heathrow and Gatwick airport, the main cause of pollution is the amount of traffic in and around the city centre.'
+      'That’s not quite right - even though central London is close to both Heathrow, Gatwick and City airports, the main cause of pollution is the amount of traffic in and around the city centre.',
+      'Correct! Even though central London is close to Heathrow, Gatwick and City airports, the main cause of pollution is the amount of traffic in and around the city centre.'
     ],
     tips:[
     '',
@@ -146,8 +146,8 @@ export default [
       'Some types of PM are smaller than a human hair and are invisible to the naked eye.'
     ],
     results: [
-      'Unfortunately that’s not correct. Although, particulate matter includes those particles found in visible air pollution such as smog, some types of PM are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream…',
-      'Well done! Some types of Particulate Matter are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (x% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream… '
+      'Unfortunately that’s not correct. Although, particulate matter includes those particles found in visible air pollution such as smog, some types of PM are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (15 % of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream…',
+      'Well done! Some types of Particulate Matter are much smaller than a human hair and are invisible to the naked eye. They come from a number of natural and manmade sources including road dust, construction sites and burning wood or fossil fuels. These particles can be harmful to people and cause serious health problems. Particles less than 10 micrometers in diameter (15% of a human hair) pose the greatest problems, because they can get deep into your lungs, and some may even get into your bloodstream… '
     ],
     tips:[
     '',
