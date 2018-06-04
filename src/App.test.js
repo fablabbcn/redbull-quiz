@@ -32,7 +32,7 @@ it('should start the quiz', () => {
   let tree = component.toJSON();
   //expect(tree).toMatchSnapshot();
   //tree.props.startQuiz()
-  console.log(tree.children[6])
+  //console.log(tree.children[6])
   //tree.children[6].props.startQuiz()
 
   //expect(tree).toMatchSnapshot();
