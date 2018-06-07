@@ -20,10 +20,10 @@ export default [
     danger: [1, 0]
   },
   {
-    question: 'What kind of road do you walk down most often?',
+    question: 'What kind of road do you walk down most oftenn',
     suggestions: [
-      'On pavements close to traffic, e.g. ??',
-      'On pavements behind hedges e.g. ??'
+      'On pavements close to traffic',
+      'On pavements behind hedges'
     ],
     results: [
       'Unfortunately exposure to air pollution is typically higher on these roads compared to roads with hedges. Roadside hedges can help to reduce air pollution by up to 60%. If you want to reduce your exposure to air pollution whilst walking around London choose roads with hedges and trees next time you are out and about. ',
