@@ -499,7 +499,7 @@ class Questions extends Component {
                     <div key={answerIndex}
                       className={answerIndex === this.state.guesses[questionIndex] ? 'col-6 col-md-5 selected-answer' : "col-6 col-md-5 unselected"}
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
-                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-100 my-3" />
+                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-50 my-3" />
                       <p style={{minHeight: '50px'}} className="text-center">{suggestion}</p>
                     </div>
                   )
@@ -623,7 +623,7 @@ function Welcome(props) {
       <h2 className="text-blue">{helper[lang].title}</h2>
       <p className="mt-4">{helper[lang].p1}</p>
       <p>{helper[lang].p2}</p>
-      <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-50 my-4" alt="Start quiz" />
+      <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-25 my-1" alt="Start quiz" />
       <p>{helper[lang].click_image}</p>
       <br />
       <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
