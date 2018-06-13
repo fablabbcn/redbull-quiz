@@ -491,7 +491,7 @@ class Questions extends Component {
       return (
         <div key={questionIndex} className="row">
           <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
-            <h3 style={{minHeight: '99px'}} className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
+            <h3 style={{minHeight: '68px'}} className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
             <div className="row suggestions justify-content-around">
               {
                 item.suggestions.map((suggestion, answerIndex) => {
@@ -527,7 +527,7 @@ class Questions extends Component {
     return (
       <div className="App container">
         <div className="row">
-          <div className="col-12 col-md-8 mx-auto empty-sidebar" style={{minHeight: '80px'}}>
+          <div className="col-12 col-md-8 mx-auto empty-sidebar" style={{minHeight: '50px'}}>
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
           </div>
           <form className="col-12 col-md-10 py-4 p-md-5 mx-auto" onSubmit={this.handleSubmit}>
@@ -650,7 +650,7 @@ class App extends Component {
 function Sidebar(props){
   return (
     <div className="sidebar text-center">
-      <div className="row mt-4">
+      <div className="row mt-2">
         <div className="col-6 text-left">
           <p className="">Your exposure to air pollution:</p>
         </div>
