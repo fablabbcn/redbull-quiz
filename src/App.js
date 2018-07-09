@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
-import london from './data/london';
+import guildford from './data/en';
 import helper from './data/helper';
 import es from './data/es';
 import ReactGA from 'react-ga'
@@ -21,7 +21,7 @@ class Questions extends Component {
       guesses: [],
       myTips: [],
       // TODO: Unable to use language as a 'key' from a JSON file
-      language: london,
+      language: guildford,
       langNr: 0,
       startDate: 0,
       totalQuestions: 0,
@@ -303,8 +303,8 @@ class Questions extends Component {
     //this.setState({ language: e.target.value})
     // Which makes the rest unneccessary
     switch (e.target.value) {
-      case 'london':
-        this.setState({ language: london, langNr: 0 })
+      case 'guildford':
+        this.setState({ language: guildford, langNr: 0 })
         break;
       case 'es':
         this.setState({ language: es, langNr: 1 })
@@ -552,7 +552,7 @@ function Languages(props){
     <div className="col-12 col-md-8 mx-auto mt-3 text-right" style={{height: '50px'}}>
       <label>
         <select className="form-control" onChange={props.mySelectLanguage}>
-          <option value="london">London</option>
+          <option value="guildford">Guildford</option>
           <option value="es">Location2</option>
         </select>
       </label>
