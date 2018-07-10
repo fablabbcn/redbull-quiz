@@ -61,6 +61,7 @@ class Questions extends Component {
       controllers[gamepad.index] = gamepad;
 
       var d = document.createElement("div");
+      d.style.display = "none"; // Hide the controller debug window at the bottom
       d.setAttribute("id", "controller" + gamepad.index);
 
       var t = document.createElement("p");
