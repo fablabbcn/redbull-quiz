@@ -20,13 +20,13 @@ export default [
     danger: [1, 0]
   },
   {
-    question: 'What kind of road do you walk down most oftenn',
+    question: 'What kind of road do you walk down most often?',
     suggestions: [
       'On pavements close to traffic',
       'On pavements behind hedges'
     ],
     results: [
-      'Unfortunately exposure to air pollution is typically higher on these roads compared to roads with hedges. Roadside hedges can help to reduce air pollution by up to 60%. If you want to reduce your exposure to air pollution whilst walking around London choose roads with hedges and trees next time you are out and about. ',
+      'Unfortunately exposure to air pollution is typically higher on these roads compared to roads with hedges. Roadside hedges can help to reduce air pollution by up to 60%. If you want to reduce your exposure to air pollution whilst walking around Guildford choose roads with hedges and trees next time you are out and about. ',
       'Great!  Walking down a road behind hedges exposes you to a lot less pollution than walking down a road where the pavement is close to traffic. This is because the hedges at the side of the road can help to reduce air pollution exposure by up to to 60%. '
     ],
     tips:[
@@ -62,7 +62,7 @@ export default [
   {
     question: 'When are you most likely to go cycling?',
     suggestions: [
-      'Rush hour (roughly between 7-10am and 4-7pm',
+      'Rush hour (roughly between 7-10am and 4-7pm)',
       'Off-peak'
     ],
     results: [
@@ -120,14 +120,14 @@ export default [
     danger: [1, 0]
   },
   {
-    question: 'Which of the following is a bigger cause of air pollution in London?',
+    question: 'Which of the following is a bigger cause of air pollution in Guildford?',
     suggestions: [
       'Airport',
       'Traffic'
     ],
     results: [
-      'That’s not quite right - even though central London is close to both Heathrow, Gatwick and City airports, the main cause of pollution is the amount of traffic in and around the city centre.',
-      'Correct! Even though central London is close to Heathrow, Gatwick and City airports, the main cause of pollution is the amount of traffic in and around the city centre.'
+      'That’s not quite right - even though Guildford is close to both Heathrow and Gatwick airports, the main cause of pollution is the amount of traffic in and around the city centre.',
+      'Correct! Even though Guildford is close to Heathrow and Gatwick airports, the main cause of pollution is the amount of traffic in and around the city centre.'
     ],
     tips:[
     '',
