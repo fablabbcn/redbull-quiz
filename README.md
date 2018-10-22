@@ -53,3 +53,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To run offline, and to run with a logger do
 
 `npm run logger`
+
+Whenever someone finishes a quiz in offline mode, it is logged to a file called `log.txt` on `/home/pi` (on a Raspberry PI)
+
+The format of `log.txt` is:
+** StartTime,EndTime, TotalExposure, Guesses **
