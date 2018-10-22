@@ -58,4 +58,4 @@ Whenever someone finishes a quiz in offline mode, it is logged to a file called 
 
 The format of `log.txt` is:
 
-**StartTime,EndTime, TotalExposure, Guesses**
+**StartTime, EndTime, TotalExposure, Guesses**
