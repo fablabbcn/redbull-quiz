@@ -59,3 +59,8 @@ Whenever someone finishes a quiz in offline mode, it is logged to a file called 
 The format of `log.txt` is:
 
 **StartTime, EndTime, TotalExposure, Guesses**
+
+**Guesses** is an array of the question answered.
+For example:
+* [1,1,1,1] if you only answered 4 questions, always the later answer. 
+* [0,0,1] if you only answered 3 questions, first 2 questions the first answer, and the third question the later answer. 
