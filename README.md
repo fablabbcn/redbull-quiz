@@ -1,16 +1,12 @@
 # Air pollution Quiz for the iSCAPE project.
 
+[![DOI](https://zenodo.org/badge/119367584.svg)](https://zenodo.org/badge/latestdoi/119367584)
+
 More about iScape:
 
 https://www.iscapeproject.eu/
 
 https://www.iscapeproject.eu/about/
-
-
-## TODO:
-- [x] Google analytics
-- [ ] Instruction on the page, mention keyboard shortcuts
-- [x] Favicon
 
 ## Features
 Keyboard shortucts:
@@ -64,3 +60,8 @@ The format of `log.txt` is:
 For example:
 * [1,1,1,1] if you only answered 4 questions, always the later answer. 
 * [0,0,1] if you only answered 3 questions, first 2 questions the first answer, and the third question the later answer. 
+
+## Funding
+
+This work has received funding from the European Union's Horizon 2020 research and innovation program under the grant agreement [No. 689954](https://cordis.europa.eu/project/rcn/202639_en.html)
+
