@@ -518,8 +518,8 @@ class Questions extends Component {
             <input required className="form-control mx-auto mt-4 text-center w-75" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
           </form>
           <div className="col-12 my-3 text-center">
-            <a href="https://www.iscapeproject.eu">
-              <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
+            <a href="https://www.redbull.com">
+              <img src={require("./img/red_bull.png")} style={{height: '90px'}} alt='place' />
             </a>
           </div>
         </div>
