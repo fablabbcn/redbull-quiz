@@ -23,6 +23,7 @@ class Questions extends Component {
       // TODO: Unable to use language as a 'key' from a JSON file
       language: guildford,
       langNr: 0,
+      email: "",
       startDate: 0,
       totalQuestions: 0,
       totalExposureLevel: 0,
@@ -33,18 +34,16 @@ class Questions extends Component {
 
     //console.log(this)
 
+    this.changeEmail = this.changeEmail.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
     this.updateGuesses = this.updateGuesses.bind(this);
-    this.handleKeyboard = this.handleKeyboard.bind(this);
-
   }
 
   componentDidMount(){
-    document.addEventListener("keydown", this.handleKeyboard, false);
 
     var that = this;
 
@@ -269,33 +268,8 @@ class Questions extends Component {
 
   }
 
-
-  handleKeyboard(event){
-    switch (event.key) {
-      case '1':
-        this.updateGuesses(0, this.state.currentQuestion)
-        break;
-      case '2':
-        this.updateGuesses(1, this.state.currentQuestion)
-        break;
-      case 'n':
-        this.nextQuestion();
-        break;
-      case 'p':
-        this.prevQuestion();
-        break;
-      case 's':
-        this.startQuiz();
-        break;
-      case 'f':
-        this.handleSubmit();
-        break;
-      case 'r':
-        //this.startQuiz();
-        break;
-      default:
-        //console.log('Key not mapped..');
-    }
+  changeEmail(event){
+    this.setState({email: event.target.value})
   }
 
   changeLanguage(e){
@@ -326,7 +300,7 @@ class Questions extends Component {
     this.updateTips();
 
     // Logger sends 4 items, startTime, endTime, score, and guesses
-    this.logger(this.state.startDate, new Date().getTime(), this.state.totalExposureLevel, this.state.guesses);
+    this.logger(this.state.email, this.state.startDate, new Date().getTime(), this.state.totalExposureLevel, this.state.guesses);
 
     ReactGA.event({
       category: 'User',
@@ -337,7 +311,7 @@ class Questions extends Component {
     });
   }
 
-  logger(startTime, endTime, totalExp, guesses){
+  logger(email, startTime, endTime, totalExp, guesses){
     if (window.location.hostname === 'localhost') {
       fetch('http://localhost:8000/logs', {
         method: 'POST',
@@ -346,6 +320,7 @@ class Questions extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          email: email,
           startTime: startTime,
           endTime: endTime,
           totalExp: totalExp,
@@ -535,6 +510,7 @@ class Questions extends Component {
             {this.state.quizRunning && eachQuiz}
             {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
+            <input required className="form-control mx-auto mt-4 text-center w-75" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
           </form>
           {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           <div className="col-12 my-3 text-center">

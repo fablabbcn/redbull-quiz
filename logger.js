@@ -15,6 +15,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.post('/logs', function(req, res){
   res.send('received log');
   finalline =
+    req.body.email  + "," +
     req.body.startTime + "," +
     req.body.endTime   + "," +
     req.body.totalExp  + "," +
