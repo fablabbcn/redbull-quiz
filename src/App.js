@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
-import guildford from './data/en';
 import helper from './data/helper';
+import en from './data/en';
 import es from './data/es';
+import ca from './data/ca';
 import ReactGA from 'react-ga'
 
 ReactGA.initialize('UA-85322801-3',{
@@ -21,7 +22,7 @@ class Questions extends Component {
       guesses: [],
       myTips: [],
       // TODO: Unable to use language as a 'key' from a JSON file
-      language: guildford,
+      language: en,
       langNr: 0,
       email: "",
       startDate: 0,
@@ -269,7 +270,7 @@ class Questions extends Component {
   }
 
   changeEmail(event){
-    this.setState({email: event.target.value})
+    this.setState({email: event.target.value.toLowerCase()})
   }
 
   changeLanguage(e){
@@ -278,11 +279,14 @@ class Questions extends Component {
     //this.setState({ language: e.target.value})
     // Which makes the rest unneccessary
     switch (e.target.value) {
-      case 'guildford':
-        this.setState({ language: guildford, langNr: 0 })
+      case 'en':
+        this.setState({ language: en, langNr: 0 })
         break;
       case 'es':
         this.setState({ language: es, langNr: 1 })
+        break;
+      case 'ca':
+        this.setState({ language: ca, langNr: 2 })
         break;
       default:
     }
@@ -503,16 +507,16 @@ class Questions extends Component {
     return (
       <div className="App container">
         <div className="row">
-          <div className="col-12 col-md-8 mx-auto empty-sidebar" style={{minHeight: '50px'}}>
+          <div className="col-md-8 mt-3 mx-auto empty-sidebar" style={{minHeight: '50px'}}>
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
+            {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           </div>
-          <form className="col-12 col-md-10 py-4 p-md-5 mx-auto" onSubmit={this.handleSubmit}>
+          <form className="col-md-10 py-4 p-md-5 mx-auto" onSubmit={this.handleSubmit}>
             {this.state.quizRunning && eachQuiz}
             {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
             <input required className="form-control mx-auto mt-4 text-center w-75" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
           </form>
-          {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           <div className="col-12 my-3 text-center">
             <a href="https://www.iscapeproject.eu">
               <img src={require("./img/logo_iscape_grey.png")} style={{height: '90px'}} alt='place' />
@@ -526,11 +530,12 @@ class Questions extends Component {
 
 function Languages(props){
   return(
-    <div className="col-12 col-md-8 mx-auto mt-3 text-right" style={{height: '50px'}}>
+    <div className="text-right" style={{height: '50px'}}>
       <label>
         <select className="form-control" onChange={props.mySelectLanguage}>
-          <option value="guildford">Guildford</option>
-          <option value="es">Location2</option>
+          <option value="en">English</option>
+          <option value="es">Espanol</option>
+          <option value="ca">Catalan</option>
         </select>
       </label>
       <img src={require("./img/place.svg")} style={{height: '30px'}} alt='place' />

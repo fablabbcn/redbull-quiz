@@ -12,15 +12,25 @@ export default [
 
   },
   {
-    lang: 'Test-2',
-    title: 'Airo ',
-    p1: 'Paragraph1',
+    lang: 'Español',
+    title: 'Titulo ',
+    p1: 'Párrafó',
     p2: 'Paragraph2',
-    click_image: '(Click the image to continue)',
+    click_image: '(Click en la imagen para continuar)',
     startquiz: 'Comienzo Quiz',
     finaltips: '',
-    thanks: 'Thanks for taking the quiz!',
-    quizagain: 'Do the quiz again?',
+    thanks: 'Gracias',
+    quizagain: '¿Quieres volver a responder el cuestionario?',
+  },
+  {
+    lang: 'Catalan',
+    title: 'Titulo en catalan',
+    p1: 'Párrafó',
+    p2: 'Paragraph2',
+    click_image: 'c',
+    startquiz: 'c',
+    finaltips: 'c',
+    thanks: 'c',
+    quizagain: '¿Quieres volver a responder el cuestionario?',
   }
-
 ]
