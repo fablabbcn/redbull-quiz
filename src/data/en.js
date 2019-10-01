@@ -8,12 +8,13 @@ export default [
     ],
     results: [
       'It is the most sustainable of the three. And you can use it for ages! 100% recyclable if put in the yellow bin',
-      'it is worse than a plastic one if used less than 43 times. The problem is that it will be destroyed by that time',
+      'It is worse than a plastic one if used less than 43 times. The problem is that it will be destroyed by that time',
       'You should use it 7000 times to have the same low impact than a plastic one. Even worst if it is organic cotton!'
     ],
     tips:[
-    'Tips...',
     '',
+    '',
+    ''
     ],
     images:[
       'House-near-busy-highway.png',
