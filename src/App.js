@@ -153,6 +153,11 @@ class Questions extends Component {
       that.updateGuesses(1, that.state.currentQuestion)
     }, 50)
 
+    var debounce_guess2 = debounce(function(){
+      //console.log('should debounce guess0')
+      that.updateGuesses(2, that.state.currentQuestion)
+    }, 50)
+
     function updateStatus() {
       if (!haveEvents) {
         scangamepads();
@@ -179,6 +184,16 @@ class Questions extends Component {
           b.style.backgroundSize = pct + " " + pct;
 
           if (pressed) {
+            if (i === 7) {
+              debounce_guess0();
+            }
+            if (i === 8) {
+              debounce_guess1();
+            }
+            if (i === 9) {
+              debounce_guess2();
+            }
+            console.log(i)
             if (i === 11) {
               prev_quest();
             }
@@ -472,15 +487,16 @@ class Questions extends Component {
         <div key={questionIndex} className="row">
           <div className={this.state.currentQuestion === questionIndex ? 'show col-12' : 'hidden col-12'}>
             <h3 style={{minHeight: '68px'}} className="text-blue text-center">{questionIndex + 1}. {item.question} </h3>
-            <div className="row suggestions justify-content-around">
+            <div className="row suggestions text-uppercase mt-4">
               {
                 item.suggestions.map((suggestion, answerIndex) => {
                   return (
-                    <div key={answerIndex}
-                      className={answerIndex === this.state.guesses[questionIndex] ? 'col-6 col-md-5 selected-answer' : "col-6 col-md-5 unselected"}
+                    <div key={answerIndex} className="col-md-4 text-center"
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
-                      <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-50 my-3" />
-                      <p style={{minHeight: '50px'}} className="text-center">{suggestion}</p>
+                      <div className={(answerIndex === this.state.guesses[questionIndex] ? 'selected-answer' : "unselected") + " color-" + answerIndex}>
+                        {/* <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-50 my-3" /> */}
+                        <p style={{minHeight: '50px'}} className="mt-4">{suggestion}</p>
+                      </div>
                     </div>
                   )
                 })
@@ -488,7 +504,7 @@ class Questions extends Component {
             </div>
             <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-0 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-blue mx-1' } onClick={this.prevQuestion}>
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-blue mx-3' } onClick={this.prevQuestion}>
                 Previous
               </button>
 
@@ -507,7 +523,7 @@ class Questions extends Component {
     return (
       <div className="App container">
         <div className="row">
-          <div className="col-md-8 mt-3 mx-auto empty-sidebar" style={{minHeight: '50px'}}>
+          <div className="col-10 mx-auto mt-3" style={{minHeight: '50px'}}>
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
             {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           </div>
@@ -574,10 +590,8 @@ function Final(props) {
   });
   return(
     <div className="text-center">
-      <h3 className="font-weight-bold mb-3">Your exposure level is:
-        <span style={{color: finalExposureColor}}> { finalExposureText }</span>
+      <h3 className="font-weight-bold mb-3">Your score is: {props.totalExposure}
       </h3>
-      <Meter rotate={false} meterExposureLevel={props.totalExposure} />
       <br />
       <p className="text-justify mt-4">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
@@ -631,16 +645,8 @@ class App extends Component {
 
 function Sidebar(props){
   return (
-    <div className="sidebar text-center">
-      <div className="row mt-2">
-        <div className="col-6 text-left">
-          <p className="">Your exposure to air pollution:</p>
-        </div>
-        {/* <img alt="Exposure" src={require("./img/Exposure to air pollution.png")} className="w-75 my-3"/> */}
-        <div className="col-6">
-          <Meter rotate={false} meterExposureLevel={props.totalExposure} />
-        </div>
-      </div>
+    <div className="text-center">
+      <p>Your score is: {props.totalExposure}</p>
     </div>
   )
 }

@@ -1,42 +1,46 @@
 export default [
   {
-    question: 'Where do you live?',
+    question: 'Which bag is the best?',
     suggestions: [
-      'I live next to a busy road',
-      'I live on a quiet street with little traffic'
+      'Plastic bag',
+      'Paper bag',
+      'Fabric bag'
     ],
     results: [
-      'Pollution is typically higher near busy roads since traffic is a major source of air pollution. 50% of vehicle emissions can also travel a distance of up to 150 meters from their source. Consider planting a hedge row or asking your landlord to do it. A hedge row could act as a green barrier between you and vehicle emissions, this will help to reduce your exposure to air pollution on a daily basis.',
-      'Great! Pollution is typically lower away from busy roads since traffic is a major source of air pollution.'
+      'It is the most sustainable of the three. And you can use it for ages! 100% recyclable if put in the yellow bin',
+      'it is worse than a plastic one if used less than 43 times. The problem is that it will be destroyed by that time',
+      'You should use it 7000 times to have the same low impact than a plastic one. Even worst if it is organic cotton!'
     ],
     tips:[
-    'Consider planting a hedge row or asking your landlord to do it.',
+    'Tips...',
     '',
     ],
     images:[
       'House-near-busy-highway.png',
       'House-near-quiet-lane.png'
     ],
-    danger: [1, 0]
+    danger: [10, 5, 2]
   },
   {
-    question: 'What kind of road do you walk down most often?',
+    question: 'Which industry is the most polluting?',
     suggestions: [
-      'On pavements close to traffic',
-      'On pavements behind hedges'
+      'FOOD',
+      'TRANSPORT',
+      'FASHION'
     ],
     results: [
-      'Unfortunately exposure to air pollution is typically higher on these roads compared to roads with hedges. Roadside hedges can help to reduce air pollution by up to 60%. If you want to reduce your exposure to air pollution whilst walking around Guildford choose roads with hedges and trees next time you are out and about. ',
-      'Great!  Walking down a road behind hedges exposes you to a lot less pollution than walking down a road where the pavement is close to traffic. This is because the hedges at the side of the road can help to reduce air pollution exposure by up to to 60%. '
+      'About 1/3 of the food produced in the world is wasted. That is ��… 917,500,000,000 € �� Despite that, it isn´t as bad as the fashion industry, which is the second most polluting after oil.',
+      'Despite it’s the responsible of the 20% of the air pollution, it isn´t as bad as the fashion industry, which is the second most polluting after oil.',
+      'It is the worst of the 3, right behind the oil industry. Love your jeans! It takes 4000 liter of water to produce 1 pair'
     ],
     tips:[
-    'Try to walk down roads with hedges and trees next time you are out and about. ',
+    'Tips...',
     '',
     ],
     images:[
       'Stoke-road-no-hedges.png',
       'Park-road-with-hedges.png'
     ],
-    danger: [1, 0]
+    danger: [3, 3, 10]
   },
-  ]
+]
