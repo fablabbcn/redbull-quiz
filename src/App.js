@@ -38,6 +38,7 @@ class Questions extends Component {
     this.changeEmail = this.changeEmail.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitEmail = this.submitEmail.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
@@ -313,13 +314,14 @@ class Questions extends Component {
     }
     //console.log(this.state.currentQuestion);
     //console.log('Guesses: ', this.state.guesses)
+    console.log('handle submit');
 
     this.setState({quizEnded: true, quizRunning: false});
     this.updateExposureLevel();
     this.updateTips();
 
     // Logger sends 4 items, startTime, endTime, score, and guesses
-    this.logger(this.state.email, this.state.startDate, new Date().getTime(), this.state.totalExposureLevel, this.state.guesses);
+    this.logger(this.state.startDate, new Date().getTime(), this.state.totalExposureLevel, this.state.guesses);
 
     ReactGA.event({
       category: 'User',
@@ -330,7 +332,10 @@ class Questions extends Component {
     });
   }
 
-  logger(email, startTime, endTime, totalExp, guesses){
+  submitEmail(e){
+    if(e){
+      e.preventDefault();
+    }
     if (window.location.hostname === 'localhost') {
       fetch('http://localhost:8000/logs', {
         method: 'POST',
@@ -339,7 +344,21 @@ class Questions extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: email,
+          email: this.state.email,
+        })
+      })
+    }
+  }
+
+  logger(startTime, endTime, totalExp, guesses){
+    if (window.location.hostname === 'localhost') {
+      fetch('http://localhost:8000/logs', {
+        method: 'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
           startTime: startTime,
           endTime: endTime,
           totalExp: totalExp,
@@ -527,14 +546,25 @@ class Questions extends Component {
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
             {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           </div>
-          <form className="col-md-10 py-4 p-md-5 mx-auto" onSubmit={this.handleSubmit}>
-            {this.state.quizRunning && eachQuiz}
-            {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
-            {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
-            {this.state.quizRunning &&
-            <input required className="d-block p-2 mx-auto mt-4 text-center w-75" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
+          <div className="col-md-10 py-4 p-md-5 mx-auto bg-white">
+            <form onSubmit={this.handleSubmit}>
+              {this.state.quizRunning && eachQuiz}
+              {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
+            </form>
+            {this.state.quizEnded   &&
+                <div>
+                  <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />
+                  <form onSubmit={this.submitEmail}>
+                    <div className="input-group justify-content-center mt-4">
+                      <input required className="text-center" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
+                      <div class="input-group-append">
+                        <input className='btn btn-green' type="submit" value="Submit Email" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
             }
-          </form>
+          </div>
           <div className="col-12 my-3 text-center">
             <a href="https://www.redbull.com">
               <img src={require("./img/red_bull.png")} style={{height: '90px'}} alt='place' />
@@ -597,6 +627,7 @@ function Final(props) {
       <br />
       <p className="mt-4">{helper[lang].finaltips}</p>
       <br />
+      <p className="mt-4">{helper[lang].quizagain}</p>
 
       <div className="final-tips mb-3">
         {showTips}

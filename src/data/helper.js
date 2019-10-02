@@ -8,7 +8,7 @@ export default [
     startquiz: 'Start the Quiz',
     finaltips: 'Thanks for playing!',
     thanks: 'Thanks for taking the quiz!',
-    quizagain: 'Do the quiz again?',
+    quizagain: 'If you would like to know more about how to be more sustainable, drop us your email below! You will get tips and tricks.',
     score: 'Your score is'
   },
   {
@@ -20,7 +20,7 @@ export default [
     startquiz: 'Comienzo Quiz',
     finaltips: 'ENHORABUENA!',
     thanks: 'TU PUNTUACION ES DE',
-    quizagain: '¿Quieres volver a responder el cuestionario?',
+    quizagain: '¡Si quieres saber más, déjanos tu email y te enviaremos un breve documento con todo lo que necesitas aprender para ser más sostenible!',
     score: 'LA TEVA PUNTUACIÓ ÉS DE'
   },
   {

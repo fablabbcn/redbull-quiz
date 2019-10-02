@@ -6,10 +6,12 @@
 .App {
 }
 
+.btn{
+  border-radius: 0px !important;
+}
 .btn-lg{
   text-transform: uppercase !important;
   font-weight: 700 !important;
-  border-radius: 0px !important;
 }
 
 .btn-green{
@@ -31,10 +33,6 @@
 }
 .text-grey{
   color: #666;
-}
-
-form{
-  background: #FFF;
 }
 
 .cookie{
