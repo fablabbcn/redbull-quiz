@@ -531,7 +531,9 @@ class Questions extends Component {
             {this.state.quizRunning && eachQuiz}
             {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             {this.state.quizEnded   && <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />}
+            {this.state.quizRunning &&
             <input required className="form-control mx-auto mt-4 text-center w-75" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
+            }
           </form>
           <div className="col-12 my-3 text-center">
             <a href="https://www.redbull.com">
