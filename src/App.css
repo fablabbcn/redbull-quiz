@@ -18,7 +18,7 @@
 }
 
 .btn-blue{
-  background: #097bdb;
+  background: #040582;
   color:white;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .text-blue{
- color: #097bdb;
+ color: #040582;
 }
 .text-grey{
   color: #666;
@@ -38,7 +38,7 @@ form{
 }
 
 .cookie{
-  color: red;
+  color: #f40043;
 }
 
 img:hover{
@@ -52,11 +52,11 @@ img:hover{
   font-size:20px;
 }
 
-.color-0{ border: 2px solid orange; }
-.selected-answer.color-0{ background: orange; }
+.color-0{ border: 2px solid #f8c000; }
+.selected-answer.color-0{ background: #f8c000; }
 
-.color-1{ border: 2px solid red; }
-.selected-answer.color-1{ background: red; }
+.color-1{ border: 2px solid #f40043; }
+.selected-answer.color-1{ background: #f40043; }
 
 .color-2{ border: 2px solid grey; }
 .selected-answer.color-2{ background: grey; }
