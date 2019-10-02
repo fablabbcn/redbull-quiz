@@ -502,14 +502,14 @@ class Questions extends Component {
                 })
               }
             </div>
-            <p className="pt-4 " style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
+            <p className="pt-5 font-weight-bold" style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-0 text-center">
               <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-blue mx-3' } onClick={this.prevQuestion}>
                 Previous
               </button>
 
               {lastQuestion? (
-                <input className={'btn btn-lg btn-green px-3'} disabled={!isAnswered} type="submit" value="Show me my exposure level" />
+                <input className={'btn btn-lg btn-green px-3'} disabled={!isAnswered} type="submit" value="FINISH" />
               ):(
                 <button className={'btn btn-lg btn-green px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
               )}
@@ -593,7 +593,7 @@ function Final(props) {
       <h3 className="font-weight-bold mb-3">Your score is: {props.totalExposure}
       </h3>
       <br />
-      <p className="text-justify mt-4">{helper[lang].finaltips}</p>
+      <p className="mt-4">{helper[lang].finaltips}</p>
       {/*<a href="." className="btn btn-blue">{helper[lang].quizagain}</a> */}
       <br />
 

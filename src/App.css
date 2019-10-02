@@ -13,20 +13,12 @@
 }
 
 .btn-green{
-  background: #45C400;
+  background: #0cb30c;
   color:white;
 }
 
 .btn-blue{
-  background: #00B3F2;
-  color:white;
-}
-
-.btn-white{
-  background: none;
-}
-.btn-blue{
-  background: #4472C4;
+  background: #097bdb;
   color:white;
 }
 
@@ -35,7 +27,7 @@
 }
 
 .text-blue{
- color: #00B3F4;
+ color: #097bdb;
 }
 .text-grey{
   color: #666;

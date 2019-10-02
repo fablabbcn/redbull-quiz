@@ -9,7 +9,6 @@ export default [
     finaltips: 'Thanks for playing!',
     thanks: 'Thanks for taking the quiz!',
     quizagain: 'Do the quiz again?',
-
   },
   {
     lang: 'Español',
@@ -28,7 +27,7 @@ export default [
     p1: 'ACCEPTES EL REPTE?',
     p2: '',
     click_image: '',
-    startquiz: 'Comienzo Quiz',
+    startquiz: 'Inicieu el test!',
     finaltips: '',
     thanks: 'Gràcies per participar!',
     quizagain: 'Si vols saber-ne més, deixa’ns el teu email i t’enviarem un breu document amb tot el que necessites aprendre per ser més sostenible!',
