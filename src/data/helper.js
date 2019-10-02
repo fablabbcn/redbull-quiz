@@ -9,6 +9,7 @@ export default [
     finaltips: 'Thanks for playing!',
     thanks: 'Thanks for taking the quiz!',
     quizagain: 'Do the quiz again?',
+    score: 'Your score is'
   },
   {
     lang: 'Español',
@@ -20,6 +21,7 @@ export default [
     finaltips: 'ENHORABUENA!',
     thanks: 'TU PUNTUACION ES DE',
     quizagain: '¿Quieres volver a responder el cuestionario?',
+    score: 'LA TEVA PUNTUACIÓ ÉS DE'
   },
   {
     lang: 'Catalan',
@@ -28,8 +30,9 @@ export default [
     p2: '',
     click_image: '',
     startquiz: 'Inicieu el test!',
-    finaltips: '',
+    finaltips: 'Gràcies!',
     thanks: 'Gràcies per participar!',
     quizagain: 'Si vols saber-ne més, deixa’ns el teu email i t’enviarem un breu document amb tot el que necessites aprendre per ser més sostenible!',
+    score: 'TU PUNTUACION ES DE'
   }
 ]

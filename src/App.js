@@ -590,7 +590,7 @@ function Final(props) {
   });
   return(
     <div className="text-center">
-      <h3 className="font-weight-bold mb-3">Your score is: {props.totalExposure}
+      <h3 className="font-weight-bold mb-3">{helper[lang].score}: {props.totalExposure}
       </h3>
       <br />
       <p className="mt-4">{helper[lang].finaltips}</p>
