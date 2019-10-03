@@ -345,6 +345,7 @@ class Questions extends Component {
         })
       })
     }
+    window.location.reload();
   }
 
   logger(startTime, endTime, totalExp, guesses){
@@ -520,14 +521,14 @@ class Questions extends Component {
             </div>
             <p className="pt-5 font-weight-bold" style={{minHeight: '200px'}}>{item.results[this.state.guesses[questionIndex]]}</p>
             <div className="button mt-0 text-center">
-              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-blue mx-3' } onClick={this.prevQuestion}>
+              <button className={firstQuestion ? 'hidden' : 'btn btn-lg btn-orange mx-3' } onClick={this.prevQuestion}>
                 Previous
               </button>
 
               {lastQuestion? (
-                <input className={'btn btn-lg btn-green px-3'} disabled={!isAnswered} type="submit" value="FINISH" />
+                <input className={'btn btn-lg btn-gray px-3'} disabled={!isAnswered} type="submit" value="FINISH" />
               ):(
-                <button className={'btn btn-lg btn-green px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
+                <button className={'btn btn-lg btn-gray px-5'} disabled={!isAnswered} onClick={this.nextQuestion}>Next</button>
               )}
 
             </div>
@@ -555,7 +556,7 @@ class Questions extends Component {
                     <div className="input-group justify-content-center mt-4">
                       <input required className="text-center" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
                       <div class="input-group-append">
-                        <input className='btn btn-green' type="submit" value="Submit Email" />
+                        <input className='btn btn-gray' type="submit" value="Submit Email" />
                       </div>
                     </div>
                   </form>
@@ -651,7 +652,7 @@ function Welcome(props) {
       <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-25 my-1" alt="Start quiz" />
       <p>{helper[lang].click_image}</p>
       <br />
-      <button className="btn btn-lg btn-green px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
+      <button className="btn btn-lg btn-gray px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
       <Cookie />
       <p id="gamepad-controller" style={{color: 'purple'}}></p>
     </div>

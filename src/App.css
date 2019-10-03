@@ -14,6 +14,10 @@
   font-weight: 700 !important;
 }
 
+.btn-grey{
+  background: grey;
+}
+
 .btn-green{
   background: #0cb30c;
   color:white;
@@ -28,6 +32,9 @@
   color:white !important;
 }
 
+.btn-orange{
+  background: orange;
+}
 .text-blue{
  color: #040582;
 }
@@ -50,14 +57,21 @@ img:hover{
   font-size:20px;
 }
 
-.color-0{ border: 2px solid #f8c000; }
-.selected-answer.color-0{ background: #f8c000; }
+/*MFirst answer GREEN */
+.color-0{ border: 2px solid #0cb30c; }
+.selected-answer.color-0{ background: #0cb30c; }
 
+/* Second answer RED */
 .color-1{ border: 2px solid #f40043; }
 .selected-answer.color-1{ background: #f40043; }
 
-.color-2{ border: 2px solid grey; }
-.selected-answer.color-2{ background: grey; }
+/* Third answer BLUE */
+.color-2{ border: 2px solid #4f50ff; }
+.selected-answer.color-2{ background: #4f50ff; }
+
+/* White button NEXT */
+
+/* Third answer BLUE */
 
 ul li {
   cursor: pointer;
@@ -68,14 +82,6 @@ ul li {
 .hidden{
   display: none;
 }
-
-/*
-Yellow
-#FFDB00
-
-RED
-#FF4D58
-*/
 
 
 .meter{
