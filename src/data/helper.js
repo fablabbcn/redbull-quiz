@@ -21,7 +21,7 @@ export default [
     finaltips: 'ENHORABUENA!',
     thanks: 'TU PUNTUACION ES DE',
     quizagain: '¡Si quieres saber más, déjanos tu email y te enviaremos un breve documento con todo lo que necesitas aprender para ser más sostenible!',
-    score: 'LA TEVA PUNTUACIÓ ÉS DE'
+    score: 'TU PUNTUACION ES DE'
   },
   {
     lang: 'Catalan',
@@ -33,6 +33,6 @@ export default [
     finaltips: 'Gràcies!',
     thanks: 'Gràcies per participar!',
     quizagain: 'Si vols saber-ne més, deixa’ns el teu email i t’enviarem un breu document amb tot el que necessites aprendre per ser més sostenible!',
-    score: 'TU PUNTUACION ES DE'
+    score: 'LA TEVA PUNTUACIÓ ÉS DE'
   }
 ]
