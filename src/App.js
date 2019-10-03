@@ -658,16 +658,9 @@ function Welcome(props) {
       <p className="my-5">{helper[lang].p2}</p>
       <p>{helper[lang].click_image}</p>
       <br />
-      <button className="btn btn-lg btn-gray px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
-      <Cookie />
+      <button className="btn btn-lg btn-gray px-5 my-2" onClick={props.startQuiz}>{helper[lang].startquiz}</button>
       <p id="gamepad-controller" style={{color: 'purple'}}></p>
     </div>
-  )
-}
-
-function Cookie(){
-  return (
-    <p className="cookie pt-3">By clicking the button above, you accept this site will use cookies to collect data about your behavior while you play the quiz.</p>
   )
 }
 
