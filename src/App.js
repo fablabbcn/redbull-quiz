@@ -337,7 +337,7 @@ class Questions extends Component {
       e.preventDefault();
     }
     if (window.location.hostname === 'localhost') {
-      fetch('http://localhost:8000/logs', {
+      fetch('http://localhost:8000/email', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',

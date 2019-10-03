@@ -12,6 +12,15 @@ app.use(cors())
 app.get('/', (req, res) => res.send('Hello World!'))
 
 
+app.post('/email', function(req, res){
+  res.send('received email');
+  fs.appendFile("../email.txt", req.body.email + "\n", function(err){
+    if (err) {
+      return console.log(err);
+    }
+  })
+})
+
 app.post('/logs', function(req, res){
   res.send('received log');
   finalline =
