@@ -333,6 +333,9 @@ class Questions extends Component {
   }
 
   submitEmail(e){
+    if(e){
+      e.preventDefault();
+    }
     if (window.location.hostname === 'localhost') {
       fetch('http://localhost:8000/logs', {
         method: 'POST',
