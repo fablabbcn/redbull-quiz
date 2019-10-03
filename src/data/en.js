@@ -17,8 +17,9 @@ export default [
     ''
     ],
     images:[
-      'House-near-busy-highway.png',
-      'House-near-quiet-lane.png'
+      'plastic.jpg',
+      'paper_bag.jpg',
+      'fabric_bag.jpg'
     ],
     danger: [10, 5, 2]
   },
@@ -40,8 +41,9 @@ export default [
     '',
     ],
     images:[
-      'Stoke-road-no-hedges.png',
-      'Park-road-with-hedges.png'
+      'food.jpg',
+      'transport.jpg',
+      'fashion.jpg'
     ],
     danger: [3, 3, 10]
   },

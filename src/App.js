@@ -510,7 +510,7 @@ class Questions extends Component {
                     <div key={answerIndex} className="col-md-4 text-center"
                       onClick={() => this.updateGuesses(answerIndex, questionIndex)}>
                       <div className={(answerIndex === this.state.guesses[questionIndex] ? 'selected-answer' : "unselected") + " color-" + answerIndex}>
-                        {/* <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image rounded-circle mx-auto d-block w-50 my-3" /> */}
+                        <img src={require("./img/" + item.images[answerIndex])} alt="img" className="answer-image img-fluid " />
                         <p style={{minHeight: '50px'}} className="mt-4">{suggestion}</p>
                       </div>
                     </div>
@@ -564,7 +564,7 @@ class Questions extends Component {
           </div>
           <div className="col-12 my-3 text-center">
             <a href="https://www.redbull.com">
-              <img src={require("./img/red_bull.png")} style={{height: '90px'}} alt='place' />
+              <img src={require("./img/vvalue_logo.png")} style={{height: '90px'}} alt='place' />
             </a>
           </div>
         </div>
