@@ -557,7 +557,7 @@ class Questions extends Component {
                   <Final totalExposure={this.state.totalExposureLevel} allTips={this.state.myTips} language={this.state.langNr} />
                   <form onSubmit={this.submitEmail}>
                     <div className="input-group justify-content-center mt-4">
-                      <input required className="text-center" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
+                      <input autofocus="autofocus" required className="text-center" type="text" name="email" value={this.state.email} onChange={this.changeEmail}  placeholder="Email address here.." />
                       <div class="input-group-append">
                         <input className='btn btn-gray' type="submit" value="Submit Email" />
                       </div>
