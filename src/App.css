@@ -73,6 +73,11 @@ img:hover{
 
 /* Third answer BLUE */
 
+.selected-lang{
+  font-weight: bold;
+  border: 1px solid red;
+}
+
 ul li {
   cursor: pointer;
   padding:1px 10px;

@@ -290,11 +290,11 @@ class Questions extends Component {
   }
 
   changeLanguage(e){
-    //console.log(e.target.value);
+    //console.log(e);
     // TODO: why can we not simply use the following line?
     //this.setState({ language: e.target.value})
     // Which makes the rest unneccessary
-    switch (e.target.value) {
+    switch (e) {
       case 'en':
         this.setState({ language: en, langNr: 0 })
         break;
@@ -545,11 +545,11 @@ class Questions extends Component {
         <div className="row">
           <div className="col-10 mx-auto mt-3" style={{minHeight: '50px'}}>
             {this.state.quizRunning   && <Sidebar totalExposure={this.state.totalExposureLevel} />  }
-            {this.state.welcome       && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
           </div>
           <div className="col-md-10 py-4 p-md-5 mx-auto bg-white">
             <form onSubmit={this.handleSubmit}>
               {this.state.quizRunning && eachQuiz}
+              {this.state.welcome     && <Languages lang={this.state.langNr} mySelectLanguage={this.changeLanguage} />}
               {this.state.welcome     && <Welcome language={this.state.langNr} startQuiz={this.startQuiz} />}
             </form>
             {this.state.quizEnded   &&
@@ -579,15 +579,19 @@ class Questions extends Component {
 
 function Languages(props){
   return(
-    <div className="text-right" style={{height: '50px'}}>
-      <label>
-        <select className="form-control" onChange={props.mySelectLanguage}>
-          <option value="en">English</option>
-          <option value="es">Espanol</option>
-          <option value="ca">Catalan</option>
-        </select>
-      </label>
-      <img src={require("./img/place.svg")} style={{height: '30px'}} alt='place' />
+    <div className="row justify-content-between mb-5 text-center">
+      <div className={(props.lang === 0 ? "selected-lang" : '') + " col-3"} value="es" onClick={() => props.mySelectLanguage('en')}>
+        <img className="img-fluid" src={require("./img/britain.svg")} alt='English' />
+        English
+      </div>
+      <div className={(props.lang === 1 ? "selected-lang" : '') + " col-3"} value="es" onClick={() => props.mySelectLanguage('es')}>
+        <img className="img-fluid" src={require("./img/spain-flag-small.png")} alt='English' />
+        Espanol
+      </div>
+      <div className={(props.lang === 2 ? "selected-lang" : '') + " col-3"} value="ca" onClick={() => props.mySelectLanguage('ca')}>
+        <img className="img-fluid" src={require("./img/catalunya.svg")} alt='English' />
+        Catalan
+      </div>
     </div>
   )
 }
@@ -651,8 +655,7 @@ function Welcome(props) {
     <div className="text-center">
       <h2 className="text-blue">{helper[lang].title}</h2>
       <p className="mt-4">{helper[lang].p1}</p>
-      <p>{helper[lang].p2}</p>
-      <img src={require("./img/Start-quiz.png")} onClick={props.startQuiz} className="w-25 my-1" alt="Start quiz" />
+      <p className="my-5">{helper[lang].p2}</p>
       <p>{helper[lang].click_image}</p>
       <br />
       <button className="btn btn-lg btn-gray px-5 " onClick={props.startQuiz}>{helper[lang].startquiz}</button>
