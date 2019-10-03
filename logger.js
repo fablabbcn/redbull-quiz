@@ -24,7 +24,6 @@ app.post('/email', function(req, res){
 app.post('/logs', function(req, res){
   res.send('received log');
   finalline =
-    req.body.email  + "," +
     req.body.startTime + "," +
     req.body.endTime   + "," +
     req.body.totalExp  + "," +
