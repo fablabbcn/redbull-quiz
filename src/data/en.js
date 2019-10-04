@@ -45,6 +45,6 @@ export default [
       'transport.jpg',
       'fashion.jpg'
     ],
-    danger: [3, 3, 10]
+    danger: [15, 15, 50]
   },
 ]

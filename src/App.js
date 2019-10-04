@@ -675,7 +675,7 @@ class App extends Component {
 function Sidebar(props){
   return (
     <div className="text-center">
-      <p>Your score is: {props.totalExposure}</p>
+      <p>Your score is: {props.totalExposure} / 100</p>
     </div>
   )
 }
