@@ -582,15 +582,15 @@ function Languages(props){
     <div className="row justify-content-between mb-5 text-center">
       <div className={(props.lang === 0 ? "selected-lang" : '') + " col-3"} value="es" onClick={() => props.mySelectLanguage('en')}>
         <img className="img-fluid" src={require("./img/britain.svg")} alt='English' />
-        English
+        ENG
       </div>
       <div className={(props.lang === 1 ? "selected-lang" : '') + " col-3"} value="es" onClick={() => props.mySelectLanguage('es')}>
         <img className="img-fluid" src={require("./img/spain-flag-small.png")} alt='English' />
-        Espanol
+        ESP
       </div>
       <div className={(props.lang === 2 ? "selected-lang" : '') + " col-3"} value="ca" onClick={() => props.mySelectLanguage('ca')}>
         <img className="img-fluid" src={require("./img/catalunya.svg")} alt='English' />
-        Catalan
+        CAT
       </div>
     </div>
   )
