@@ -21,7 +21,7 @@ export default [
       'paper_bag.jpg',
       'fabric_bag.jpg'
     ],
-    danger: [10, 5, 2]
+    danger: [50, 25, 10]
   },
   {
     question: 'Which industry is the most polluting?',

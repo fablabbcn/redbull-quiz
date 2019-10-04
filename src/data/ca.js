@@ -21,7 +21,7 @@ export default [
       'paper_bag.jpg',
       'fabric_bag.jpg'
     ],
-    danger: [10, 5, 2]
+    danger: [50, 25, 10]
   },
   {
     question: 'QUINA INDUSTRIA ÉS LA MÉS CONTAMINANT?',
@@ -45,6 +45,6 @@ export default [
       'transport.jpg',
       'fashion.jpg'
     ],
-    danger: [3, 3, 10]
+    danger: [15, 15, 50]
   }
 ]
